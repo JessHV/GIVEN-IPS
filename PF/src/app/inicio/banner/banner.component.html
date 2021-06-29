@@ -1,0 +1,17 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Brygada+1918&display=swap" rel="stylesheet">
+
+<div class='swiper-container' >
+    <div class="swiper-wrapper">
+        <div class="swiper-slide" *ngFor='let img of imagenes'>
+            <img [src]="img" alt="imagen de fondo">
+            <div class="fraseinicio" font-family='Mate'>
+                <p>LA PALABRA PROHIBIDO NO SIEMPRE<br> 
+                    SIGNIFICA QUE NO PUEDAS HACERLO <br> 
+                    SOLO QUE DEBES HACERLO CON <br> 
+                    CUIDADO</p>
+            </div>
+        </div>
+    </div>
+</div>

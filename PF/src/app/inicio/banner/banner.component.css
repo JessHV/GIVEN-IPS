@@ -1,0 +1,24 @@
+@import '~swiper/swiper-bundle';
+/*
+@import "~swiper/components/effect-fade/effect-fade";
+@import "~swiper/components/navigation/navigation";
+@import "~swiper/components/pagination/pagination";
+*/
+
+/*relative: el punto de referencia es la esquina superior izquierda de su elemento*/
+/*inline-block los elementos con este estilo se ponen horizontalmente y  respeta el ancho y altura*/
+.swiper-container{
+    position: relative;
+    display: inline-block;
+}
+
+/*absolute: el punto de referencia para medir el desplazamiento está en la ventana del navegador*/
+/*top y left: los márgenes superior e izquierda*/
+.fraseinicio{
+    position: absolute;
+    top: 370px;
+    left: 10%;
+    font-family: 'Brygada 1918', serif;
+    font-size: 40px;
+    color: white;
+}

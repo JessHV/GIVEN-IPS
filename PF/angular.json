@@ -98,6 +98,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/swiper/swiper.scss",
               "src/styles.css"
             ],
             "scripts": []

@@ -5,16 +5,21 @@ import { InicioRoutingModule } from './inicio-routing.module';
 import { InicioComponent } from './inicio/inicio.component';
 import { SuscripcionComponent } from './suscripcion/suscripcion.component';
 import { SharedModule } from "../shared/shared.module";
+import { SwiperModule } from "swiper/angular";
+import { BannerComponent } from './banner/banner.component';
 
 @NgModule({
   declarations: [
     InicioComponent,
-    SuscripcionComponent
+    SuscripcionComponent,
+    BannerComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
-    InicioRoutingModule
+    InicioRoutingModule,
+    SharedModule,
+    SwiperModule
   ]
 })
 export class InicioModule { }
