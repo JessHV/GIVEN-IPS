@@ -10,6 +10,17 @@ export class FooterComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    const departamento = document.querySelector("#departamento");
+    const searching = document.querySelector("#searching");
+    console.log(departamento);
+
+    departamento?.addEventListener('change', () => {
+      console.log('Working');
+      
+    })
+
+    
   }
 
 }
+
