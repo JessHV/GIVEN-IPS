@@ -16,9 +16,9 @@
 /*top y left: los márgenes superior e izquierda*/
 .fraseinicio{
     position: absolute;
-    top: 370px;
+    top: 150px;
     left: 10%;
     font-family: 'Brygada 1918', serif;
-    font-size: 40px;
+    font-size: 30px;
     color: white;
 }
