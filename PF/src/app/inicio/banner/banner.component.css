@@ -10,6 +10,7 @@
 .swiper-container{
     position: relative;
     display: inline-block;
+    margin-bottom: .5rem;
 }
 
 .imagen img{

@@ -17,6 +17,23 @@ const routes: Routes = [
         path: 'inicio',
         loadChildren: () => import('./inicio/inicio.module').then(m => m.InicioModule)
       },
+      {
+        path: 'busqueda',
+        loadChildren: () => import('./busqueda/busqueda.module').then(m => m.BusquedaModule)
+      },
+      {
+        path: 'foro',
+        loadChildren: () => import('./foro/foro.module').then(m => m.ForoModule)
+      },
+      {
+        path: 'ubicalos',
+        loadChildren: () => import('./mapa/mapa.module').then(m => m.MapaModule)
+      },
+      {
+        path: 'graficos',
+        loadChildren: () => import('./graficos/graficos.module').then(m => m.GraficosModule)
+      },
+      /* Crear ruta para preguntas frecuentes */
     ]
   },
   {

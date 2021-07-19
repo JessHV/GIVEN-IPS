@@ -1,4 +1,95 @@
-<app-header></app-header>
+<!-- <app-header></app-header> -->
+
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+	<div class="navbar-brand">
+    	<a class="navbar-item" href="#">
+      		<img src='../../../assets/iconos/LOGO.jpg' width="117" height="47">
+    	</a>
+
+    	<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      		<span aria-hidden="true"></span>
+      		<span aria-hidden="true"></span>
+      		<span aria-hidden="true"></span>
+    	</a>
+  	</div>
+
+  	<div id="navbarBasicExample" class="navbar-menu">
+    	
+    	<div class="navbar-end">
+
+            <!-- <a routerLink="/inicio" class="navbar-item">
+        		Inicio
+      		</a> -->
+
+            <a class="navbar-item" href="#">
+        		Inicio
+      		</a>
+
+            <a routerLink="/graficos" class="navbar-item">
+        		Graficos
+      		</a>
+
+      		<a routerLink="/ubicalos" class="navbar-item">
+        		Ubicalos
+      		</a>
+
+      		<a routerLink="/foro" class="navbar-item">
+        		Foro
+      		</a>
+			
+            <!-- Crear routerLink para Preguntas Frecuentes -->
+			<a class="navbar-item">
+        		Preguntas Frecuentes
+      		</a>
+
+      		<div class="navbar-item has-dropdown is-hoverable">
+        		<a class="navbar-link">
+          			Contactenos
+        		</a>
+
+        		<div class="navbar-dropdown">
+          			<a class="navbar-item">
+            			<span class="icon-text has-text-info">
+            				<span class="icon">
+        						<i class="fas fa-at"></i>
+      						</span>
+      						<span>Correo</span>
+            			</span>
+          			</a>
+          			<a class="navbar-item">
+            			<span class="icon-text has-text-info">
+            				<span class="icon">
+        						<i class="fas fa-phone"></i>
+      						</span>
+      						<span>Telefono</span>
+            			</span>
+          			</a>
+          			<a class="navbar-item">
+            			<span class="icon-text has-text-info">
+            				<span class="icon">
+        						<i class="fab fa-facebook"></i>
+      						</span>
+      						<span>Facebook</span>
+            			</span>
+          			</a>
+          			<hr class="navbar-divider">
+          			<a class="navbar-item">
+            			Reportar Error
+          			</a>
+        		</div>
+      		</div>
+
+      		<div class="navbar-item">
+        		<div class="buttons">
+          			<a class="button is-primary">
+            			<strong>Registrarse</strong>
+         			</a>
+        		</div>
+      		</div>
+    	</div>
+  	</div>
+</nav>
 
 <router-outlet></router-outlet>
 
