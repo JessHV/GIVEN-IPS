@@ -98,7 +98,9 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/swiper/swiper.scss",
+              "node_modules/swiper/swiper.scss",
+              "node_modules/bulma/css/bulma.min.css",
+              "node_modules/flexboxgrid/css/flexboxgrid.min.css",
               "src/styles.css"
             ],
             "scripts": []
