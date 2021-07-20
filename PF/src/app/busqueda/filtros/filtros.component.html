@@ -1,1 +1,33 @@
-<p>filtros works!</p>
+<div class="container mt-5">
+    <div class="navbar-start filter">
+        <p class="control has-icons-left">
+            <input [(ngModel)]="MethodNameFilter" (keyup)="filterMethods()" placeholder="Buscar método" class="input filter-input">
+            <span class="icon is-left">
+                <i class="fas fa-search" aria-hidden="true"></i>
+            </span>
+        </p>
+    </div>
+ 
+    <table class="table is-bordered is-hoverable">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Método</th>
+                <th>Descripción</th>
+                <th>Mecanismo de Acción</th>
+                <th>Imagen</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let dataItem of MethodList">
+                <td>{{dataItem.MetodoId}}</td>
+                <td>{{dataItem.MetodoNombre}}</td>
+                <td>{{dataItem.MetodoDescripcion}}</td>
+                <td>{{dataItem.MetodoMecanismo}}</td>
+                <!-- <td><img src="http://127.0.0.1:8000/media/{{dataItem.MethodImageName}}" alt=""></td> -->
+                <!-- Desde los assets de Angular -->
+                <td><img src="assets/imagenes/{{dataItem.MetodoImagen}}" alt=""></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { BusquedaRoutingModule } from './busqueda-routing.module';
 import { FiltrosComponent } from './filtros/filtros.component';
 import { InformacionComponent } from './informacion/informacion.component';
-
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,7 +13,8 @@ import { InformacionComponent } from './informacion/informacion.component';
   ],
   imports: [
     CommonModule,
-    BusquedaRoutingModule
+    BusquedaRoutingModule,
+    FormsModule
   ]
 })
 export class BusquedaModule { }

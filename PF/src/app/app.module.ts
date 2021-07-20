@@ -7,6 +7,10 @@ import { AppComponent } from './app.component';
 import { LayoutComponent } from './layout/layout.component';
 import { SharedModule } from "./shared/shared.module";
 
+import { SharedService } from './shared.service';
+import { HttpClientModule } from '@angular/common/http'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,9 +20,12 @@ import { SharedModule } from "./shared/shared.module";
     BrowserModule,
     RouterModule,
     SharedModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
