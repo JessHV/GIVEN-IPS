@@ -1,1 +1,87 @@
-<p>informacion works!</p>
+<div class="container mt-5">
+    <div class="navbar-start filter">
+        <p class="control has-icons-left">
+            <input [(ngModel)]="AntiNameFilter" (keyup)="filterAnticoncepcion()" placeholder="Departamento" class="input filter-input">
+            <span class="icon is-left">
+                <i class="fas fa-search" aria-hidden="true"></i>
+            </span>
+        </p>
+    </div>
+ 
+    <table class="table is-bordered is-hoverable">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Mes</th>
+                <th>Departamento</th>
+                <th>Provincia</th>
+                <th>Distrito</th>
+                <th>Inicio</th>
+                <th>Fin</th>
+                <th>Método</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let dataItem of AnticoncepcionList">
+                <td>{{dataItem.AntiId}}</td>
+                <td>{{dataItem.AntiMes}}</td>
+                <td>{{dataItem.AntiDepartamento}}</td>
+                <td>{{dataItem.AntiProvincia}}</td>
+                <td>{{dataItem.AntiDistrito}}</td>
+                <td>{{dataItem.AntiInicio}}</td>
+                <td>{{dataItem.AntiFin}}</td>
+                <td>{{dataItem.AntiMetodo}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- FORMULARIO -->
+
+<div class="searching">
+    <h2 class="title">Bienvenido al módulo de consulta</h2>
+    <form action="#" class="form">
+        <div class="field">
+            <label for="metodo">Búsqueda por método anticonceptivo:</label>
+            <input type="text" name="metodo" id="metodo">
+        </div>
+        <div class="field">
+            <label for="departamento">Departamento:</label>
+
+            <select [(ngModel)]="selectedRegion.id" (change)="onSelectRegion($event)" name="regione">
+                <option *ngFor="let region of regiones" value={{region.id}}>
+                    {{region.name}}
+                </option>
+            </select>
+        </div>
+        <div class="field">
+            <label for="provincia">Provincia:</label>
+            <select [(ngModel)]="selectedProvincia.id" (change)="onSelectProvincia($event)" name="provincia">
+                <option *ngFor="let provincia of provincias" value="{{provincia.id}}">
+                    {{provincia.name}}
+                </option>
+            </select>
+        </div>
+        
+        <div class="field">
+            <label for="distrito">Distrito:</label>
+            <select [(ngModel)]="selectedDistrito.id" name="distrito">
+                <option *ngFor="let distrito of distritos" value="{{distrito.id}}">
+                    {{distrito.name}}
+                </option>
+            </select>
+        </div>
+        <div class="field">
+            <label for="sexo">Sexo:</label>
+            <select name="sexo" id="sexo">
+                <option value="">--Seleccione--</option>
+                <option value="hombre">Hombre</option>
+                <option value="mujer">Mujer</option>
+            </select>
+        </div>
+        <div class="buttons">
+            <button class="buscar" type="submit"><i class="fas fa-search"></i>Buscar</button>
+            <button class="limpiar" type="reset"><i class="fas fa-trash-restore-alt"></i>Limpiar</button>
+        </div>
+    </form>
+</div>

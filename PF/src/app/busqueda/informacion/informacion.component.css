@@ -1,0 +1,67 @@
+table {
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.filter-input {
+    height: 2.5rem;
+}
+
+/* formulario */
+.searching {
+    background-color: #fff;
+    margin-top: 0;
+    padding: 2.5rem;
+    color: #232323;
+    max-width: 1244px;
+    margin: 1.25rem auto 2.5rem;
+}
+
+.title {
+    text-align: center;
+}
+
+.form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2rem;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+}
+
+input, select {
+    height: 2rem;
+    padding: 0 .5rem;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+button {
+    border: none;
+    height: 2.5rem;
+    width: 40%;
+    border-radius: .5rem;
+    cursor: pointer;
+    color: #fff;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.buscar {
+    background-color: #28a745;
+}
+
+.limpiar {
+    background-color: #185ADB;
+}
+
+i {
+    margin-right: .5rem;
+}
