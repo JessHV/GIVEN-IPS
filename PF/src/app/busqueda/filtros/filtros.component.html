@@ -8,7 +8,25 @@
         </p>
     </div>
  
-    <table class="table is-bordered is-hoverable">
+    <!-- START -->
+    <div class="my-container">
+        <div class="my-card" *ngFor="let dataItem of MethodList">
+            <div class="my-info">
+                <h1>{{dataItem.MetodoNombre}}</h1>
+                <h2>Descripción</h2>
+                <p>{{dataItem.MetodoDescripcion}}</p>
+                <h2>Mecanismo de Acción</h2>
+                <p>{{dataItem.MetodoMecanismo}}</p>
+            </div>
+            <div class="my-image">
+                <img src="assets/imagenes/{{dataItem.MetodoImagen}}" alt="">
+            </div>
+        </div> 
+    </div>
+    
+    <!-- END -->
+
+    <!-- <table class="table is-bordered is-hoverable">
         <thead>
             <tr>
                 <th>#</th>
@@ -23,11 +41,11 @@
                 <td>{{dataItem.MetodoId}}</td>
                 <td>{{dataItem.MetodoNombre}}</td>
                 <td>{{dataItem.MetodoDescripcion}}</td>
-                <td>{{dataItem.MetodoMecanismo}}</td>
+                <td>{{dataItem.MetodoMecanismo}}</td> -->
                 <!-- <td><img src="http://127.0.0.1:8000/media/{{dataItem.MethodImageName}}" alt=""></td> -->
                 <!-- Desde los assets de Angular -->
-                <td><img src="assets/imagenes/{{dataItem.MetodoImagen}}" alt=""></td>
+                <!-- <td><img src="assets/imagenes/{{dataItem.MetodoImagen}}" alt=""></td>
             </tr>
         </tbody>
-    </table>
+    </table> -->
 </div>

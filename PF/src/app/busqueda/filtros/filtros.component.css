@@ -11,3 +11,91 @@ table {
 .filter-input {
     height: 2.5rem;
 }
+
+.filter {
+    margin-right: 1rem;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+}
+
+.my-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: .75rem;
+}
+
+.my-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    box-shadow: 0 0 5px 1px gray;
+    border-radius: .35rem;
+    padding: 1rem 1.5rem;
+    gap: 1rem;
+    grid-template-areas: "image"
+                         "info";
+}
+
+.my-info {
+    margin-bottom: 1rem;
+    grid-area: info;
+ }
+
+.my-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-area: image;
+}
+
+h1 {
+    font-size: 1.6rem;
+    font-weight: 500;
+    font-variant: small-caps;
+    text-transform: capitalize;
+    text-align: center;
+    line-height: 1.55rem;
+}
+
+h2 {
+    font-size: 1.15rem;
+    font-weight: 500;
+    margin-top: .5rem;
+    margin-bottom: .4rem;
+    font-variant: small-caps;
+    text-transform: capitalize;
+}
+
+p {
+    font-weight: 300;
+    font-size: .98rem;
+}
+
+@media screen and (min-width: 568px ) {
+    .my-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .my-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .my-card {
+        grid-template-columns: 2fr 1fr;
+        margin-bottom: 1rem;
+        box-shadow: 1px 1px 10px 1px gray;
+        border-radius: .25rem;
+        padding: 1rem 1.5rem;
+        grid-template-areas: "info info image";
+    }
+
+    h1 {
+        text-align: left;
+    }
+
+    .filter {
+        margin-bottom: 1.35rem;
+    }
+}
