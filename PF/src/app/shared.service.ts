@@ -21,7 +21,7 @@ export class SharedService {
   }
 
   // PLACES
-  getRegiones(): RegionI[] {
+  /* getRegiones(): RegionI[] {
     return this.regiones;
   }
 
@@ -2135,5 +2135,5 @@ export class SharedService {
     {id: 1868, provinciaId: 193, name: "Neshuya"},
     {id: 1869, provinciaId: 193, name: "Padre Abad"},
     {id: 1870, provinciaId: 193, name: "Purus"},
-  ];
+  ]; */
 }

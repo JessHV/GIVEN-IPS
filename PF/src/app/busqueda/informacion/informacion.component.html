@@ -23,14 +23,14 @@
         </thead>
         <tbody>
             <tr *ngFor="let dataItem of AnticoncepcionList">
-                <td>{{dataItem.AntiId}}</td>
-                <td>{{dataItem.AntiMes}}</td>
-                <td>{{dataItem.AntiDepartamento}}</td>
-                <td>{{dataItem.AntiProvincia}}</td>
-                <td>{{dataItem.AntiDistrito}}</td>
-                <td>{{dataItem.AntiInicio}}</td>
-                <td>{{dataItem.AntiFin}}</td>
-                <td>{{dataItem.AntiMetodo}}</td>
+                <td>{{dataItem.Id}}</td>
+                <td>{{dataItem.Mes}}</td>
+                <td class="text">{{dataItem.Departamento.toLowerCase()}}</td>
+                <td class="text">{{dataItem.Provincia.toLowerCase()}}</td>
+                <td class="text">{{dataItem.Distrito.toLowerCase()}}</td>
+                <td>{{dataItem.Inicio}}</td>
+                <td>{{dataItem.Fin}}</td>
+                <td class="text">{{dataItem.Metodo.toLowerCase()}}</td>
             </tr>
         </tbody>
     </table>
@@ -38,7 +38,7 @@
 
 <!-- FORMULARIO -->
 
-<div class="searching">
+<!-- <div class="searching">
     <h2 class="title">Bienvenido al módulo de consulta</h2>
     <form action="#" class="form">
         <div class="field">
@@ -84,4 +84,4 @@
             <button class="limpiar" type="reset"><i class="fas fa-trash-restore-alt"></i>Limpiar</button>
         </div>
     </form>
-</div>
+</div> -->
