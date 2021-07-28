@@ -17,12 +17,7 @@ import { AngularFireDatabaseModule } from  '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireStorageModule} from '@angular/fire/storage';
 //Imports y export necesarios para utilizar la internacionalizacion
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HttpClient } from '@angular/common/http';
-import { TranslateLoader, TranslateModule, MissingTranslationHandler } from '@ngx-translate/core';
-export function HttpLoaderFactory(http: HttpClient){
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
-}
+
 
 @NgModule({
   declarations: [
@@ -35,7 +30,6 @@ export function HttpLoaderFactory(http: HttpClient){
     SharedModule,
     AppRoutingModule,
     HttpClientModule,
-    HttpClient,
     FormsModule,
     ReactiveFormsModule,
     //importaciones nuevas firebase
@@ -43,13 +37,7 @@ export function HttpLoaderFactory(http: HttpClient){
     AngularFireDatabaseModule,
     AngularFireStorageModule,
     //importaciones internacionalizacion
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    })
+    
   ],
   providers: [
     {provide:SharedService },

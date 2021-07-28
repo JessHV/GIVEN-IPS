@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 //import { pathToFileURL } from 'url';
 import { LayoutComponent } from "./layout/layout.component";
-import {TranslateModule} from '@ngx-translate/core';
+
 
 const routes: Routes = [
   {
