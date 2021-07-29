@@ -2,12 +2,6 @@ img {
     width: 150px;
 }
 
-table {
-    margin-top: 2rem;
-    width: 100%;
-    margin-bottom: 2rem;
-}
-
 .filter-input {
     height: 2.5rem;
 }
@@ -23,6 +17,12 @@ table {
     grid-template-columns: 1fr;
     gap: 1rem;
     padding: .75rem;
+}
+
+.sin-resultados {
+    text-align: center;
+    font-size: 1.15rem;
+    margin-top: 1rem;
 }
 
 .my-card {

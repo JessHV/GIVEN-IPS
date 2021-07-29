@@ -10,12 +10,10 @@ export class FiltrosComponent implements OnInit {
 
   constructor(private service:SharedService) { }
 
-  /* Tabla y Filtros */
+  // Variables
   MethodList:any=[];
   MethodNameFilter:string="";
   MethodListWithoutFilter:any=[];
-
-  // ==== Sin API ====
   public localMethods:any = [
     {
       "MetodoId": 1,
@@ -159,22 +157,23 @@ export class FiltrosComponent implements OnInit {
     }
   ];
 
+  // Función de Angular para inicializar el componente
   ngOnInit(): void {
     this.refreshMethodList();
   }
 
+  // Función para actualizar la lista de métodos anticonceptivos
   refreshMethodList() {
-    // ==== Sin API ====
     this.MethodList=this.localMethods;
     this.MethodListWithoutFilter=this.localMethods;
 
-    /* Desde la API */
     /* this.service.getMethodList().subscribe(data=>{
       this.MethodList=data;
       this.MethodListWithoutFilter=data;
     }); */
   }
 
+  // Función para filtrar los métodos anticonceptivos
   filterMethods() {
     var MethodNameFilter = this.MethodNameFilter;
 
