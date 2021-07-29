@@ -1,0 +1,69 @@
+<section class="hero is-primary">
+    <div class="hero-body">
+        <div class="container hero-forum has-text-centered">
+            <h1 class="title">
+                Foro
+            </h1>
+            <h2 class="subtitle">
+                Todos estan invitados a preguntar :)
+            </h2>
+    
+            <div id="buttons">
+                <a class="btn blue" routerLink='/foro'>Volver</a>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+<br>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="container" *ngIf="posts.length > 0 else vacio">
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2" *ngFor="let post of posts">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-white post">
+                        <div class="post-heading">
+                            <div class="pull-left image">
+                                <img src="{{post.photoUrl}}" class="img-circle avatar" alt="user profile image">
+                            </div>
+                            <div class="pull-left meta">
+                                <div class="title h5">
+                                    <a><b>{{post.name}}</b></a>
+                                </div>
+                                <h6 class="text-muted time">{{post.start_time.toDate() | date :'EEEE, MMMM d, y, h:mm:ss a' }}</h6>
+                            </div>
+                        </div>
+                        <div class="post-description">
+                            <h2><b>{{post.titulo}}</b></h2>
+                            <p>{{post.comentario}}</p>
+                            <div class="stats">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <a href="javascript:void(0);" [routerLink]="['./edit/',post.id]"
+                                            style="margin: 20px"><i class="fa fa-edit fa-2x">Editar</i></a>
+                                    </span>
+                                    <span class="input-group-addon">
+                                        <a href="javascript:void(0);" (click)="eliminarComentario(post.id)"><i
+                                                class="fas fa-times fa-2x"> Eliminar</i></a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #vacio>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <h2><b>No posteo nada</b></h2>
+            </div>
+        </div>
+    </div>
+</ng-template>

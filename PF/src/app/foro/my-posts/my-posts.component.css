@@ -1,0 +1,149 @@
+body{margin-top:20px;
+    background:rgb(245, 10, 10);
+    }
+    
+    .mini-profile-widget .image-container .avatar {
+      width: 180px;
+      height: 180px;
+      display: block;
+      margin: 0 auto;
+      border-radius: 50%;
+      background: white;
+      padding: 4px;
+      border: 1px solid #dddddd;
+    }
+    .mini-profile-widget .details {
+      text-align: center;
+    }
+    /* Component: Panel */
+    .panel {
+      border-radius: 10;
+      margin-bottom: 30px;
+    }
+    /* Component: Posts */
+    .post .post-heading {
+      height: 95px;
+      padding: 20px 15px;
+    }
+    .post .post-heading .avatar {
+      width: 60px;
+      height: 60px;
+      display: block;
+      margin-right: 15px;
+    }
+    .post .post-heading .meta .title {
+      margin-bottom: 0;
+    }
+    .post .post-heading .meta .title a {
+      color: black;
+    }
+    .post .post-heading .meta .title a:hover {
+      color: #aaaaaa;
+    }
+    .post .post-heading .meta .time {
+      margin-top: 8px;
+      color: #999;
+    }
+    .post .post-image .image {
+      width: 100%;
+      height: auto;
+    }
+    .post .post-description {
+      padding: 25px;
+    }
+    .post .post-description p {
+      font-size: 25px;
+    }
+    h2{
+        font-size: 30px;
+    }
+    .post .post-description .stats {
+      margin-top: 20px;
+    }
+    .post .post-description .stats .stat-item {
+      display: inline-block;
+      margin-right: 15px;
+    }
+    .post .post-description .stats .stat-item .icon {
+      margin-right: 8px;
+    }
+    
+    
+    buttons {
+        padding-top: 50px;
+        text-align: center;
+      }
+      
+      /* start da css for da buttons */
+      .btn {
+        border-radius: 5px;
+        padding: 15px 25px;
+        font-size: 22px;
+        text-decoration: none;
+        margin: 20px;
+        color: #fff;
+        position: relative;
+        display: inline-block;
+      }
+      
+      .btn:active {
+        transform: translate(0px, 5px);
+        -webkit-transform: translate(0px, 5px);
+        box-shadow: 0px 1px 0px 0px;
+      }
+      
+      .blue {
+        background-color: #55acee;
+        box-shadow: 0px 5px 0px 0px #3C93D5;
+      }
+      
+      .blue:hover {
+        background-color: #6FC6FF;
+      }
+      
+      .green {
+        background-color: #2ecc71;
+        box-shadow: 0px 5px 0px 0px #15B358;
+      }
+      
+      .green:hover {
+        background-color: #48E68B;
+      }
+      
+      .red {
+        background-color: #e74c3c;
+        box-shadow: 0px 5px 0px 0px #CE3323;
+      }
+      
+      .red:hover {
+        background-color: #FF6656;
+      }
+      
+      .purple {
+        background-color: #9b59b6;
+        box-shadow: 0px 5px 0px 0px #82409D;
+      }
+      
+      .purple:hover {
+        background-color: #B573D0;
+      }
+      
+      .orange {
+        background-color: #e67e22;
+        box-shadow: 0px 5px 0px 0px #CD6509;
+      }
+      
+      .orange:hover {
+        background-color: #FF983C;
+      }
+      
+      .yellow {
+        background-color: #f1c40f;
+        box-shadow: 0px 5px 0px 0px #D8AB00;
+      }
+      
+      .yellow:hover {
+        background-color: #FFDE29;
+      }
+      
+    
