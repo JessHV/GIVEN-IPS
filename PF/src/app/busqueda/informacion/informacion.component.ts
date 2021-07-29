@@ -18,6 +18,9 @@ export class InformacionComponent implements OnInit {
   AnticoncepcionListWithoutFilter:any=[];
   AntiNameFilter:string="";
 
+  public page:number = 0;
+  public search:string = "";
+
   refreshAntiList() {
     // ==== Sin API ====
     this.AnticoncepcionList=this.localAnticoncepcion;
@@ -32,9 +35,24 @@ export class InformacionComponent implements OnInit {
     });
   }
 
+  // Search input
+  onSearchAnticoncepcion( search:string ) {
+    this.page = 0;
+    this.search = search;
+  }
+
   ngOnInit(): void {
     this.refreshAntiList();
     // this.regiones = this.service.getRegiones();
+  }
+
+  nextPage():void {
+    this.page += 10;
+  }
+
+  prevPage():void {
+    if(this.page > 0)
+      this.page -= 10;
   }
 
   // ==== Sin API ====

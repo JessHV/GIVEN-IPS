@@ -16,10 +16,11 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from  '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireStorageModule} from '@angular/fire/storage';
+
 @NgModule({
   declarations: [
     AppComponent,
-    LayoutComponent
+    LayoutComponent,
   ],
   imports: [
     BrowserModule,
