@@ -1,0 +1,61 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-white post">
+                        <div class="post-heading">
+                            <div class="pull-left image">
+                                <img src="{{user.photoUrl}}" class="img-circle avatar" alt="user profile image">
+                            </div>
+                            <div class="pull-left meta">
+                                <div class="title h5">
+                                    <a><b>{{user.name}}</b></a>
+                                </div>
+                                <h6 class="text-muted time">{{user.start_time | date :'EEEE, MMMM d, y, h:mm:ss a' }}
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="post-description">
+                            <h2><b>{{user.titulo}}</b></h2>
+                            <p>{{user.comentario }}</p>
+                        </div>
+                        <div class="post-footer">
+                            <span *ngIf="submitted && createComent.invalid"><b>Los comentarios son de minimo 10
+                                caracteres</b></span>
+                            <form [formGroup]="createComent" (ngSubmit)="agregarComentario()">
+                                <div class="input-group">
+                                    <textarea cols="118" rows="6" formControlName="comentario"
+                                        placeholder="escriba comentario"></textarea>
+                                </div>
+                                <div class="input-group">
+                                    <div id="buttons">
+                                        <button class="btn blue">Comentar</button>
+                                        <button class="btn yellow" routerLink='/foro'>Volver</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <ul class="comments-list">
+                                <li class="comment" *ngFor="let comentario of comentarios">
+                                    <a class="pull-left">
+                                        <img class="avatar" src="{{comentario.photoUrl}}"
+                                            alt="avatar">
+                                    </a>
+                                    <div class="comment-body">
+                                        <div class="comment-heading">
+                                            <h4 class="user">{{comentario.name}}</h4>
+                                            <h5 class="time">{{comentario.start_time.toDate() | date :'EEEE, MMMM d, y, h:mm:ss a' }}</h5>
+                                        </div>
+                                        <p>{{comentario.comentario}}</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
