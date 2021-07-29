@@ -9,7 +9,7 @@
     </div>
  
     <div class="my-container">
-        <p *ngIf="MethodList.length == 0" class="sin-resultados">No se encontraron resultados para esta búsqueda</p>
+        <p *ngIf="MethodList.length == 0" class="sin-resultados">No se encontraron resultados</p>
         <div class="my-card" *ngFor="let dataItem of MethodList">
             <div class="my-info">
                 <h1>{{dataItem.MetodoNombre}}</h1>

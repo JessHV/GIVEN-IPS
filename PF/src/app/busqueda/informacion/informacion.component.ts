@@ -14,6 +14,7 @@ export class InformacionComponent implements OnInit {
 
   constructor(private service:SharedService) { }
 
+  // Variables
   AnticoncepcionList: any=[];
   AnticoncepcionListWithoutFilter:any=[];
   AntiNameFilter:string="";
@@ -21,41 +22,35 @@ export class InformacionComponent implements OnInit {
   public page:number = 0;
   public search:string = "";
 
+  // Función para actualizar los registros
   refreshAntiList() {
-    // ==== Sin API ====
     this.AnticoncepcionList=this.localAnticoncepcion;
     this.AnticoncepcionListWithoutFilter=this.localAnticoncepcion; 
   }
 
-  filterAnticoncepcion() {
-    var AntiNameFilter = this.AntiNameFilter;
-
-    this.AnticoncepcionList = this.AnticoncepcionListWithoutFilter.filter(function(el:any) {
-      return el.Departamento.toString().toLowerCase().includes(AntiNameFilter.toString().trim().toLowerCase());
-    });
-  }
-
-  // Search input
+  // Función para filtrar registros
   onSearchAnticoncepcion( search:string ) {
     this.page = 0;
     this.search = search;
   }
 
+  // Función para iniciar el componente
   ngOnInit(): void {
     this.refreshAntiList();
     // this.regiones = this.service.getRegiones();
   }
 
+  // Función para mostrar hoja anterior
   nextPage():void {
     this.page += 10;
   }
 
+  // Función para mostrar hoja siguiente
   prevPage():void {
     if(this.page > 0)
       this.page -= 10;
   }
 
-  // ==== Sin API ====
   public localAnticoncepcion:any = [
     {
       "Id": 1,

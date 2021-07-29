@@ -1,13 +1,4 @@
 <div class="container mt-5">
-    <!-- <div class="navbar-start filter">
-        <p class="control has-icons-left">
-            <input [(ngModel)]="AntiNameFilter" (keyup)="filterAnticoncepcion()" placeholder="Departamento" class="input filter-input">
-            <span class="icon is-left">
-                <i class="fas fa-search" aria-hidden="true"></i>
-            </span>
-        </p>
-    </div> -->
-
     <div class="my-container">
         <div class="navbar-start filter">
             <p class="control has-icons-left">
@@ -21,13 +12,18 @@
                 </span>
             </p>
         </div>
-        <button class="button is-link is-light" (click)="prevPage()"><span class="icon"><i class="fas fa-chevron-left"></i></span></button>
+        <button class="button is-link is-light" (click)="prevPage()"
+        [disabled]="page == 0">
+            <span class="icon"><i class="fas fa-chevron-left"></i></span>
+        </button>
         <button class="button is-link is-light" (click)="nextPage()" 
-        [disabled]="(AnticoncepcionList | filtro:page:search).length === 0"><span class="icon"><i class="fas fa-chevron-right"></i></span></button>
+        [disabled]="(AnticoncepcionList | filtro:page:search).length < 15">
+            <span class="icon"><i class="fas fa-chevron-right"></i></span>
+        </button>
     
     </div>
 
-    <table class="table is-bordered is-hoverable">
+    <table class="table is-bordered is-hoverable" *ngIf="(AnticoncepcionList | filtro:page:search).length > 0">
         <thead>
             <tr>
                 <th>#</th>
@@ -53,6 +49,8 @@
             </tr>
         </tbody>
     </table>
+
+    <p *ngIf="(AnticoncepcionList | filtro:page:search).length == 0" class="sin-resultados">No se encontraron resultados</p>
     
 </div>
 

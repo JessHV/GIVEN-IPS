@@ -54,6 +54,12 @@ i {
     margin-right: 1rem;
 }
 
+.sin-resultados {
+    text-align: center;
+    font-size: 1.15rem;
+    margin-top: 2rem;
+}
+
 /* formulario */
 .searching {
     background-color: #fff;
