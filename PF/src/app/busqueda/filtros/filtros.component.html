@@ -1,21 +1,32 @@
 <div class="container mt-5">
     <div class="navbar-start filter">
         <p class="control has-icons-left search">
-            <input [(ngModel)]="MethodNameFilter" (keyup)="filterMethods()" placeholder="Buscar método" class="input filter-input">
+            <input [(ngModel)]="MethodNameFilter" 
+            (keyup)="filterMethods()"
+            placeholder="Buscar método" 
+            class="input filter-input">
             <span class="icon is-left">
                 <i class="fas fa-search" aria-hidden="true"></i>
             </span>
         </p>
-        <select [(ngModel)]="TypeMethodFilter" (change)="filterType()" name="" id="" class="tipo">
-            <option value="">Seleccionar</option>
-            <option value="MAP">Abstinencia Periódica</option>
-            <option value="MELA">MELA</option>
-            <option value="MB">Métodos de barrera</option>
-            <option value="AH">Anticonceptivos Hormonales</option>
-            <option value="DIU">Dispositivos Intrauterinos</option>
-            <option value="AQV">Anticoncepción Quirúrgica Voluntaria</option>
-            <option value="AE">Anticoncepción de emergencia</option>
-        </select>
+        <div>
+            <select [(ngModel)]="TypeMethodFilter" (change)="filterType()" name="" id="" class="option tipo">
+                <option value="" [selected]="(MethodNameFilter != '')">Tipo de Método</option>
+                <option value="MAP">Abstinencia periódica</option>
+                <option value="MELA">MELA</option>
+                <option value="MB">Métodos de barrera</option>
+                <option value="AH">Anticonceptivos hormonales</option>
+                <option value="DIU">Dispositivos intrauterinos</option>
+                <option value="AQV">Anticoncepción quirúrgica voluntaria</option>
+                <option value="AE">Anticoncepción de emergencia</option>
+            </select>
+            <select [(ngModel)]="GenderMethodFilter" (change)="filterGender()" name="" id="" class="option">
+                <option value="" [selected]="(MethodNameFilter != '')">Sexo</option>
+                <option value="Masculino">Hombre</option>
+                <option value="Femenino">Mujer</option>
+            </select>
+        </div>
+        
     </div>
  
     <div class="my-container">
