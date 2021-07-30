@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from 'src/app/shared.service';
 
-/* places */
-import { RegionI, ProvinciaI, DistritoI } from 'src/app/models/model.interface';
-
-
 @Component({
   selector: 'app-informacion',
   templateUrl: './informacion.component.html',
@@ -15,47 +11,145 @@ export class InformacionComponent implements OnInit {
   constructor(private service:SharedService) { }
 
   // Variables
-  AnticoncepcionList: any=[];
-  AnticoncepcionListWithoutFilter:any=[];
-  AntiNameFilter:string="";
+  AnticoncepcionList:any=[];
 
   public page:number = 0;
   public search:string = "";
+  public more:boolean=false;
+  public option:number=0;
+
+  public busqueda:string="";
+  public metodo:string="";
+  public edad:string="";
+  public mes:string="";
+  public departamento:string="";
+  public provincia:string="";
+  public distrito:string="";
+
+  // Función para mostrar más filtros
+  changeMore() {
+    this.more = !this.more;
+  }
+
+  // Función para iniciar el componente
+  ngOnInit(): void {
+    this.AnticoncepcionList=this.localAnticoncepcion;
+    this.refreshAntiList();
+  }
 
   // Función para actualizar los registros
   refreshAntiList() {
     this.AnticoncepcionList=this.localAnticoncepcion;
-    this.AnticoncepcionListWithoutFilter=this.localAnticoncepcion; 
   }
 
   // Función para filtrar registros
   onSearchAnticoncepcion( search:string ) {
     this.page = 0;
     this.search = search;
+    this.option = 0;
+    this.mes="";
+    this.departamento="";
+    this.provincia="";
+    this.distrito="";
+    this.edad="";
+    this.metodo="";
   }
 
-  // Función para iniciar el componente
-  ngOnInit(): void {
-    this.refreshAntiList();
-    // this.regiones = this.service.getRegiones();
+  // Función para filtrar por mes
+  onSearchMes(search:string) {
+    this.page = 0;
+    this.search = search;
+    this.option = 1;
+    this.departamento="";
+    this.provincia="";
+    this.distrito="";
+    this.edad="";
+    this.metodo="";
+    this.busqueda="";
+  }
+
+  // Función para filtrar por departamento
+  onSearchDepartamento(search:string) {
+    this.page = 0;
+    this.search = search;
+    this.option = 2;
+    this.mes="";
+    this.provincia="";
+    this.distrito="";
+    this.edad="";
+    this.metodo="";
+    this.busqueda="";
+  }
+
+  // Función para filtrar por provincia
+  onSearchProvincia(search:string) {
+    this.page = 0;
+    this.search = search;
+    this.option = 3;
+    this.mes="";
+    this.departamento="";
+    this.distrito="";
+    this.edad="";
+    this.metodo="";
+    this.busqueda="";
+  }
+
+  // Función para filtrar por distrito
+  onSearchDistrito(search:string) {
+    this.page = 0;
+    this.search = search;
+    this.option = 4;
+    this.mes="";
+    this.departamento="";
+    this.provincia="";
+    this.edad="";
+    this.metodo="";
+    this.busqueda="";
+  }
+
+  // Función para filtrar por edad
+  onSearchEdad(search:string) {
+    this.page = 0;
+    this.search = search;
+    this.option = 5;
+    this.mes="";
+    this.departamento="";
+    this.provincia="";
+    this.distrito="";
+    this.metodo="";
+    this.busqueda="";
+  }
+
+  // Función para filtrar por metodo
+  onSearchMetodo(search:string) {
+    this.page = 0;
+    this.search = search;
+    this.option = 6;
+    this.mes="";
+    this.departamento="";
+    this.provincia="";
+    this.distrito="";
+    this.edad="";
+    this.busqueda="";
   }
 
   // Función para mostrar hoja anterior
   nextPage():void {
-    this.page += 10;
+    this.page += 15;
   }
 
   // Función para mostrar hoja siguiente
   prevPage():void {
     if(this.page > 0)
-      this.page -= 10;
+      this.page -= 15;
   }
 
+  // Array anticoncepcion
   public localAnticoncepcion:any = [
     {
       "Id": 1,
-      "Mes": 1,
-      "Departamento": "ANCASH",
+      "Mes": "Enero",
+      "Departamento": "ÁNCASH",
       "Provincia": "RECUAY",
       "Distrito": "CATAC",
       "Inicio": 18,
@@ -64,8 +158,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 2,
-      "Mes": 1,
-      "Departamento": "ANCASH",
+      "Mes": "Enero",
+      "Departamento": "ÁNCASH",
       "Provincia": "SANTA",
       "Distrito": "CHIMBOTE",
       "Inicio": 12,
@@ -74,8 +168,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 3,
-      "Mes": 1,
-      "Departamento": "ANCASH",
+      "Mes": "Enero",
+      "Departamento": "ÁNCASH",
       "Provincia": "SANTA",
       "Distrito": "NUEVO CHIMBOTE",
       "Inicio": 18,
@@ -84,8 +178,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 4,
-      "Mes": 1,
-      "Departamento": "ANCASH",
+      "Mes": "Enero",
+      "Departamento": "ÁNCASH",
       "Provincia": "SANTA",
       "Distrito": "NUEVO CHIMBOTE",
       "Inicio": 30,
@@ -94,8 +188,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 5,
-      "Mes": 1,
-      "Departamento": "APURIMAC",
+      "Mes": "Enero",
+      "Departamento": "APURÍMAC",
       "Provincia": "ABANCAY",
       "Distrito": "ABANCAY",
       "Inicio": 18,
@@ -104,8 +198,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 6,
-      "Mes": 1,
-      "Departamento": "APURIMAC",
+      "Mes": "Enero",
+      "Departamento": "APURÍMAC",
       "Provincia": "ABANCAY",
       "Distrito": "ABANCAY",
       "Inicio": 30,
@@ -114,8 +208,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 7,
-      "Mes": 1,
-      "Departamento": "APURIMAC",
+      "Mes": "Enero",
+      "Departamento": "APURÍMAC",
       "Provincia": "ABANCAY",
       "Distrito": "CURAHUASI",
       "Inicio": 18,
@@ -124,8 +218,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 8,
-      "Mes": 1,
-      "Departamento": "APURIMAC",
+      "Mes": "Enero",
+      "Departamento": "APURÍMAC",
       "Provincia": "ABANCAY",
       "Distrito": "TAMBURCO",
       "Inicio": 18,
@@ -134,8 +228,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 9,
-      "Mes": 1,
-      "Departamento": "APURIMAC",
+      "Mes": "Enero",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "ANDAHUAYLAS",
       "Inicio": 18,
@@ -144,8 +238,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 10,
-      "Mes": 1,
-      "Departamento": "APURIMAC",
+      "Mes": "Enero",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "ANDAHUAYLAS",
       "Inicio": 30,
@@ -154,8 +248,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 11,
-      "Mes": 1,
-      "Departamento": "APURIMAC",
+      "Mes": "Enero",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "ANDARAPA",
       "Inicio": 12,
@@ -164,8 +258,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 12,
-      "Mes": 1,
-      "Departamento": "APURIMAC",
+      "Mes": "Enero",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "HUANCARAMA",
       "Inicio": 18,
@@ -174,8 +268,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 13,
-      "Mes": 1,
-      "Departamento": "APURIMAC",
+      "Mes": "Enero",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "KISHUARA",
       "Inicio": 18,
@@ -184,8 +278,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 14,
-      "Mes": 1,
-      "Departamento": "APURIMAC",
+      "Mes": "Enero",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "PACOBAMBA",
       "Inicio": 18,
@@ -194,8 +288,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 15,
-      "Mes": 1,
-      "Departamento": "APURIMAC",
+      "Mes": "Enero",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "PACOBAMBA",
       "Inicio": 30,
@@ -204,8 +298,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 16,
-      "Mes": 1,
-      "Departamento": "APURIMAC",
+      "Mes": "Enero",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "TUMAY HUARACA",
       "Inicio": 12,
@@ -214,8 +308,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 17,
-      "Mes": 1,
-      "Departamento": "APURIMAC",
+      "Mes": "Enero",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANTABAMBA",
       "Distrito": "ANTABAMBA",
       "Inicio": 30,
@@ -224,8 +318,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 18,
-      "Mes": 1,
-      "Departamento": "APURIMAC",
+      "Mes": "Enero",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANTABAMBA",
       "Distrito": "SABAINO",
       "Inicio": 30,
@@ -234,8 +328,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 19,
-      "Mes": 1,
-      "Departamento": "APURIMAC",
+      "Mes": "Enero",
+      "Departamento": "APURÍMAC",
       "Provincia": "AYMARAES",
       "Distrito": "TAPAIRIHUA",
       "Inicio": 12,
@@ -244,8 +338,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 20,
-      "Mes": 1,
-      "Departamento": "APURIMAC",
+      "Mes": "Enero",
+      "Departamento": "APURÍMAC",
       "Provincia": "AYMARAES",
       "Distrito": "TAPAIRIHUA",
       "Inicio": 18,
@@ -254,8 +348,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 21,
-      "Mes": 1,
-      "Departamento": "APURIMAC",
+      "Mes": "Enero",
+      "Departamento": "APURÍMAC",
       "Provincia": "COTABAMBAS",
       "Distrito": "COTABAMBAS",
       "Inicio": 18,
@@ -264,8 +358,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 22,
-      "Mes": 1,
-      "Departamento": "APURIMAC",
+      "Mes": "Enero",
+      "Departamento": "APURÍMAC",
       "Provincia": "GRAU",
       "Distrito": "CURPAHUASI",
       "Inicio": 30,
@@ -274,8 +368,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 23,
-      "Mes": 1,
-      "Departamento": "APURIMAC",
+      "Mes": "Enero",
+      "Departamento": "APURÍMAC",
       "Provincia": "GRAU",
       "Distrito": "PROGRESO",
       "Inicio": 18,
@@ -284,7 +378,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 24,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "AREQUIPA",
       "Provincia": "AREQUIPA",
       "Distrito": "VITOR",
@@ -294,7 +388,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 25,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "AREQUIPA",
       "Provincia": "CAYLLOMA",
       "Distrito": "CHIVAY",
@@ -304,7 +398,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 26,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "AREQUIPA",
       "Provincia": "CAYLLOMA",
       "Distrito": "CHIVAY",
@@ -314,7 +408,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 27,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "AREQUIPA",
       "Provincia": "CAYLLOMA",
       "Distrito": "MAJES",
@@ -324,7 +418,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 28,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "AREQUIPA",
       "Provincia": "CONDESUYOS",
       "Distrito": "CHUQUIBAMBA",
@@ -334,7 +428,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 29,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "AYACUCHO",
       "Provincia": "PAUCAR DEL SARA SARA",
       "Distrito": "OYOLO",
@@ -344,7 +438,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 30,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "CAJAMARCA",
       "Provincia": "CAJAMARCA",
       "Distrito": "CAJAMARCA",
@@ -354,7 +448,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 31,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "CALLAO",
       "Provincia": "CALLAO",
       "Distrito": "CALLAO",
@@ -364,7 +458,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 32,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "CALLAO",
       "Provincia": "CALLAO",
       "Distrito": "CALLAO",
@@ -374,7 +468,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 33,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "CALLAO",
       "Provincia": "CALLAO",
       "Distrito": "CALLAO",
@@ -384,7 +478,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 34,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "CALLAO",
       "Provincia": "CALLAO",
       "Distrito": "BELLAVISTA",
@@ -394,7 +488,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 35,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "CALLAO",
       "Provincia": "CALLAO",
       "Distrito": "BELLAVISTA",
@@ -404,7 +498,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 36,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "CALLAO",
       "Provincia": "CALLAO",
       "Distrito": "BELLAVISTA",
@@ -414,7 +508,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 37,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "CALLAO",
       "Provincia": "CALLAO",
       "Distrito": "VENTANILLA",
@@ -424,7 +518,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 38,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "CALLAO",
       "Provincia": "CALLAO",
       "Distrito": "VENTANILLA",
@@ -434,7 +528,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 39,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "CUSCO",
       "Provincia": "CALCA",
       "Distrito": "LAMAY",
@@ -444,7 +538,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 40,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "CUSCO",
       "Provincia": "CALCA",
       "Distrito": "LAMAY",
@@ -454,7 +548,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 41,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "CUSCO",
       "Provincia": "CHUMBIVILCAS",
       "Distrito": "LLUSCO",
@@ -464,7 +558,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 42,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "CUSCO",
       "Provincia": "LA CONVENCION",
       "Distrito": "QUELLOUNO",
@@ -474,7 +568,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 43,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ACOBAMBA",
       "Distrito": "PAUCARA",
@@ -484,7 +578,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 44,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "ANCHONGA",
@@ -494,7 +588,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 45,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "CCOCHACCASA",
@@ -504,7 +598,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 46,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "CCOCHACCASA",
@@ -514,7 +608,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 47,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "CHINCHO",
@@ -524,7 +618,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 48,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "HUANCAVELICA",
       "Provincia": "CASTROVIRREYNA",
       "Distrito": "CASTROVIRREYNA",
@@ -534,7 +628,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 49,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "HUANCAVELICA",
       "Provincia": "CASTROVIRREYNA",
       "Distrito": "CASTROVIRREYNA",
@@ -544,7 +638,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 50,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "HUANCAVELICA",
       "Provincia": "CASTROVIRREYNA",
       "Distrito": "CASTROVIRREYNA",
@@ -554,7 +648,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 51,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUAYTARA",
       "Distrito": "HUAYTARA",
@@ -564,7 +658,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 52,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "PAMPAS",
@@ -574,7 +668,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 53,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "ACRAQUIA",
@@ -584,7 +678,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 54,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "ACRAQUIA",
@@ -594,7 +688,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 55,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "AHUAYCHA",
@@ -604,7 +698,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 56,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "COLCABAMBA",
@@ -614,7 +708,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 57,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "DANIEL HERNANDEZ",
@@ -624,7 +718,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 58,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "HUACHOCOLPA",
@@ -634,7 +728,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 59,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "SURCUBAMBA",
@@ -644,7 +738,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 60,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "TINTAY PUNCU",
@@ -654,29 +748,29 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 61,
-      "Mes": 1,
-      "Departamento": "HUANUCO",
-      "Provincia": "HUANUCO",
-      "Distrito": "HUANUCO",
+      "Mes": "Enero",
+      "Departamento": "HUÁNUCO",
+      "Provincia": "HUÁNUCO",
+      "Distrito": "HUÁNUCO",
       "Inicio": 18,
       "Fin": 29,
       "Metodo": "YUZPE"
     },
     {
       "Id": 62,
-      "Mes": 1,
-      "Departamento": "HUANUCO",
-      "Provincia": "HUANUCO",
-      "Distrito": "HUANUCO",
+      "Mes": "Enero",
+      "Departamento": "HUÁNUCO",
+      "Provincia": "HUÁNUCO",
+      "Distrito": "HUÁNUCO",
       "Inicio": 30,
       "Fin": 59,
       "Metodo": "YUZPE"
     },
     {
       "Id": 63,
-      "Mes": 1,
-      "Departamento": "HUANUCO",
-      "Provincia": "HUANUCO",
+      "Mes": "Enero",
+      "Departamento": "HUÁNUCO",
+      "Provincia": "HUÁNUCO",
       "Distrito": "CHINCHAO",
       "Inicio": 12,
       "Fin": 17,
@@ -684,8 +778,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 64,
-      "Mes": 1,
-      "Departamento": "HUANUCO",
+      "Mes": "Enero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "AMBO",
       "Distrito": "SAN RAFAEL",
       "Inicio": 30,
@@ -694,8 +788,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 65,
-      "Mes": 1,
-      "Departamento": "HUANUCO",
+      "Mes": "Enero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "DOS DE MAYO",
       "Distrito": "LA UNION",
       "Inicio": 18,
@@ -704,8 +798,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 66,
-      "Mes": 1,
-      "Departamento": "HUANUCO",
+      "Mes": "Enero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "DOS DE MAYO",
       "Distrito": "MARIAS",
       "Inicio": 18,
@@ -714,8 +808,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 67,
-      "Mes": 1,
-      "Departamento": "HUANUCO",
+      "Mes": "Enero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "DOS DE MAYO",
       "Distrito": "PACHAS",
       "Inicio": 18,
@@ -724,8 +818,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 68,
-      "Mes": 1,
-      "Departamento": "HUANUCO",
+      "Mes": "Enero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "DOS DE MAYO",
       "Distrito": "PACHAS",
       "Inicio": 30,
@@ -734,8 +828,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 69,
-      "Mes": 1,
-      "Departamento": "HUANUCO",
+      "Mes": "Enero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "LEONCIO PRADO",
       "Distrito": "RUPA-RUPA",
       "Inicio": 12,
@@ -744,8 +838,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 70,
-      "Mes": 1,
-      "Departamento": "HUANUCO",
+      "Mes": "Enero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "LEONCIO PRADO",
       "Distrito": "DANIEL ALOMIA ROBLES",
       "Inicio": 18,
@@ -754,8 +848,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 71,
-      "Mes": 1,
-      "Departamento": "HUANUCO",
+      "Mes": "Enero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "LEONCIO PRADO",
       "Distrito": "DANIEL ALOMIA ROBLES",
       "Inicio": 30,
@@ -764,8 +858,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 72,
-      "Mes": 1,
-      "Departamento": "HUANUCO",
+      "Mes": "Enero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "LEONCIO PRADO",
       "Distrito": "JOSE CRESPO Y CASTILLO",
       "Inicio": 30,
@@ -774,8 +868,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 73,
-      "Mes": 1,
-      "Departamento": "HUANUCO",
+      "Mes": "Enero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "LEONCIO PRADO",
       "Distrito": "LUYANDO",
       "Inicio": 30,
@@ -784,8 +878,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 74,
-      "Mes": 1,
-      "Departamento": "HUANUCO",
+      "Mes": "Enero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "LEONCIO PRADO",
       "Distrito": "MARIANO DAMASO BERAUN",
       "Inicio": 30,
@@ -794,8 +888,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 75,
-      "Mes": 1,
-      "Departamento": "HUANUCO",
+      "Mes": "Enero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "MARAÑON",
       "Distrito": "CHOLON",
       "Inicio": 18,
@@ -804,8 +898,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 76,
-      "Mes": 1,
-      "Departamento": "HUANUCO",
+      "Mes": "Enero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "PACHITEA",
       "Distrito": "PANAO",
       "Inicio": 18,
@@ -814,8 +908,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 77,
-      "Mes": 1,
-      "Departamento": "HUANUCO",
+      "Mes": "Enero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "PUERTO INCA",
       "Distrito": "HONORIA",
       "Inicio": 18,
@@ -824,8 +918,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 78,
-      "Mes": 1,
-      "Departamento": "HUANUCO",
+      "Mes": "Enero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "PUERTO INCA",
       "Distrito": "HONORIA",
       "Inicio": 30,
@@ -834,8 +928,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 79,
-      "Mes": 1,
-      "Departamento": "HUANUCO",
+      "Mes": "Enero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "LAURICOCHA",
       "Distrito": "BAÑOS",
       "Inicio": 30,
@@ -844,8 +938,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 80,
-      "Mes": 1,
-      "Departamento": "HUANUCO",
+      "Mes": "Enero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "LAURICOCHA",
       "Distrito": "RONDOS",
       "Inicio": 18,
@@ -854,8 +948,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 81,
-      "Mes": 1,
-      "Departamento": "HUANUCO",
+      "Mes": "Enero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "LAURICOCHA",
       "Distrito": "SAN MIGUEL DE CAURI",
       "Inicio": 18,
@@ -864,8 +958,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 82,
-      "Mes": 1,
-      "Departamento": "HUANUCO",
+      "Mes": "Enero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "LAURICOCHA",
       "Distrito": "SAN MIGUEL DE CAURI",
       "Inicio": 30,
@@ -874,8 +968,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 83,
-      "Mes": 1,
-      "Departamento": "HUANUCO",
+      "Mes": "Enero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "YAROWILCA",
       "Distrito": "APARICIO POMARES",
       "Inicio": 18,
@@ -884,7 +978,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 84,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "ICA",
@@ -894,7 +988,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 85,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "OCUCAJE",
@@ -904,7 +998,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 86,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "PUEBLO NUEVO",
@@ -914,7 +1008,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 87,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "SAN JOSE DE LOS MOLINOS",
@@ -924,7 +1018,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 88,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "ICA",
       "Provincia": "CHINCHA",
       "Distrito": "ALTO LARAN",
@@ -934,7 +1028,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 89,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "ICA",
       "Provincia": "CHINCHA",
       "Distrito": "PUEBLO NUEVO",
@@ -944,7 +1038,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 90,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "ICA",
       "Provincia": "PALPA",
       "Distrito": "TIBILLO",
@@ -954,7 +1048,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 91,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "ICA",
       "Provincia": "PISCO",
       "Distrito": "PISCO",
@@ -964,7 +1058,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 92,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "ICA",
       "Provincia": "PISCO",
       "Distrito": "PISCO",
@@ -974,8 +1068,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 93,
-      "Mes": 1,
-      "Departamento": "JUNIN",
+      "Mes": "Enero",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "HUANCAYO",
       "Inicio": 18,
@@ -984,8 +1078,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 94,
-      "Mes": 1,
-      "Departamento": "JUNIN",
+      "Mes": "Enero",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "HUANCAYO",
       "Inicio": 30,
@@ -994,8 +1088,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 95,
-      "Mes": 1,
-      "Departamento": "JUNIN",
+      "Mes": "Enero",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "CHILCA",
       "Inicio": 18,
@@ -1004,8 +1098,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 96,
-      "Mes": 1,
-      "Departamento": "JUNIN",
+      "Mes": "Enero",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "CHONGOS ALTO",
       "Inicio": 30,
@@ -1014,8 +1108,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 97,
-      "Mes": 1,
-      "Departamento": "JUNIN",
+      "Mes": "Enero",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "EL TAMBO",
       "Inicio": 18,
@@ -1024,8 +1118,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 98,
-      "Mes": 1,
-      "Departamento": "JUNIN",
+      "Mes": "Enero",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "EL TAMBO",
       "Inicio": 30,
@@ -1034,8 +1128,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 99,
-      "Mes": 1,
-      "Departamento": "JUNIN",
+      "Mes": "Enero",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "HUANCAN",
       "Inicio": 18,
@@ -1044,8 +1138,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 100,
-      "Mes": 1,
-      "Departamento": "JUNIN",
+      "Mes": "Enero",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "HUANCAN",
       "Inicio": 18,
@@ -1054,8 +1148,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 101,
-      "Mes": 1,
-      "Departamento": "JUNIN",
+      "Mes": "Enero",
+      "Departamento": "JUNÍN",
       "Provincia": "CONCEPCION",
       "Distrito": "CONCEPCION",
       "Inicio": 30,
@@ -1064,8 +1158,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 102,
-      "Mes": 1,
-      "Departamento": "JUNIN",
+      "Mes": "Enero",
+      "Departamento": "JUNÍN",
       "Provincia": "CONCEPCION",
       "Distrito": "SAN JOSE DE QUERO",
       "Inicio": 12,
@@ -1074,8 +1168,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 103,
-      "Mes": 1,
-      "Departamento": "JUNIN",
+      "Mes": "Enero",
+      "Departamento": "JUNÍN",
       "Provincia": "CONCEPCION",
       "Distrito": "SANTA ROSA DE OCOPA",
       "Inicio": 30,
@@ -1084,8 +1178,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 104,
-      "Mes": 1,
-      "Departamento": "JUNIN",
+      "Mes": "Enero",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "PERENE",
       "Inicio": 18,
@@ -1094,8 +1188,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 105,
-      "Mes": 1,
-      "Departamento": "JUNIN",
+      "Mes": "Enero",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "PERENE",
       "Inicio": 30,
@@ -1104,8 +1198,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 106,
-      "Mes": 1,
-      "Departamento": "JUNIN",
+      "Mes": "Enero",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "PICHANAKI",
       "Inicio": 30,
@@ -1114,8 +1208,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 107,
-      "Mes": 1,
-      "Departamento": "JUNIN",
+      "Mes": "Enero",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "SAN RAMON",
       "Inicio": 30,
@@ -1124,8 +1218,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 108,
-      "Mes": 1,
-      "Departamento": "JUNIN",
+      "Mes": "Enero",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "ACOLLA",
       "Inicio": 18,
@@ -1134,8 +1228,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 109,
-      "Mes": 1,
-      "Departamento": "JUNIN",
+      "Mes": "Enero",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "SINCOS",
       "Inicio": 30,
@@ -1144,9 +1238,9 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 110,
-      "Mes": 1,
-      "Departamento": "JUNIN",
-      "Provincia": "JUNIN",
+      "Mes": "Enero",
+      "Departamento": "JUNÍN",
+      "Provincia": "JUNÍN",
       "Distrito": "CARHUAMAYO",
       "Inicio": 30,
       "Fin": 59,
@@ -1154,8 +1248,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 111,
-      "Mes": 1,
-      "Departamento": "JUNIN",
+      "Mes": "Enero",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "SATIPO",
       "Inicio": 18,
@@ -1164,8 +1258,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 112,
-      "Mes": 1,
-      "Departamento": "JUNIN",
+      "Mes": "Enero",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "LLAYLLA",
       "Inicio": 30,
@@ -1174,8 +1268,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 113,
-      "Mes": 1,
-      "Departamento": "JUNIN",
+      "Mes": "Enero",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "MAZAMARI",
       "Inicio": 30,
@@ -1184,8 +1278,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 114,
-      "Mes": 1,
-      "Departamento": "JUNIN",
+      "Mes": "Enero",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "PANGOA",
       "Inicio": 12,
@@ -1194,8 +1288,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 115,
-      "Mes": 1,
-      "Departamento": "JUNIN",
+      "Mes": "Enero",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "PANGOA",
       "Inicio": 18,
@@ -1204,8 +1298,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 116,
-      "Mes": 1,
-      "Departamento": "JUNIN",
+      "Mes": "Enero",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "RIO TAMBO",
       "Inicio": 18,
@@ -1214,8 +1308,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 117,
-      "Mes": 1,
-      "Departamento": "JUNIN",
+      "Mes": "Enero",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "RIO TAMBO",
       "Inicio": 30,
@@ -1224,8 +1318,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 118,
-      "Mes": 1,
-      "Departamento": "JUNIN",
+      "Mes": "Enero",
+      "Departamento": "JUNÍN",
       "Provincia": "TARMA",
       "Distrito": "TARMA",
       "Inicio": 18,
@@ -1234,8 +1328,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 119,
-      "Mes": 1,
-      "Departamento": "JUNIN",
+      "Mes": "Enero",
+      "Departamento": "JUNÍN",
       "Provincia": "TARMA",
       "Distrito": "ACOBAMBA",
       "Inicio": 18,
@@ -1244,8 +1338,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 120,
-      "Mes": 1,
-      "Departamento": "JUNIN",
+      "Mes": "Enero",
+      "Departamento": "JUNÍN",
       "Provincia": "TARMA",
       "Distrito": "PALCA",
       "Inicio": 18,
@@ -1254,7 +1348,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 121,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "CHICLAYO",
@@ -1264,7 +1358,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 122,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "CHICLAYO",
@@ -1274,7 +1368,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 123,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "CHICLAYO",
@@ -1284,7 +1378,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 124,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "LA VICTORIA",
@@ -1294,7 +1388,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 125,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "LA VICTORIA",
@@ -1304,7 +1398,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 126,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "FERREÑAFE",
       "Distrito": "PUEBLO NUEVO",
@@ -1314,7 +1408,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 127,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "LIMA",
@@ -1324,7 +1418,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 128,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "PACHACAMAC",
@@ -1334,7 +1428,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 129,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "PACHACAMAC",
@@ -1344,7 +1438,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 130,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "PACHACAMAC",
@@ -1354,7 +1448,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 131,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "SAN BARTOLO",
@@ -1364,7 +1458,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 132,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "VILLA EL SALVADOR",
@@ -1374,7 +1468,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 133,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "LIMA",
       "Provincia": "CAÑETE",
       "Distrito": "SAN LUIS",
@@ -1384,7 +1478,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 134,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "LIMA",
       "Provincia": "HUARAL",
       "Distrito": "AUCALLAMA",
@@ -1394,7 +1488,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 135,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "LIMA",
       "Provincia": "YAUYOS",
       "Distrito": "YAUYOS",
@@ -1404,7 +1498,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 136,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "LIMA",
       "Provincia": "YAUYOS",
       "Distrito": "QUINCHES",
@@ -1414,7 +1508,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 137,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "MOQUEGUA",
       "Provincia": "MARISCAL NIETO",
       "Distrito": "MOQUEGUA",
@@ -1424,7 +1518,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 138,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "MOQUEGUA",
       "Provincia": "MARISCAL NIETO",
       "Distrito": "MOQUEGUA",
@@ -1434,7 +1528,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 139,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "MOQUEGUA",
       "Provincia": "MARISCAL NIETO",
       "Distrito": "MOQUEGUA",
@@ -1444,7 +1538,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 140,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "MOQUEGUA",
       "Provincia": "MARISCAL NIETO",
       "Distrito": "MOQUEGUA",
@@ -1454,7 +1548,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 141,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "MOQUEGUA",
       "Provincia": "ILO",
       "Distrito": "ILO",
@@ -1464,7 +1558,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 142,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "MOQUEGUA",
       "Provincia": "ILO",
       "Distrito": "ILO",
@@ -1474,7 +1568,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 143,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "PIURA",
       "Provincia": "PIURA",
       "Distrito": "LA UNION",
@@ -1484,7 +1578,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 144,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "PIURA",
       "Provincia": "PIURA",
       "Distrito": "LA UNION",
@@ -1494,7 +1588,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 145,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "PIURA",
       "Provincia": "AYABACA",
       "Distrito": "AYABACA",
@@ -1504,7 +1598,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 146,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "PIURA",
       "Provincia": "HUANCABAMBA",
       "Distrito": "CANCHAQUE",
@@ -1514,8 +1608,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 147,
-      "Mes": 1,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Enero",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "MOYOBAMBA",
       "Distrito": "CALZADA",
       "Inicio": 18,
@@ -1524,8 +1618,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 148,
-      "Mes": 1,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Enero",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "BELLAVISTA",
       "Distrito": "BAJO BIAVO",
       "Inicio": 18,
@@ -1534,9 +1628,9 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 149,
-      "Mes": 1,
-      "Departamento": "SAN MARTIN",
-      "Provincia": "SAN MARTIN",
+      "Mes": "Enero",
+      "Departamento": "SAN MARTÍN",
+      "Provincia": "SAN MARTÍN",
       "Distrito": "EL PORVENIR",
       "Inicio": 30,
       "Fin": 59,
@@ -1544,9 +1638,9 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 150,
-      "Mes": 1,
-      "Departamento": "SAN MARTIN",
-      "Provincia": "SAN MARTIN",
+      "Mes": "Enero",
+      "Departamento": "SAN MARTÍN",
+      "Provincia": "SAN MARTÍN",
       "Distrito": "SAUCE",
       "Inicio": 18,
       "Fin": 29,
@@ -1554,7 +1648,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 151,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "TACNA",
@@ -1564,7 +1658,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 152,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "CIUDAD NUEVA",
@@ -1574,7 +1668,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 153,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "CORONEL GREGORIO ALBARRACIN LANCHIPA",
@@ -1584,7 +1678,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 154,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "CORONEL GREGORIO ALBARRACIN LANCHIPA",
@@ -1594,7 +1688,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 155,
-      "Mes": 1,
+      "Mes": "Enero",
       "Departamento": "UCAYALI",
       "Provincia": "CORONEL PORTILLO",
       "Distrito": "IPARIA",
@@ -1604,8 +1698,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 156,
-      "Mes": 2,
-      "Departamento": "ANCASH",
+      "Mes": "Febrero",
+      "Departamento": "ÁNCASH",
       "Provincia": "HUARAZ",
       "Distrito": "HUARAZ",
       "Inicio": 30,
@@ -1614,8 +1708,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 157,
-      "Mes": 2,
-      "Departamento": "ANCASH",
+      "Mes": "Febrero",
+      "Departamento": "ÁNCASH",
       "Provincia": "HUARMEY",
       "Distrito": "HUARMEY",
       "Inicio": 18,
@@ -1624,8 +1718,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 158,
-      "Mes": 2,
-      "Departamento": "ANCASH",
+      "Mes": "Febrero",
+      "Departamento": "ÁNCASH",
       "Provincia": "HUAYLAS",
       "Distrito": "PAMPAROMAS",
       "Inicio": 18,
@@ -1634,8 +1728,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 159,
-      "Mes": 2,
-      "Departamento": "ANCASH",
+      "Mes": "Febrero",
+      "Departamento": "ÁNCASH",
       "Provincia": "SANTA",
       "Distrito": "NUEVO CHIMBOTE",
       "Inicio": 30,
@@ -1644,8 +1738,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 160,
-      "Mes": 2,
-      "Departamento": "APURIMAC",
+      "Mes": "Febrero",
+      "Departamento": "APURÍMAC",
       "Provincia": "ABANCAY",
       "Distrito": "ABANCAY",
       "Inicio": 18,
@@ -1654,8 +1748,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 161,
-      "Mes": 2,
-      "Departamento": "APURIMAC",
+      "Mes": "Febrero",
+      "Departamento": "APURÍMAC",
       "Provincia": "ABANCAY",
       "Distrito": "ABANCAY",
       "Inicio": 30,
@@ -1664,8 +1758,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 162,
-      "Mes": 2,
-      "Departamento": "APURIMAC",
+      "Mes": "Febrero",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "ANDAHUAYLAS",
       "Inicio": 18,
@@ -1674,8 +1768,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 163,
-      "Mes": 2,
-      "Departamento": "APURIMAC",
+      "Mes": "Febrero",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "ANDAHUAYLAS",
       "Inicio": 30,
@@ -1684,8 +1778,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 164,
-      "Mes": 2,
-      "Departamento": "APURIMAC",
+      "Mes": "Febrero",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "HUANCARAY",
       "Inicio": 30,
@@ -1694,8 +1788,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 165,
-      "Mes": 2,
-      "Departamento": "APURIMAC",
+      "Mes": "Febrero",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "KISHUARA",
       "Inicio": 18,
@@ -1704,8 +1798,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 166,
-      "Mes": 2,
-      "Departamento": "APURIMAC",
+      "Mes": "Febrero",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "PACUCHA",
       "Inicio": 18,
@@ -1714,8 +1808,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 167,
-      "Mes": 2,
-      "Departamento": "APURIMAC",
+      "Mes": "Febrero",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "PAMPACHIRI",
       "Inicio": 18,
@@ -1724,8 +1818,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 168,
-      "Mes": 2,
-      "Departamento": "APURIMAC",
+      "Mes": "Febrero",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "SAN JERONIMO",
       "Inicio": 18,
@@ -1734,8 +1828,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 169,
-      "Mes": 2,
-      "Departamento": "APURIMAC",
+      "Mes": "Febrero",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "TALAVERA",
       "Inicio": 30,
@@ -1744,8 +1838,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 170,
-      "Mes": 2,
-      "Departamento": "APURIMAC",
+      "Mes": "Febrero",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "JOSÉ MARÍA ARGUEDAS",
       "Inicio": 18,
@@ -1754,8 +1848,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 171,
-      "Mes": 2,
-      "Departamento": "APURIMAC",
+      "Mes": "Febrero",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANTABAMBA",
       "Distrito": "PACHACONAS",
       "Inicio": 18,
@@ -1764,8 +1858,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 172,
-      "Mes": 2,
-      "Departamento": "APURIMAC",
+      "Mes": "Febrero",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANTABAMBA",
       "Distrito": "PACHACONAS",
       "Inicio": 18,
@@ -1774,8 +1868,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 173,
-      "Mes": 2,
-      "Departamento": "APURIMAC",
+      "Mes": "Febrero",
+      "Departamento": "APURÍMAC",
       "Provincia": "AYMARAES",
       "Distrito": "SAÑAYCA",
       "Inicio": 30,
@@ -1784,8 +1878,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 174,
-      "Mes": 2,
-      "Departamento": "APURIMAC",
+      "Mes": "Febrero",
+      "Departamento": "APURÍMAC",
       "Provincia": "CHINCHEROS",
       "Distrito": "OCOBAMBA",
       "Inicio": 18,
@@ -1794,8 +1888,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 175,
-      "Mes": 2,
-      "Departamento": "APURIMAC",
+      "Mes": "Febrero",
+      "Departamento": "APURÍMAC",
       "Provincia": "CHINCHEROS",
       "Distrito": "OCOBAMBA",
       "Inicio": 30,
@@ -1804,8 +1898,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 176,
-      "Mes": 2,
-      "Departamento": "APURIMAC",
+      "Mes": "Febrero",
+      "Departamento": "APURÍMAC",
       "Provincia": "GRAU",
       "Distrito": "CHUQUIBAMBILLA",
       "Inicio": 30,
@@ -1814,7 +1908,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 177,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "AREQUIPA",
       "Provincia": "AREQUIPA",
       "Distrito": "CAYMA",
@@ -1824,7 +1918,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 178,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "AREQUIPA",
       "Provincia": "AREQUIPA",
       "Distrito": "CERRO COLORADO",
@@ -1834,7 +1928,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 179,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "AREQUIPA",
       "Provincia": "ISLAY",
       "Distrito": "MOLLENDO",
@@ -1844,7 +1938,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 180,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "AREQUIPA",
       "Provincia": "ISLAY",
       "Distrito": "PUNTA DE BOMBON",
@@ -1854,7 +1948,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 181,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "AYACUCHO",
       "Provincia": "HUAMANGA",
       "Distrito": "ACOCRO",
@@ -1864,7 +1958,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 182,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "AYACUCHO",
       "Provincia": "HUAMANGA",
       "Distrito": "QUINUA",
@@ -1874,7 +1968,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 183,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "AYACUCHO",
       "Provincia": "HUAMANGA",
       "Distrito": "SAN JUAN BAUTISTA",
@@ -1884,7 +1978,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 184,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "AYACUCHO",
       "Provincia": "HUAMANGA",
       "Distrito": "SAN JUAN BAUTISTA",
@@ -1894,7 +1988,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 185,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "AYACUCHO",
       "Provincia": "HUAMANGA",
       "Distrito": "VINCHOS",
@@ -1904,7 +1998,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 186,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "AYACUCHO",
       "Provincia": "LA MAR",
       "Distrito": "SAN MIGUEL",
@@ -1914,7 +2008,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 187,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "CALLAO",
       "Provincia": "CALLAO",
       "Distrito": "CALLAO",
@@ -1924,7 +2018,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 188,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "CALLAO",
       "Provincia": "CALLAO",
       "Distrito": "CALLAO",
@@ -1934,7 +2028,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 189,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "CALLAO",
       "Provincia": "CALLAO",
       "Distrito": "CALLAO",
@@ -1944,7 +2038,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 190,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "CALLAO",
       "Provincia": "CALLAO",
       "Distrito": "CALLAO",
@@ -1954,7 +2048,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 191,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "CALLAO",
       "Provincia": "CALLAO",
       "Distrito": "BELLAVISTA",
@@ -1964,7 +2058,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 192,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "CALLAO",
       "Provincia": "CALLAO",
       "Distrito": "VENTANILLA",
@@ -1974,7 +2068,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 193,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "CUSCO",
       "Provincia": "CANCHIS",
       "Distrito": "SICUANI",
@@ -1984,7 +2078,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 194,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "HUANCAVELICA",
@@ -1994,7 +2088,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 195,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "HUANCAVELICA",
@@ -2004,7 +2098,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 196,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "PILCHACA",
@@ -2014,7 +2108,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 197,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "VILCA",
@@ -2024,7 +2118,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 198,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "YAULI",
@@ -2034,7 +2128,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 199,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ACOBAMBA",
       "Distrito": "PAUCARA",
@@ -2044,7 +2138,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 200,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "ANCHONGA",
@@ -2054,7 +2148,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 201,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "HUAYLLAY GRANDE",
@@ -2064,7 +2158,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 202,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "HUANCAVELICA",
       "Provincia": "CASTROVIRREYNA",
       "Distrito": "CASTROVIRREYNA",
@@ -2074,7 +2168,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 203,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "ACRAQUIA",
@@ -2084,7 +2178,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 204,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "DANIEL HERNANDEZ",
@@ -2094,7 +2188,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 205,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "HUACHOCOLPA",
@@ -2104,7 +2198,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 206,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "SURCUBAMBA",
@@ -2114,7 +2208,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 207,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "TINTAY PUNCU",
@@ -2124,7 +2218,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 208,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "QUICHUAS",
@@ -2134,7 +2228,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 209,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "QUICHUAS",
@@ -2144,39 +2238,39 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 210,
-      "Mes": 2,
-      "Departamento": "HUANUCO",
-      "Provincia": "HUANUCO",
-      "Distrito": "HUANUCO",
+      "Mes": "Febrero",
+      "Departamento": "HUÁNUCO",
+      "Provincia": "HUÁNUCO",
+      "Distrito": "HUÁNUCO",
       "Inicio": 12,
       "Fin": 17,
       "Metodo": "YUZPE"
     },
     {
       "Id": 211,
-      "Mes": 2,
-      "Departamento": "HUANUCO",
-      "Provincia": "HUANUCO",
-      "Distrito": "HUANUCO",
+      "Mes": "Febrero",
+      "Departamento": "HUÁNUCO",
+      "Provincia": "HUÁNUCO",
+      "Distrito": "HUÁNUCO",
       "Inicio": 18,
       "Fin": 29,
       "Metodo": "YUZPE"
     },
     {
       "Id": 212,
-      "Mes": 2,
-      "Departamento": "HUANUCO",
-      "Provincia": "HUANUCO",
-      "Distrito": "HUANUCO",
+      "Mes": "Febrero",
+      "Departamento": "HUÁNUCO",
+      "Provincia": "HUÁNUCO",
+      "Distrito": "HUÁNUCO",
       "Inicio": 30,
       "Fin": 59,
       "Metodo": "YUZPE"
     },
     {
       "Id": 213,
-      "Mes": 2,
-      "Departamento": "HUANUCO",
-      "Provincia": "HUANUCO",
+      "Mes": "Febrero",
+      "Departamento": "HUÁNUCO",
+      "Provincia": "HUÁNUCO",
       "Distrito": "AMARILIS",
       "Inicio": 18,
       "Fin": 29,
@@ -2184,9 +2278,9 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 214,
-      "Mes": 2,
-      "Departamento": "HUANUCO",
-      "Provincia": "HUANUCO",
+      "Mes": "Febrero",
+      "Departamento": "HUÁNUCO",
+      "Provincia": "HUÁNUCO",
       "Distrito": "AMARILIS",
       "Inicio": 30,
       "Fin": 59,
@@ -2194,8 +2288,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 215,
-      "Mes": 2,
-      "Departamento": "HUANUCO",
+      "Mes": "Febrero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "DOS DE MAYO",
       "Distrito": "LA UNION",
       "Inicio": 30,
@@ -2204,8 +2298,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 216,
-      "Mes": 2,
-      "Departamento": "HUANUCO",
+      "Mes": "Febrero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUACAYBAMBA",
       "Distrito": "HUACAYBAMBA",
       "Inicio": 18,
@@ -2214,8 +2308,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 217,
-      "Mes": 2,
-      "Departamento": "HUANUCO",
+      "Mes": "Febrero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUACAYBAMBA",
       "Distrito": "HUACAYBAMBA",
       "Inicio": 30,
@@ -2224,8 +2318,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 218,
-      "Mes": 2,
-      "Departamento": "HUANUCO",
+      "Mes": "Febrero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUAMALIES",
       "Distrito": "CHAVIN DE PARIARCA",
       "Inicio": 30,
@@ -2234,8 +2328,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 219,
-      "Mes": 2,
-      "Departamento": "HUANUCO",
+      "Mes": "Febrero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUAMALIES",
       "Distrito": "MONZON",
       "Inicio": 18,
@@ -2244,8 +2338,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 220,
-      "Mes": 2,
-      "Departamento": "HUANUCO",
+      "Mes": "Febrero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUAMALIES",
       "Distrito": "MONZON",
       "Inicio": 18,
@@ -2254,8 +2348,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 221,
-      "Mes": 2,
-      "Departamento": "HUANUCO",
+      "Mes": "Febrero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUAMALIES",
       "Distrito": "PUNCHAO",
       "Inicio": 18,
@@ -2264,8 +2358,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 222,
-      "Mes": 2,
-      "Departamento": "HUANUCO",
+      "Mes": "Febrero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUAMALIES",
       "Distrito": "PUÑOS",
       "Inicio": 12,
@@ -2274,8 +2368,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 223,
-      "Mes": 2,
-      "Departamento": "HUANUCO",
+      "Mes": "Febrero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUAMALIES",
       "Distrito": "PUÑOS",
       "Inicio": 18,
@@ -2284,8 +2378,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 224,
-      "Mes": 2,
-      "Departamento": "HUANUCO",
+      "Mes": "Febrero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "LEONCIO PRADO",
       "Distrito": "RUPA-RUPA",
       "Inicio": 18,
@@ -2294,8 +2388,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 225,
-      "Mes": 2,
-      "Departamento": "HUANUCO",
+      "Mes": "Febrero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "LEONCIO PRADO",
       "Distrito": "JOSE CRESPO Y CASTILLO",
       "Inicio": 12,
@@ -2304,8 +2398,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 226,
-      "Mes": 2,
-      "Departamento": "HUANUCO",
+      "Mes": "Febrero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "LEONCIO PRADO",
       "Distrito": "LUYANDO",
       "Inicio": 18,
@@ -2314,8 +2408,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 227,
-      "Mes": 2,
-      "Departamento": "HUANUCO",
+      "Mes": "Febrero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "LEONCIO PRADO",
       "Distrito": "MARIANO DAMASO BERAUN",
       "Inicio": 30,
@@ -2324,8 +2418,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 228,
-      "Mes": 2,
-      "Departamento": "HUANUCO",
+      "Mes": "Febrero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "PACHITEA",
       "Distrito": "MOLINO",
       "Inicio": 18,
@@ -2334,8 +2428,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 229,
-      "Mes": 2,
-      "Departamento": "HUANUCO",
+      "Mes": "Febrero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "PUERTO INCA",
       "Distrito": "PUERTO INCA",
       "Inicio": 18,
@@ -2344,8 +2438,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 230,
-      "Mes": 2,
-      "Departamento": "HUANUCO",
+      "Mes": "Febrero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "PUERTO INCA",
       "Distrito": "HONORIA",
       "Inicio": 12,
@@ -2354,8 +2448,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 231,
-      "Mes": 2,
-      "Departamento": "HUANUCO",
+      "Mes": "Febrero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "PUERTO INCA",
       "Distrito": "TOURNAVISTA",
       "Inicio": 30,
@@ -2364,8 +2458,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 232,
-      "Mes": 2,
-      "Departamento": "HUANUCO",
+      "Mes": "Febrero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "YAROWILCA",
       "Distrito": "CHAVINILLO",
       "Inicio": 18,
@@ -2374,8 +2468,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 233,
-      "Mes": 2,
-      "Departamento": "HUANUCO",
+      "Mes": "Febrero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "YAROWILCA",
       "Distrito": "CAHUAC",
       "Inicio": 30,
@@ -2384,8 +2478,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 234,
-      "Mes": 2,
-      "Departamento": "HUANUCO",
+      "Mes": "Febrero",
+      "Departamento": "HUÁNUCO",
       "Provincia": "YAROWILCA",
       "Distrito": "OBAS",
       "Inicio": 30,
@@ -2394,7 +2488,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 235,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "ICA",
@@ -2404,7 +2498,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 236,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "ICA",
@@ -2414,7 +2508,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 237,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "PARCONA",
@@ -2424,7 +2518,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 238,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "SUBTANJALLA",
@@ -2434,7 +2528,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 239,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "ICA",
       "Provincia": "NAZCA",
       "Distrito": "NAZCA",
@@ -2444,7 +2538,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 240,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "ICA",
       "Provincia": "NAZCA",
       "Distrito": "NAZCA",
@@ -2454,7 +2548,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 241,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "ICA",
       "Provincia": "NAZCA",
       "Distrito": "VISTA ALEGRE",
@@ -2464,7 +2558,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 242,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "ICA",
       "Provincia": "PALPA",
       "Distrito": "RIO GRANDE",
@@ -2474,7 +2568,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 243,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "ICA",
       "Provincia": "PISCO",
       "Distrito": "TUPAC AMARU INCA",
@@ -2484,8 +2578,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 244,
-      "Mes": 2,
-      "Departamento": "JUNIN",
+      "Mes": "Febrero",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "CHILCA",
       "Inicio": 18,
@@ -2494,8 +2588,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 245,
-      "Mes": 2,
-      "Departamento": "JUNIN",
+      "Mes": "Febrero",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "CHONGOS ALTO",
       "Inicio": 18,
@@ -2504,8 +2598,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 246,
-      "Mes": 2,
-      "Departamento": "JUNIN",
+      "Mes": "Febrero",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "EL TAMBO",
       "Inicio": 18,
@@ -2514,8 +2608,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 247,
-      "Mes": 2,
-      "Departamento": "JUNIN",
+      "Mes": "Febrero",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "HUANCAN",
       "Inicio": 18,
@@ -2524,8 +2618,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 248,
-      "Mes": 2,
-      "Departamento": "JUNIN",
+      "Mes": "Febrero",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "PILCOMAYO",
       "Inicio": 18,
@@ -2534,8 +2628,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 249,
-      "Mes": 2,
-      "Departamento": "JUNIN",
+      "Mes": "Febrero",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "SICAYA",
       "Inicio": 30,
@@ -2544,8 +2638,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 250,
-      "Mes": 2,
-      "Departamento": "JUNIN",
+      "Mes": "Febrero",
+      "Departamento": "JUNÍN",
       "Provincia": "CONCEPCION",
       "Distrito": "MITO",
       "Inicio": 18,
@@ -2554,8 +2648,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 251,
-      "Mes": 2,
-      "Departamento": "JUNIN",
+      "Mes": "Febrero",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "PERENE",
       "Inicio": 18,
@@ -2564,8 +2658,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 252,
-      "Mes": 2,
-      "Departamento": "JUNIN",
+      "Mes": "Febrero",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "PICHANAKI",
       "Inicio": 30,
@@ -2574,8 +2668,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 253,
-      "Mes": 2,
-      "Departamento": "JUNIN",
+      "Mes": "Febrero",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "JAUJA",
       "Inicio": 30,
@@ -2584,8 +2678,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 254,
-      "Mes": 2,
-      "Departamento": "JUNIN",
+      "Mes": "Febrero",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "LLOCLLAPAMPA",
       "Inicio": 18,
@@ -2594,8 +2688,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 255,
-      "Mes": 2,
-      "Departamento": "JUNIN",
+      "Mes": "Febrero",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "MASMA",
       "Inicio": 18,
@@ -2604,8 +2698,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 256,
-      "Mes": 2,
-      "Departamento": "JUNIN",
+      "Mes": "Febrero",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "MOLINOS",
       "Inicio": 18,
@@ -2614,8 +2708,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 257,
-      "Mes": 2,
-      "Departamento": "JUNIN",
+      "Mes": "Febrero",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "SAN LORENZO",
       "Inicio": 30,
@@ -2624,8 +2718,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 258,
-      "Mes": 2,
-      "Departamento": "JUNIN",
+      "Mes": "Febrero",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "SAN LORENZO",
       "Inicio": 30,
@@ -2634,8 +2728,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 259,
-      "Mes": 2,
-      "Departamento": "JUNIN",
+      "Mes": "Febrero",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "YAUYOS",
       "Inicio": 18,
@@ -2644,8 +2738,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 260,
-      "Mes": 2,
-      "Departamento": "JUNIN",
+      "Mes": "Febrero",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "YAUYOS",
       "Inicio": 30,
@@ -2654,9 +2748,9 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 261,
-      "Mes": 2,
-      "Departamento": "JUNIN",
-      "Provincia": "JUNIN",
+      "Mes": "Febrero",
+      "Departamento": "JUNÍN",
+      "Provincia": "JUNÍN",
       "Distrito": "CARHUAMAYO",
       "Inicio": 18,
       "Fin": 29,
@@ -2664,8 +2758,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 262,
-      "Mes": 2,
-      "Departamento": "JUNIN",
+      "Mes": "Febrero",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "SATIPO",
       "Inicio": 18,
@@ -2674,8 +2768,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 263,
-      "Mes": 2,
-      "Departamento": "JUNIN",
+      "Mes": "Febrero",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "PANGOA",
       "Inicio": 12,
@@ -2684,8 +2778,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 264,
-      "Mes": 2,
-      "Departamento": "JUNIN",
+      "Mes": "Febrero",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "PANGOA",
       "Inicio": 18,
@@ -2694,8 +2788,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 265,
-      "Mes": 2,
-      "Departamento": "JUNIN",
+      "Mes": "Febrero",
+      "Departamento": "JUNÍN",
       "Provincia": "TARMA",
       "Distrito": "TARMA",
       "Inicio": 12,
@@ -2704,8 +2798,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 266,
-      "Mes": 2,
-      "Departamento": "JUNIN",
+      "Mes": "Febrero",
+      "Departamento": "JUNÍN",
       "Provincia": "TARMA",
       "Distrito": "PALCA",
       "Inicio": 12,
@@ -2714,8 +2808,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 267,
-      "Mes": 2,
-      "Departamento": "JUNIN",
+      "Mes": "Febrero",
+      "Departamento": "JUNÍN",
       "Provincia": "TARMA",
       "Distrito": "TAPO",
       "Inicio": 30,
@@ -2724,7 +2818,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 268,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "LA LIBERTAD",
       "Provincia": "CHEPEN",
       "Distrito": "PUEBLO NUEVO",
@@ -2734,7 +2828,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 269,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "CHICLAYO",
@@ -2744,7 +2838,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 270,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "JOSE LEONARDO ORTIZ",
@@ -2754,7 +2848,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 271,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "JOSE LEONARDO ORTIZ",
@@ -2764,7 +2858,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 272,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "JOSE LEONARDO ORTIZ",
@@ -2774,7 +2868,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 273,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "LA VICTORIA",
@@ -2784,7 +2878,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 274,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "LA VICTORIA",
@@ -2794,7 +2888,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 275,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "LA VICTORIA",
@@ -2804,7 +2898,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 276,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "FERREÑAFE",
       "Distrito": "PITIPO",
@@ -2814,7 +2908,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 277,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "LIMA",
@@ -2824,7 +2918,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 278,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "LURIGANCHO (CHOSICA)",
@@ -2834,7 +2928,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 279,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "LURIN",
@@ -2844,7 +2938,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 280,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "LURIN",
@@ -2854,7 +2948,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 281,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "PACHACAMAC",
@@ -2864,7 +2958,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 282,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "PUNTA HERMOSA",
@@ -2874,7 +2968,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 283,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "PUNTA NEGRA",
@@ -2884,7 +2978,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 284,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "VILLA EL SALVADOR",
@@ -2894,7 +2988,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 285,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "VILLA EL SALVADOR",
@@ -2904,7 +2998,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 286,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "LIMA",
       "Provincia": "HUAURA",
       "Distrito": "SANTA MARIA",
@@ -2914,7 +3008,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 287,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "LORETO",
       "Provincia": "MAYNAS",
       "Distrito": "PUNCHANA",
@@ -2924,7 +3018,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 288,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "MADRE DE DIOS",
       "Provincia": "TAMBOPATA",
       "Distrito": "LABERINTO",
@@ -2934,7 +3028,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 289,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "MOQUEGUA",
       "Provincia": "MARISCAL NIETO",
       "Distrito": "MOQUEGUA",
@@ -2944,7 +3038,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 290,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "MOQUEGUA",
       "Provincia": "MARISCAL NIETO",
       "Distrito": "MOQUEGUA",
@@ -2954,7 +3048,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 291,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "MOQUEGUA",
       "Provincia": "ILO",
       "Distrito": "ILO",
@@ -2964,7 +3058,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 292,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "MOQUEGUA",
       "Provincia": "ILO",
       "Distrito": "ILO",
@@ -2974,7 +3068,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 293,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "PIURA",
       "Provincia": "PIURA",
       "Distrito": "CATACAOS",
@@ -2984,7 +3078,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 294,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "PIURA",
       "Provincia": "PIURA",
       "Distrito": "LA ARENA",
@@ -2994,7 +3088,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 295,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "PIURA",
       "Provincia": "PIURA",
       "Distrito": "LA UNION",
@@ -3004,7 +3098,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 296,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "PIURA",
       "Provincia": "PIURA",
       "Distrito": "LA UNION",
@@ -3014,7 +3108,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 297,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "PIURA",
       "Provincia": "AYABACA",
       "Distrito": "PAIMAS",
@@ -3024,7 +3118,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 298,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "PIURA",
       "Provincia": "MORROPON",
       "Distrito": "SAN JUAN DE BIGOTE",
@@ -3034,7 +3128,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 299,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "PIURA",
       "Provincia": "PAITA",
       "Distrito": "VICHAYAL",
@@ -3044,8 +3138,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 300,
-      "Mes": 2,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Febrero",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "BELLAVISTA",
       "Distrito": "BAJO BIAVO",
       "Inicio": 12,
@@ -3054,8 +3148,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 301,
-      "Mes": 2,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Febrero",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "LAMAS",
       "Distrito": "CAYNARACHI",
       "Inicio": 18,
@@ -3064,8 +3158,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 302,
-      "Mes": 2,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Febrero",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "MARISCAL CACERES",
       "Distrito": "JUANJUI",
       "Inicio": 12,
@@ -3074,8 +3168,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 303,
-      "Mes": 2,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Febrero",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "RIOJA",
       "Distrito": "SAN FERNANDO",
       "Inicio": 30,
@@ -3084,7 +3178,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 304,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "TACNA",
@@ -3094,7 +3188,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 305,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "ALTO DE LA ALIANZA",
@@ -3104,7 +3198,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 306,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "ALTO DE LA ALIANZA",
@@ -3114,7 +3208,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 307,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "CIUDAD NUEVA",
@@ -3124,7 +3218,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 308,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "CIUDAD NUEVA",
@@ -3134,7 +3228,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 309,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "POCOLLAY",
@@ -3144,7 +3238,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 310,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "CORONEL GREGORIO ALBARRACIN LANCHIPA",
@@ -3154,7 +3248,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 311,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "TACNA",
       "Provincia": "CANDARAVE",
       "Distrito": "CANDARAVE",
@@ -3164,7 +3258,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 312,
-      "Mes": 2,
+      "Mes": "Febrero",
       "Departamento": "UCAYALI",
       "Provincia": "CORONEL PORTILLO",
       "Distrito": "IPARIA",
@@ -3174,8 +3268,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 313,
-      "Mes": 3,
-      "Departamento": "ANCASH",
+      "Mes": "Marzo",
+      "Departamento": "ÁNCASH",
       "Provincia": "BOLOGNESI",
       "Distrito": "CAJACAY",
       "Inicio": 18,
@@ -3184,8 +3278,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 314,
-      "Mes": 3,
-      "Departamento": "ANCASH",
+      "Mes": "Marzo",
+      "Departamento": "ÁNCASH",
       "Provincia": "CARHUAZ",
       "Distrito": "CARHUAZ",
       "Inicio": 30,
@@ -3194,8 +3288,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 315,
-      "Mes": 3,
-      "Departamento": "ANCASH",
+      "Mes": "Marzo",
+      "Departamento": "ÁNCASH",
       "Provincia": "CARHUAZ",
       "Distrito": "YUNGAR",
       "Inicio": 18,
@@ -3204,8 +3298,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 316,
-      "Mes": 3,
-      "Departamento": "ANCASH",
+      "Mes": "Marzo",
+      "Departamento": "ÁNCASH",
       "Provincia": "HUARMEY",
       "Distrito": "COCHAPETI",
       "Inicio": 18,
@@ -3214,8 +3308,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 317,
-      "Mes": 3,
-      "Departamento": "ANCASH",
+      "Mes": "Marzo",
+      "Departamento": "ÁNCASH",
       "Provincia": "HUAYLAS",
       "Distrito": "MATO",
       "Inicio": 30,
@@ -3224,8 +3318,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 318,
-      "Mes": 3,
-      "Departamento": "ANCASH",
+      "Mes": "Marzo",
+      "Departamento": "ÁNCASH",
       "Provincia": "RECUAY",
       "Distrito": "CATAC",
       "Inicio": 30,
@@ -3234,8 +3328,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 319,
-      "Mes": 3,
-      "Departamento": "ANCASH",
+      "Mes": "Marzo",
+      "Departamento": "ÁNCASH",
       "Provincia": "SANTA",
       "Distrito": "SAMANCO",
       "Inicio": 18,
@@ -3244,8 +3338,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 320,
-      "Mes": 3,
-      "Departamento": "ANCASH",
+      "Mes": "Marzo",
+      "Departamento": "ÁNCASH",
       "Provincia": "SANTA",
       "Distrito": "NUEVO CHIMBOTE",
       "Inicio": 18,
@@ -3254,8 +3348,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 321,
-      "Mes": 3,
-      "Departamento": "ANCASH",
+      "Mes": "Marzo",
+      "Departamento": "ÁNCASH",
       "Provincia": "SANTA",
       "Distrito": "NUEVO CHIMBOTE",
       "Inicio": 30,
@@ -3264,8 +3358,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 322,
-      "Mes": 3,
-      "Departamento": "ANCASH",
+      "Mes": "Marzo",
+      "Departamento": "ÁNCASH",
       "Provincia": "SANTA",
       "Distrito": "NUEVO CHIMBOTE",
       "Inicio": 30,
@@ -3274,8 +3368,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 323,
-      "Mes": 3,
-      "Departamento": "ANCASH",
+      "Mes": "Marzo",
+      "Departamento": "ÁNCASH",
       "Provincia": "YUNGAY",
       "Distrito": "MANCOS",
       "Inicio": 30,
@@ -3284,8 +3378,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 324,
-      "Mes": 3,
-      "Departamento": "APURIMAC",
+      "Mes": "Marzo",
+      "Departamento": "APURÍMAC",
       "Provincia": "ABANCAY",
       "Distrito": "ABANCAY",
       "Inicio": 18,
@@ -3294,8 +3388,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 325,
-      "Mes": 3,
-      "Departamento": "APURIMAC",
+      "Mes": "Marzo",
+      "Departamento": "APURÍMAC",
       "Provincia": "ABANCAY",
       "Distrito": "ABANCAY",
       "Inicio": 18,
@@ -3304,8 +3398,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 326,
-      "Mes": 3,
-      "Departamento": "APURIMAC",
+      "Mes": "Marzo",
+      "Departamento": "APURÍMAC",
       "Provincia": "ABANCAY",
       "Distrito": "ABANCAY",
       "Inicio": 30,
@@ -3314,8 +3408,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 327,
-      "Mes": 3,
-      "Departamento": "APURIMAC",
+      "Mes": "Marzo",
+      "Departamento": "APURÍMAC",
       "Provincia": "ABANCAY",
       "Distrito": "HUANIPACA",
       "Inicio": 12,
@@ -3324,8 +3418,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 328,
-      "Mes": 3,
-      "Departamento": "APURIMAC",
+      "Mes": "Marzo",
+      "Departamento": "APURÍMAC",
       "Provincia": "ABANCAY",
       "Distrito": "LAMBRAMA",
       "Inicio": 30,
@@ -3334,8 +3428,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 329,
-      "Mes": 3,
-      "Departamento": "APURIMAC",
+      "Mes": "Marzo",
+      "Departamento": "APURÍMAC",
       "Provincia": "ABANCAY",
       "Distrito": "SAN PEDRO DE CACHORA",
       "Inicio": 18,
@@ -3344,8 +3438,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 330,
-      "Mes": 3,
-      "Departamento": "APURIMAC",
+      "Mes": "Marzo",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "ANDAHUAYLAS",
       "Inicio": 18,
@@ -3354,8 +3448,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 331,
-      "Mes": 3,
-      "Departamento": "APURIMAC",
+      "Mes": "Marzo",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "ANDAHUAYLAS",
       "Inicio": 30,
@@ -3364,8 +3458,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 332,
-      "Mes": 3,
-      "Departamento": "APURIMAC",
+      "Mes": "Marzo",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "CHIARA",
       "Inicio": 30,
@@ -3374,8 +3468,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 333,
-      "Mes": 3,
-      "Departamento": "APURIMAC",
+      "Mes": "Marzo",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "HUANCARAMA",
       "Inicio": 30,
@@ -3384,8 +3478,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 334,
-      "Mes": 3,
-      "Departamento": "APURIMAC",
+      "Mes": "Marzo",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "KISHUARA",
       "Inicio": 12,
@@ -3394,8 +3488,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 335,
-      "Mes": 3,
-      "Departamento": "APURIMAC",
+      "Mes": "Marzo",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "KISHUARA",
       "Inicio": 18,
@@ -3404,8 +3498,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 336,
-      "Mes": 3,
-      "Departamento": "APURIMAC",
+      "Mes": "Marzo",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "PACUCHA",
       "Inicio": 18,
@@ -3414,8 +3508,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 337,
-      "Mes": 3,
-      "Departamento": "APURIMAC",
+      "Mes": "Marzo",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "PACUCHA",
       "Inicio": 18,
@@ -3424,8 +3518,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 338,
-      "Mes": 3,
-      "Departamento": "APURIMAC",
+      "Mes": "Marzo",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "PACUCHA",
       "Inicio": 30,
@@ -3434,8 +3528,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 339,
-      "Mes": 3,
-      "Departamento": "APURIMAC",
+      "Mes": "Marzo",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "PACUCHA",
       "Inicio": 30,
@@ -3444,8 +3538,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 340,
-      "Mes": 3,
-      "Departamento": "APURIMAC",
+      "Mes": "Marzo",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "PAMPACHIRI",
       "Inicio": 12,
@@ -3454,8 +3548,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 341,
-      "Mes": 3,
-      "Departamento": "APURIMAC",
+      "Mes": "Marzo",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "PAMPACHIRI",
       "Inicio": 30,
@@ -3464,8 +3558,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 342,
-      "Mes": 3,
-      "Departamento": "APURIMAC",
+      "Mes": "Marzo",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "SAN ANTONIO DE CACHI",
       "Inicio": 18,
@@ -3474,8 +3568,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 343,
-      "Mes": 3,
-      "Departamento": "APURIMAC",
+      "Mes": "Marzo",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "SAN JERONIMO",
       "Inicio": 18,
@@ -3484,8 +3578,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 344,
-      "Mes": 3,
-      "Departamento": "APURIMAC",
+      "Mes": "Marzo",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "KAQUIABAMBA",
       "Inicio": 18,
@@ -3494,8 +3588,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 345,
-      "Mes": 3,
-      "Departamento": "APURIMAC",
+      "Mes": "Marzo",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "KAQUIABAMBA",
       "Inicio": 30,
@@ -3504,8 +3598,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 346,
-      "Mes": 3,
-      "Departamento": "APURIMAC",
+      "Mes": "Marzo",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANTABAMBA",
       "Distrito": "HUAQUIRCA",
       "Inicio": 18,
@@ -3514,8 +3608,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 347,
-      "Mes": 3,
-      "Departamento": "APURIMAC",
+      "Mes": "Marzo",
+      "Departamento": "APURÍMAC",
       "Provincia": "AYMARAES",
       "Distrito": "SAN JUAN DE CHACÑA",
       "Inicio": 12,
@@ -3524,8 +3618,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 348,
-      "Mes": 3,
-      "Departamento": "APURIMAC",
+      "Mes": "Marzo",
+      "Departamento": "APURÍMAC",
       "Provincia": "AYMARAES",
       "Distrito": "SAÑAYCA",
       "Inicio": 18,
@@ -3534,8 +3628,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 349,
-      "Mes": 3,
-      "Departamento": "APURIMAC",
+      "Mes": "Marzo",
+      "Departamento": "APURÍMAC",
       "Provincia": "COTABAMBAS",
       "Distrito": "COTABAMBAS",
       "Inicio": 12,
@@ -3544,8 +3638,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 350,
-      "Mes": 3,
-      "Departamento": "APURIMAC",
+      "Mes": "Marzo",
+      "Departamento": "APURÍMAC",
       "Provincia": "COTABAMBAS",
       "Distrito": "COTABAMBAS",
       "Inicio": 18,
@@ -3554,8 +3648,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 351,
-      "Mes": 3,
-      "Departamento": "APURIMAC",
+      "Mes": "Marzo",
+      "Departamento": "APURÍMAC",
       "Provincia": "COTABAMBAS",
       "Distrito": "COTABAMBAS",
       "Inicio": 30,
@@ -3564,8 +3658,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 352,
-      "Mes": 3,
-      "Departamento": "APURIMAC",
+      "Mes": "Marzo",
+      "Departamento": "APURÍMAC",
       "Provincia": "COTABAMBAS",
       "Distrito": "COYLLURQUI",
       "Inicio": 12,
@@ -3574,8 +3668,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 353,
-      "Mes": 3,
-      "Departamento": "APURIMAC",
+      "Mes": "Marzo",
+      "Departamento": "APURÍMAC",
       "Provincia": "COTABAMBAS",
       "Distrito": "COYLLURQUI",
       "Inicio": 18,
@@ -3584,8 +3678,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 354,
-      "Mes": 3,
-      "Departamento": "APURIMAC",
+      "Mes": "Marzo",
+      "Departamento": "APURÍMAC",
       "Provincia": "CHINCHEROS",
       "Distrito": "CHINCHEROS",
       "Inicio": 30,
@@ -3594,8 +3688,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 355,
-      "Mes": 3,
-      "Departamento": "APURIMAC",
+      "Mes": "Marzo",
+      "Departamento": "APURÍMAC",
       "Provincia": "CHINCHEROS",
       "Distrito": "HUACCANA",
       "Inicio": 30,
@@ -3604,8 +3698,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 356,
-      "Mes": 3,
-      "Departamento": "APURIMAC",
+      "Mes": "Marzo",
+      "Departamento": "APURÍMAC",
       "Provincia": "CHINCHEROS",
       "Distrito": "ONGOY",
       "Inicio": 18,
@@ -3614,8 +3708,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 357,
-      "Mes": 3,
-      "Departamento": "APURIMAC",
+      "Mes": "Marzo",
+      "Departamento": "APURÍMAC",
       "Provincia": "GRAU",
       "Distrito": "GAMARRA",
       "Inicio": 18,
@@ -3624,8 +3718,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 358,
-      "Mes": 3,
-      "Departamento": "APURIMAC",
+      "Mes": "Marzo",
+      "Departamento": "APURÍMAC",
       "Provincia": "GRAU",
       "Distrito": "HUAYLLATI",
       "Inicio": 18,
@@ -3634,8 +3728,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 359,
-      "Mes": 3,
-      "Departamento": "APURIMAC",
+      "Mes": "Marzo",
+      "Departamento": "APURÍMAC",
       "Provincia": "GRAU",
       "Distrito": "PROGRESO",
       "Inicio": 18,
@@ -3644,7 +3738,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 360,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "AREQUIPA",
       "Provincia": "AREQUIPA",
       "Distrito": "CHARACATO",
@@ -3654,7 +3748,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 361,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "AREQUIPA",
       "Provincia": "AREQUIPA",
       "Distrito": "MARIANO MELGAR",
@@ -3664,7 +3758,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 362,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "AREQUIPA",
       "Provincia": "AREQUIPA",
       "Distrito": "MARIANO MELGAR",
@@ -3674,7 +3768,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 363,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "AREQUIPA",
       "Provincia": "CAYLLOMA",
       "Distrito": "MAJES",
@@ -3684,7 +3778,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 364,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "AREQUIPA",
       "Provincia": "ISLAY",
       "Distrito": "COCACHACRA",
@@ -3694,7 +3788,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 365,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "AYACUCHO",
       "Provincia": "HUAMANGA",
       "Distrito": "AYACUCHO",
@@ -3704,7 +3798,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 366,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "AYACUCHO",
       "Provincia": "HUAMANGA",
       "Distrito": "AYACUCHO",
@@ -3714,7 +3808,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 367,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "AYACUCHO",
       "Provincia": "HUAMANGA",
       "Distrito": "PACAYCASA",
@@ -3724,7 +3818,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 368,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "AYACUCHO",
       "Provincia": "HUAMANGA",
       "Distrito": "VINCHOS",
@@ -3734,7 +3828,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 369,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "AYACUCHO",
       "Provincia": "LA MAR",
       "Distrito": "SAN MIGUEL",
@@ -3744,7 +3838,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 370,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "AYACUCHO",
       "Provincia": "VICTOR FAJARDO",
       "Distrito": "HUANCARAYLLA",
@@ -3754,7 +3848,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 371,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "CALLAO",
       "Provincia": "CALLAO",
       "Distrito": "CALLAO",
@@ -3764,7 +3858,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 372,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "CALLAO",
       "Provincia": "CALLAO",
       "Distrito": "CALLAO",
@@ -3774,7 +3868,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 373,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "CALLAO",
       "Provincia": "CALLAO",
       "Distrito": "CALLAO",
@@ -3784,7 +3878,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 374,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "CALLAO",
       "Provincia": "CALLAO",
       "Distrito": "CARMEN DE LA LEGUA REYNOSO",
@@ -3794,7 +3888,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 375,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "CUSCO",
       "Provincia": "URUBAMBA",
       "Distrito": "MACHUPICCHU",
@@ -3804,7 +3898,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 376,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "HUANCAVELICA",
@@ -3814,7 +3908,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 377,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "HUANCAVELICA",
@@ -3824,7 +3918,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 378,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "HUANCAVELICA",
@@ -3834,7 +3928,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 379,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "ACORIA",
@@ -3844,7 +3938,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 380,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "LARIA",
@@ -3854,7 +3948,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 381,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "YAULI",
@@ -3864,7 +3958,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 382,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "HUANDO",
@@ -3874,7 +3968,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 383,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ACOBAMBA",
       "Distrito": "ACOBAMBA",
@@ -3884,7 +3978,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 384,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ACOBAMBA",
       "Distrito": "ACOBAMBA",
@@ -3894,7 +3988,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 385,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ACOBAMBA",
       "Distrito": "MARCAS",
@@ -3904,7 +3998,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 386,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ACOBAMBA",
       "Distrito": "PAUCARA",
@@ -3914,7 +4008,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 387,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "LIRCAY",
@@ -3924,7 +4018,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 388,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "CONGALLA",
@@ -3934,7 +4028,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 389,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "SECCLLA",
@@ -3944,7 +4038,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 390,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "CASTROVIRREYNA",
       "Distrito": "SAN JUAN",
@@ -3954,7 +4048,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 391,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "CASTROVIRREYNA",
       "Distrito": "TICRAPO",
@@ -3964,7 +4058,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 392,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUAYTARA",
       "Distrito": "SANTIAGO DE CHOCORVOS",
@@ -3974,7 +4068,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 393,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "PAMPAS",
@@ -3984,7 +4078,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 394,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "PAMPAS",
@@ -3994,7 +4088,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 395,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "AHUAYCHA",
@@ -4004,7 +4098,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 396,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "COLCABAMBA",
@@ -4014,7 +4108,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 397,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "COLCABAMBA",
@@ -4024,7 +4118,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 398,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "DANIEL HERNANDEZ",
@@ -4034,7 +4128,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 399,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "QUISHUAR",
@@ -4044,7 +4138,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 400,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "SALCABAMBA",
@@ -4054,7 +4148,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 401,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "SALCABAMBA",
@@ -4064,7 +4158,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 402,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "SURCUBAMBA",
@@ -4074,9 +4168,9 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 403,
-      "Mes": 3,
-      "Departamento": "HUANUCO",
-      "Provincia": "HUANUCO",
+      "Mes": "Marzo",
+      "Departamento": "HUÁNUCO",
+      "Provincia": "HUÁNUCO",
       "Distrito": "CHURUBAMBA",
       "Inicio": 18,
       "Fin": 29,
@@ -4084,9 +4178,9 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 404,
-      "Mes": 3,
-      "Departamento": "HUANUCO",
-      "Provincia": "HUANUCO",
+      "Mes": "Marzo",
+      "Departamento": "HUÁNUCO",
+      "Provincia": "HUÁNUCO",
       "Distrito": "SAN PEDRO DE CHAULAN",
       "Inicio": 12,
       "Fin": 17,
@@ -4094,8 +4188,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 405,
-      "Mes": 3,
-      "Departamento": "HUANUCO",
+      "Mes": "Marzo",
+      "Departamento": "HUÁNUCO",
       "Provincia": "DOS DE MAYO",
       "Distrito": "LA UNION",
       "Inicio": 18,
@@ -4104,8 +4198,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 406,
-      "Mes": 3,
-      "Departamento": "HUANUCO",
+      "Mes": "Marzo",
+      "Departamento": "HUÁNUCO",
       "Provincia": "DOS DE MAYO",
       "Distrito": "LA UNION",
       "Inicio": 30,
@@ -4114,8 +4208,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 407,
-      "Mes": 3,
-      "Departamento": "HUANUCO",
+      "Mes": "Marzo",
+      "Departamento": "HUÁNUCO",
       "Provincia": "DOS DE MAYO",
       "Distrito": "QUIVILLA",
       "Inicio": 30,
@@ -4124,8 +4218,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 408,
-      "Mes": 3,
-      "Departamento": "HUANUCO",
+      "Mes": "Marzo",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUACAYBAMBA",
       "Distrito": "PINRA",
       "Inicio": 30,
@@ -4134,8 +4228,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 409,
-      "Mes": 3,
-      "Departamento": "HUANUCO",
+      "Mes": "Marzo",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUAMALIES",
       "Distrito": "JACAS GRANDE",
       "Inicio": 30,
@@ -4144,8 +4238,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 410,
-      "Mes": 3,
-      "Departamento": "HUANUCO",
+      "Mes": "Marzo",
+      "Departamento": "HUÁNUCO",
       "Provincia": "LEONCIO PRADO",
       "Distrito": "RUPA-RUPA",
       "Inicio": 18,
@@ -4154,8 +4248,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 411,
-      "Mes": 3,
-      "Departamento": "HUANUCO",
+      "Mes": "Marzo",
+      "Departamento": "HUÁNUCO",
       "Provincia": "LEONCIO PRADO",
       "Distrito": "HERMILIO VALDIZAN",
       "Inicio": 18,
@@ -4164,8 +4258,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 412,
-      "Mes": 3,
-      "Departamento": "HUANUCO",
+      "Mes": "Marzo",
+      "Departamento": "HUÁNUCO",
       "Provincia": "LEONCIO PRADO",
       "Distrito": "LUYANDO",
       "Inicio": 18,
@@ -4174,8 +4268,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 413,
-      "Mes": 3,
-      "Departamento": "HUANUCO",
+      "Mes": "Marzo",
+      "Departamento": "HUÁNUCO",
       "Provincia": "LEONCIO PRADO",
       "Distrito": "LUYANDO",
       "Inicio": 30,
@@ -4184,8 +4278,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 414,
-      "Mes": 3,
-      "Departamento": "HUANUCO",
+      "Mes": "Marzo",
+      "Departamento": "HUÁNUCO",
       "Provincia": "LEONCIO PRADO",
       "Distrito": "MARIANO DAMASO BERAUN",
       "Inicio": 30,
@@ -4194,8 +4288,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 415,
-      "Mes": 3,
-      "Departamento": "HUANUCO",
+      "Mes": "Marzo",
+      "Departamento": "HUÁNUCO",
       "Provincia": "PACHITEA",
       "Distrito": "MOLINO",
       "Inicio": 30,
@@ -4204,8 +4298,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 416,
-      "Mes": 3,
-      "Departamento": "HUANUCO",
+      "Mes": "Marzo",
+      "Departamento": "HUÁNUCO",
       "Provincia": "PUERTO INCA",
       "Distrito": "HONORIA",
       "Inicio": 18,
@@ -4214,8 +4308,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 417,
-      "Mes": 3,
-      "Departamento": "HUANUCO",
+      "Mes": "Marzo",
+      "Departamento": "HUÁNUCO",
       "Provincia": "PUERTO INCA",
       "Distrito": "YUYAPICHIS",
       "Inicio": 18,
@@ -4224,8 +4318,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 418,
-      "Mes": 3,
-      "Departamento": "HUANUCO",
+      "Mes": "Marzo",
+      "Departamento": "HUÁNUCO",
       "Provincia": "LAURICOCHA",
       "Distrito": "SAN MIGUEL DE CAURI",
       "Inicio": 30,
@@ -4234,8 +4328,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 419,
-      "Mes": 3,
-      "Departamento": "HUANUCO",
+      "Mes": "Marzo",
+      "Departamento": "HUÁNUCO",
       "Provincia": "YAROWILCA",
       "Distrito": "CHAVINILLO",
       "Inicio": 18,
@@ -4244,8 +4338,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 420,
-      "Mes": 3,
-      "Departamento": "HUANUCO",
+      "Mes": "Marzo",
+      "Departamento": "HUÁNUCO",
       "Provincia": "YAROWILCA",
       "Distrito": "CAHUAC",
       "Inicio": 18,
@@ -4254,7 +4348,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 421,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "ICA",
@@ -4264,7 +4358,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 422,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "ICA",
@@ -4274,7 +4368,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 423,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "LA TINGUIÑA",
@@ -4284,7 +4378,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 424,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "OCUCAJE",
@@ -4294,7 +4388,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 425,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "ICA",
       "Provincia": "NAZCA",
       "Distrito": "NAZCA",
@@ -4304,7 +4398,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 426,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "ICA",
       "Provincia": "NAZCA",
       "Distrito": "CHANGUILLO",
@@ -4314,7 +4408,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 427,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "ICA",
       "Provincia": "NAZCA",
       "Distrito": "EL INGENIO",
@@ -4324,7 +4418,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 428,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "ICA",
       "Provincia": "NAZCA",
       "Distrito": "EL INGENIO",
@@ -4334,7 +4428,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 429,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "ICA",
       "Provincia": "NAZCA",
       "Distrito": "MARCONA",
@@ -4344,7 +4438,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 430,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "ICA",
       "Provincia": "PALPA",
       "Distrito": "LLIPATA",
@@ -4354,7 +4448,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 431,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "ICA",
       "Provincia": "PISCO",
       "Distrito": "PISCO",
@@ -4364,7 +4458,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 432,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "ICA",
       "Provincia": "PISCO",
       "Distrito": "PISCO",
@@ -4374,7 +4468,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 433,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "ICA",
       "Provincia": "PISCO",
       "Distrito": "PISCO",
@@ -4384,7 +4478,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 434,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "ICA",
       "Provincia": "PISCO",
       "Distrito": "PISCO",
@@ -4394,7 +4488,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 435,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "ICA",
       "Provincia": "PISCO",
       "Distrito": "HUMAY",
@@ -4404,7 +4498,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 436,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "ICA",
       "Provincia": "PISCO",
       "Distrito": "INDEPENDENCIA",
@@ -4414,7 +4508,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 437,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "ICA",
       "Provincia": "PISCO",
       "Distrito": "SAN ANDRES",
@@ -4424,7 +4518,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 438,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "ICA",
       "Provincia": "PISCO",
       "Distrito": "TUPAC AMARU INCA",
@@ -4434,8 +4528,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 439,
-      "Mes": 3,
-      "Departamento": "JUNIN",
+      "Mes": "Marzo",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "HUANCAYO",
       "Inicio": 18,
@@ -4444,8 +4538,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 440,
-      "Mes": 3,
-      "Departamento": "JUNIN",
+      "Mes": "Marzo",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "HUANCAYO",
       "Inicio": 30,
@@ -4454,8 +4548,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 441,
-      "Mes": 3,
-      "Departamento": "JUNIN",
+      "Mes": "Marzo",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "CHILCA",
       "Inicio": 18,
@@ -4464,8 +4558,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 442,
-      "Mes": 3,
-      "Departamento": "JUNIN",
+      "Mes": "Marzo",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "CHILCA",
       "Inicio": 30,
@@ -4474,8 +4568,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 443,
-      "Mes": 3,
-      "Departamento": "JUNIN",
+      "Mes": "Marzo",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "CHILCA",
       "Inicio": 30,
@@ -4484,8 +4578,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 444,
-      "Mes": 3,
-      "Departamento": "JUNIN",
+      "Mes": "Marzo",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "EL TAMBO",
       "Inicio": 18,
@@ -4494,8 +4588,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 445,
-      "Mes": 3,
-      "Departamento": "JUNIN",
+      "Mes": "Marzo",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "EL TAMBO",
       "Inicio": 30,
@@ -4504,8 +4598,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 446,
-      "Mes": 3,
-      "Departamento": "JUNIN",
+      "Mes": "Marzo",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "HUALHUAS",
       "Inicio": 18,
@@ -4514,8 +4608,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 447,
-      "Mes": 3,
-      "Departamento": "JUNIN",
+      "Mes": "Marzo",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "HUANCAN",
       "Inicio": 18,
@@ -4524,8 +4618,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 448,
-      "Mes": 3,
-      "Departamento": "JUNIN",
+      "Mes": "Marzo",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "INGENIO",
       "Inicio": 18,
@@ -4534,8 +4628,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 449,
-      "Mes": 3,
-      "Departamento": "JUNIN",
+      "Mes": "Marzo",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "PARIAHUANCA",
       "Inicio": 18,
@@ -4544,8 +4638,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 450,
-      "Mes": 3,
-      "Departamento": "JUNIN",
+      "Mes": "Marzo",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "PARIAHUANCA",
       "Inicio": 30,
@@ -4554,8 +4648,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 451,
-      "Mes": 3,
-      "Departamento": "JUNIN",
+      "Mes": "Marzo",
+      "Departamento": "JUNÍN",
       "Provincia": "CONCEPCION",
       "Distrito": "COCHAS",
       "Inicio": 18,
@@ -4564,8 +4658,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 452,
-      "Mes": 3,
-      "Departamento": "JUNIN",
+      "Mes": "Marzo",
+      "Departamento": "JUNÍN",
       "Provincia": "CONCEPCION",
       "Distrito": "ORCOTUNA",
       "Inicio": 30,
@@ -4574,8 +4668,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 453,
-      "Mes": 3,
-      "Departamento": "JUNIN",
+      "Mes": "Marzo",
+      "Departamento": "JUNÍN",
       "Provincia": "CONCEPCION",
       "Distrito": "SANTA ROSA DE OCOPA",
       "Inicio": 30,
@@ -4584,8 +4678,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 454,
-      "Mes": 3,
-      "Departamento": "JUNIN",
+      "Mes": "Marzo",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "CHANCHAMAYO",
       "Inicio": 12,
@@ -4594,8 +4688,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 455,
-      "Mes": 3,
-      "Departamento": "JUNIN",
+      "Mes": "Marzo",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "CHANCHAMAYO",
       "Inicio": 18,
@@ -4604,8 +4698,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 456,
-      "Mes": 3,
-      "Departamento": "JUNIN",
+      "Mes": "Marzo",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "CHANCHAMAYO",
       "Inicio": 18,
@@ -4614,8 +4708,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 457,
-      "Mes": 3,
-      "Departamento": "JUNIN",
+      "Mes": "Marzo",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "PERENE",
       "Inicio": 18,
@@ -4624,8 +4718,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 458,
-      "Mes": 3,
-      "Departamento": "JUNIN",
+      "Mes": "Marzo",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "PICHANAKI",
       "Inicio": 18,
@@ -4634,8 +4728,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 459,
-      "Mes": 3,
-      "Departamento": "JUNIN",
+      "Mes": "Marzo",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "PICHANAKI",
       "Inicio": 30,
@@ -4644,8 +4738,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 460,
-      "Mes": 3,
-      "Departamento": "JUNIN",
+      "Mes": "Marzo",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "SAN LUIS DE SHUARO",
       "Inicio": 18,
@@ -4654,8 +4748,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 461,
-      "Mes": 3,
-      "Departamento": "JUNIN",
+      "Mes": "Marzo",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "SAN RAMON",
       "Inicio": 18,
@@ -4664,8 +4758,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 462,
-      "Mes": 3,
-      "Departamento": "JUNIN",
+      "Mes": "Marzo",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "JAUJA",
       "Inicio": 18,
@@ -4674,8 +4768,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 463,
-      "Mes": 3,
-      "Departamento": "JUNIN",
+      "Mes": "Marzo",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "LEONOR ORDOÑEZ",
       "Inicio": 30,
@@ -4684,8 +4778,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 464,
-      "Mes": 3,
-      "Departamento": "JUNIN",
+      "Mes": "Marzo",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "SATIPO",
       "Inicio": 18,
@@ -4694,8 +4788,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 465,
-      "Mes": 3,
-      "Departamento": "JUNIN",
+      "Mes": "Marzo",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "PAMPA HERMOSA",
       "Inicio": 30,
@@ -4704,8 +4798,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 466,
-      "Mes": 3,
-      "Departamento": "JUNIN",
+      "Mes": "Marzo",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "PANGOA",
       "Inicio": 12,
@@ -4714,8 +4808,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 467,
-      "Mes": 3,
-      "Departamento": "JUNIN",
+      "Mes": "Marzo",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "PANGOA",
       "Inicio": 18,
@@ -4724,8 +4818,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 468,
-      "Mes": 3,
-      "Departamento": "JUNIN",
+      "Mes": "Marzo",
+      "Departamento": "JUNÍN",
       "Provincia": "TARMA",
       "Distrito": "TARMA",
       "Inicio": 12,
@@ -4734,8 +4828,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 469,
-      "Mes": 3,
-      "Departamento": "JUNIN",
+      "Mes": "Marzo",
+      "Departamento": "JUNÍN",
       "Provincia": "TARMA",
       "Distrito": "TARMA",
       "Inicio": 18,
@@ -4744,8 +4838,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 470,
-      "Mes": 3,
-      "Departamento": "JUNIN",
+      "Mes": "Marzo",
+      "Departamento": "JUNÍN",
       "Provincia": "CHUPACA",
       "Distrito": "CHUPACA",
       "Inicio": 30,
@@ -4754,8 +4848,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 471,
-      "Mes": 3,
-      "Departamento": "JUNIN",
+      "Mes": "Marzo",
+      "Departamento": "JUNÍN",
       "Provincia": "CHUPACA",
       "Distrito": "AHUAC",
       "Inicio": 30,
@@ -4764,7 +4858,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 472,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "CHICLAYO",
@@ -4774,7 +4868,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 473,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "CHICLAYO",
@@ -4784,7 +4878,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 474,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "CHICLAYO",
@@ -4794,7 +4888,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 475,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "CHICLAYO",
@@ -4804,7 +4898,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 476,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "LA VICTORIA",
@@ -4814,7 +4908,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 477,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "FERREÑAFE",
       "Distrito": "FERREÑAFE",
@@ -4824,7 +4918,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 478,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "FERREÑAFE",
       "Distrito": "INCAHUASI",
@@ -4834,7 +4928,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 479,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "LAMBAYEQUE",
       "Distrito": "OLMOS",
@@ -4844,7 +4938,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 480,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "LAMBAYEQUE",
       "Distrito": "OLMOS",
@@ -4854,7 +4948,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 481,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "LURIGANCHO (CHOSICA)",
@@ -4864,7 +4958,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 482,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "LURIGANCHO (CHOSICA)",
@@ -4874,7 +4968,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 483,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "PACHACAMAC",
@@ -4884,7 +4978,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 484,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "PACHACAMAC",
@@ -4894,7 +4988,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 485,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "SAN BARTOLO",
@@ -4904,7 +4998,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 486,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "VILLA EL SALVADOR",
@@ -4914,7 +5008,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 487,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "VILLA EL SALVADOR",
@@ -4924,7 +5018,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 488,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "LIMA",
       "Provincia": "CAÑETE",
       "Distrito": "SAN LUIS",
@@ -4934,7 +5028,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 489,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "LIMA",
       "Provincia": "CAÑETE",
       "Distrito": "SAN LUIS",
@@ -4944,7 +5038,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 490,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "LIMA",
       "Provincia": "HUAROCHIRI",
       "Distrito": "SAN MATEO DE OTAO",
@@ -4954,7 +5048,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 491,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "LIMA",
       "Provincia": "YAUYOS",
       "Distrito": "QUINCHES",
@@ -4964,7 +5058,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 492,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "LORETO",
       "Provincia": "MAYNAS",
       "Distrito": "PUNCHANA",
@@ -4974,7 +5068,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 493,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "LORETO",
       "Provincia": "MAYNAS",
       "Distrito": "PUNCHANA",
@@ -4984,7 +5078,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 494,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "LORETO",
       "Provincia": "MAYNAS",
       "Distrito": "PUNCHANA",
@@ -4994,7 +5088,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 495,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "MADRE DE DIOS",
       "Provincia": "TAMBOPATA",
       "Distrito": "TAMBOPATA",
@@ -5004,7 +5098,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 496,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "MADRE DE DIOS",
       "Provincia": "TAMBOPATA",
       "Distrito": "TAMBOPATA",
@@ -5014,7 +5108,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 497,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "PASCO",
       "Provincia": "OXAPAMPA",
       "Distrito": "PALCAZU",
@@ -5024,7 +5118,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 498,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "PIURA",
       "Provincia": "AYABACA",
       "Distrito": "AYABACA",
@@ -5034,7 +5128,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 499,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "PIURA",
       "Provincia": "AYABACA",
       "Distrito": "PAIMAS",
@@ -5044,7 +5138,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 500,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "PIURA",
       "Provincia": "HUANCABAMBA",
       "Distrito": "CANCHAQUE",
@@ -5054,8 +5148,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 501,
-      "Mes": 3,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Marzo",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "MOYOBAMBA",
       "Distrito": "MOYOBAMBA",
       "Inicio": 18,
@@ -5064,8 +5158,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 502,
-      "Mes": 3,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Marzo",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "BELLAVISTA",
       "Distrito": "BELLAVISTA",
       "Inicio": 30,
@@ -5074,8 +5168,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 503,
-      "Mes": 3,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Marzo",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "BELLAVISTA",
       "Distrito": "BAJO BIAVO",
       "Inicio": 12,
@@ -5084,8 +5178,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 504,
-      "Mes": 3,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Marzo",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "BELLAVISTA",
       "Distrito": "BAJO BIAVO",
       "Inicio": 18,
@@ -5094,8 +5188,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 505,
-      "Mes": 3,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Marzo",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "BELLAVISTA",
       "Distrito": "BAJO BIAVO",
       "Inicio": 30,
@@ -5104,8 +5198,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 506,
-      "Mes": 3,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Marzo",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "RIOJA",
       "Distrito": "SAN FERNANDO",
       "Inicio": 30,
@@ -5114,9 +5208,9 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 507,
-      "Mes": 3,
-      "Departamento": "SAN MARTIN",
-      "Provincia": "SAN MARTIN",
+      "Mes": "Marzo",
+      "Departamento": "SAN MARTÍN",
+      "Provincia": "SAN MARTÍN",
       "Distrito": "CHIPURANA",
       "Inicio": 12,
       "Fin": 17,
@@ -5124,9 +5218,9 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 508,
-      "Mes": 3,
-      "Departamento": "SAN MARTIN",
-      "Provincia": "SAN MARTIN",
+      "Mes": "Marzo",
+      "Departamento": "SAN MARTÍN",
+      "Provincia": "SAN MARTÍN",
       "Distrito": "HUIMBAYOC",
       "Inicio": 30,
       "Fin": 59,
@@ -5134,9 +5228,9 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 509,
-      "Mes": 3,
-      "Departamento": "SAN MARTIN",
-      "Provincia": "SAN MARTIN",
+      "Mes": "Marzo",
+      "Departamento": "SAN MARTÍN",
+      "Provincia": "SAN MARTÍN",
       "Distrito": "SHAPAJA",
       "Inicio": 18,
       "Fin": 29,
@@ -5144,7 +5238,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 510,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "TACNA",
@@ -5154,7 +5248,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 511,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "TACNA",
@@ -5164,7 +5258,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 512,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "TACNA",
@@ -5174,7 +5268,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 513,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "ALTO DE LA ALIANZA",
@@ -5184,7 +5278,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 514,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "ALTO DE LA ALIANZA",
@@ -5194,7 +5288,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 515,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "CIUDAD NUEVA",
@@ -5204,7 +5298,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 516,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "PALCA",
@@ -5214,7 +5308,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 517,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "SAMA",
@@ -5224,7 +5318,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 518,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "CORONEL GREGORIO ALBARRACIN LANCHIPA",
@@ -5234,7 +5328,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 519,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "CORONEL GREGORIO ALBARRACIN LANCHIPA",
@@ -5244,7 +5338,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 520,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "TACNA",
       "Provincia": "CANDARAVE",
       "Distrito": "CANDARAVE",
@@ -5254,7 +5348,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 521,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "TACNA",
       "Provincia": "JORGE BASADRE",
       "Distrito": "LOCUMBA",
@@ -5264,7 +5358,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 522,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "TACNA",
       "Provincia": "JORGE BASADRE",
       "Distrito": "ILABAYA",
@@ -5274,7 +5368,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 523,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "TACNA",
       "Provincia": "JORGE BASADRE",
       "Distrito": "ILABAYA",
@@ -5284,7 +5378,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 524,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "TACNA",
       "Provincia": "TARATA",
       "Distrito": "TARATA",
@@ -5294,7 +5388,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 525,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "TACNA",
       "Provincia": "TARATA",
       "Distrito": "HEROES ALBARRACIN",
@@ -5304,7 +5398,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 526,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "TACNA",
       "Provincia": "TARATA",
       "Distrito": "TARUCACHI",
@@ -5314,7 +5408,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 527,
-      "Mes": 3,
+      "Mes": "Marzo",
       "Departamento": "TACNA",
       "Provincia": "TARATA",
       "Distrito": "TARUCACHI",
@@ -5324,8 +5418,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 528,
-      "Mes": 4,
-      "Departamento": "ANCASH",
+      "Mes": "Abril",
+      "Departamento": "ÁNCASH",
       "Provincia": "HUARAZ",
       "Distrito": "INDEPENDENCIA",
       "Inicio": 18,
@@ -5334,8 +5428,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 529,
-      "Mes": 4,
-      "Departamento": "ANCASH",
+      "Mes": "Abril",
+      "Departamento": "ÁNCASH",
       "Provincia": "HUAYLAS",
       "Distrito": "MATO",
       "Inicio": 18,
@@ -5344,8 +5438,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 530,
-      "Mes": 4,
-      "Departamento": "ANCASH",
+      "Mes": "Abril",
+      "Departamento": "ÁNCASH",
       "Provincia": "SANTA",
       "Distrito": "SAMANCO",
       "Inicio": 18,
@@ -5354,8 +5448,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 531,
-      "Mes": 4,
-      "Departamento": "APURIMAC",
+      "Mes": "Abril",
+      "Departamento": "APURÍMAC",
       "Provincia": "ABANCAY",
       "Distrito": "ABANCAY",
       "Inicio": 12,
@@ -5364,8 +5458,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 532,
-      "Mes": 4,
-      "Departamento": "APURIMAC",
+      "Mes": "Abril",
+      "Departamento": "APURÍMAC",
       "Provincia": "ABANCAY",
       "Distrito": "ABANCAY",
       "Inicio": 18,
@@ -5374,8 +5468,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 533,
-      "Mes": 4,
-      "Departamento": "APURIMAC",
+      "Mes": "Abril",
+      "Departamento": "APURÍMAC",
       "Provincia": "ABANCAY",
       "Distrito": "ABANCAY",
       "Inicio": 30,
@@ -5384,8 +5478,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 534,
-      "Mes": 4,
-      "Departamento": "APURIMAC",
+      "Mes": "Abril",
+      "Departamento": "APURÍMAC",
       "Provincia": "ABANCAY",
       "Distrito": "CHACOCHE",
       "Inicio": 30,
@@ -5394,8 +5488,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 535,
-      "Mes": 4,
-      "Departamento": "APURIMAC",
+      "Mes": "Abril",
+      "Departamento": "APURÍMAC",
       "Provincia": "ABANCAY",
       "Distrito": "CURAHUASI",
       "Inicio": 18,
@@ -5404,8 +5498,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 536,
-      "Mes": 4,
-      "Departamento": "APURIMAC",
+      "Mes": "Abril",
+      "Departamento": "APURÍMAC",
       "Provincia": "ABANCAY",
       "Distrito": "SAN PEDRO DE CACHORA",
       "Inicio": 18,
@@ -5414,8 +5508,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 537,
-      "Mes": 4,
-      "Departamento": "APURIMAC",
+      "Mes": "Abril",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "ANDAHUAYLAS",
       "Inicio": 18,
@@ -5424,8 +5518,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 538,
-      "Mes": 4,
-      "Departamento": "APURIMAC",
+      "Mes": "Abril",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "ANDARAPA",
       "Inicio": 18,
@@ -5434,8 +5528,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 539,
-      "Mes": 4,
-      "Departamento": "APURIMAC",
+      "Mes": "Abril",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "HUANCARAMA",
       "Inicio": 30,
@@ -5444,8 +5538,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 540,
-      "Mes": 4,
-      "Departamento": "APURIMAC",
+      "Mes": "Abril",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "HUAYANA",
       "Inicio": 30,
@@ -5454,8 +5548,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 541,
-      "Mes": 4,
-      "Departamento": "APURIMAC",
+      "Mes": "Abril",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "KISHUARA",
       "Inicio": 12,
@@ -5464,8 +5558,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 542,
-      "Mes": 4,
-      "Departamento": "APURIMAC",
+      "Mes": "Abril",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "PAMPACHIRI",
       "Inicio": 12,
@@ -5474,8 +5568,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 543,
-      "Mes": 4,
-      "Departamento": "APURIMAC",
+      "Mes": "Abril",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "SAN JERONIMO",
       "Inicio": 12,
@@ -5484,8 +5578,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 544,
-      "Mes": 4,
-      "Departamento": "APURIMAC",
+      "Mes": "Abril",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "SAN MIGUEL DE CHACCRAMPA",
       "Inicio": 12,
@@ -5494,8 +5588,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 545,
-      "Mes": 4,
-      "Departamento": "APURIMAC",
+      "Mes": "Abril",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "JOSÉ MARÍA ARGUEDAS",
       "Inicio": 30,
@@ -5504,8 +5598,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 546,
-      "Mes": 4,
-      "Departamento": "APURIMAC",
+      "Mes": "Abril",
+      "Departamento": "APURÍMAC",
       "Provincia": "AYMARAES",
       "Distrito": "SAN JUAN DE CHACÑA",
       "Inicio": 18,
@@ -5514,8 +5608,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 547,
-      "Mes": 4,
-      "Departamento": "APURIMAC",
+      "Mes": "Abril",
+      "Departamento": "APURÍMAC",
       "Provincia": "AYMARAES",
       "Distrito": "TORAYA",
       "Inicio": 18,
@@ -5524,8 +5618,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 548,
-      "Mes": 4,
-      "Departamento": "APURIMAC",
+      "Mes": "Abril",
+      "Departamento": "APURÍMAC",
       "Provincia": "COTABAMBAS",
       "Distrito": "TAMBOBAMBA",
       "Inicio": 12,
@@ -5534,8 +5628,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 549,
-      "Mes": 4,
-      "Departamento": "APURIMAC",
+      "Mes": "Abril",
+      "Departamento": "APURÍMAC",
       "Provincia": "COTABAMBAS",
       "Distrito": "COTABAMBAS",
       "Inicio": 18,
@@ -5544,8 +5638,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 550,
-      "Mes": 4,
-      "Departamento": "APURIMAC",
+      "Mes": "Abril",
+      "Departamento": "APURÍMAC",
       "Provincia": "COTABAMBAS",
       "Distrito": "COYLLURQUI",
       "Inicio": 18,
@@ -5554,8 +5648,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 551,
-      "Mes": 4,
-      "Departamento": "APURIMAC",
+      "Mes": "Abril",
+      "Departamento": "APURÍMAC",
       "Provincia": "COTABAMBAS",
       "Distrito": "HAQUIRA",
       "Inicio": 18,
@@ -5564,8 +5658,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 552,
-      "Mes": 4,
-      "Departamento": "APURIMAC",
+      "Mes": "Abril",
+      "Departamento": "APURÍMAC",
       "Provincia": "COTABAMBAS",
       "Distrito": "HAQUIRA",
       "Inicio": 30,
@@ -5574,8 +5668,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 553,
-      "Mes": 4,
-      "Departamento": "APURIMAC",
+      "Mes": "Abril",
+      "Departamento": "APURÍMAC",
       "Provincia": "GRAU",
       "Distrito": "SAN ANTONIO",
       "Inicio": 12,
@@ -5584,7 +5678,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 554,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "AREQUIPA",
       "Provincia": "AREQUIPA",
       "Distrito": "YANAHUARA",
@@ -5594,7 +5688,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 555,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "AREQUIPA",
       "Provincia": "CARAVELI",
       "Distrito": "ACARI",
@@ -5604,7 +5698,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 556,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "AREQUIPA",
       "Provincia": "CARAVELI",
       "Distrito": "ACARI",
@@ -5614,7 +5708,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 557,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "AREQUIPA",
       "Provincia": "CASTILLA",
       "Distrito": "VIRACO",
@@ -5624,7 +5718,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 558,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "AYACUCHO",
       "Provincia": "HUAMANGA",
       "Distrito": "CARMEN ALTO",
@@ -5634,7 +5728,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 559,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "AYACUCHO",
       "Provincia": "HUAMANGA",
       "Distrito": "OCROS",
@@ -5644,7 +5738,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 560,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "AYACUCHO",
       "Provincia": "LA MAR",
       "Distrito": "SAN MIGUEL",
@@ -5654,7 +5748,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 561,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "AYACUCHO",
       "Provincia": "LA MAR",
       "Distrito": "ANCO",
@@ -5664,7 +5758,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 562,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "CAJAMARCA",
       "Provincia": "CAJAMARCA",
       "Distrito": "CAJAMARCA",
@@ -5674,7 +5768,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 563,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "CALLAO",
       "Provincia": "CALLAO",
       "Distrito": "CALLAO",
@@ -5684,7 +5778,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 564,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "CALLAO",
       "Provincia": "CALLAO",
       "Distrito": "CALLAO",
@@ -5694,7 +5788,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 565,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "CALLAO",
       "Provincia": "CALLAO",
       "Distrito": "BELLAVISTA",
@@ -5704,7 +5798,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 566,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "CALLAO",
       "Provincia": "CALLAO",
       "Distrito": "BELLAVISTA",
@@ -5714,7 +5808,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 567,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "CALLAO",
       "Provincia": "CALLAO",
       "Distrito": "LA PERLA",
@@ -5724,7 +5818,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 568,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "CALLAO",
       "Provincia": "CALLAO",
       "Distrito": "LA PUNTA",
@@ -5734,7 +5828,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 569,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "CUSCO",
       "Provincia": "LA CONVENCION",
       "Distrito": "SANTA ANA",
@@ -5744,7 +5838,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 570,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "HUANCAVELICA",
@@ -5754,7 +5848,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 571,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "CUENCA",
@@ -5764,7 +5858,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 572,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "LARIA",
@@ -5774,7 +5868,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 573,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "PALCA",
@@ -5784,7 +5878,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 574,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "VILCA",
@@ -5794,7 +5888,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 575,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "YAULI",
@@ -5804,7 +5898,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 576,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "HUANDO",
@@ -5814,7 +5908,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 577,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ACOBAMBA",
       "Distrito": "MARCAS",
@@ -5824,7 +5918,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 578,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ACOBAMBA",
       "Distrito": "MARCAS",
@@ -5834,7 +5928,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 579,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ACOBAMBA",
       "Distrito": "ROSARIO",
@@ -5844,7 +5938,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 580,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "LIRCAY",
@@ -5854,7 +5948,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 581,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "ANCHONGA",
@@ -5864,7 +5958,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 582,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "ANCHONGA",
@@ -5874,7 +5968,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 583,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "CCOCHACCASA",
@@ -5884,7 +5978,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 584,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "SANTO TOMAS DE PATA",
@@ -5894,7 +5988,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 585,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "SECCLLA",
@@ -5904,7 +5998,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 586,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "CASTROVIRREYNA",
       "Distrito": "CASTROVIRREYNA",
@@ -5914,7 +6008,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 587,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "CASTROVIRREYNA",
       "Distrito": "ARMA",
@@ -5924,7 +6018,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 588,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "CASTROVIRREYNA",
       "Distrito": "MOLLEPAMPA",
@@ -5934,7 +6028,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 589,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "CHURCAMPA",
       "Distrito": "CHURCAMPA",
@@ -5944,7 +6038,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 590,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "CHURCAMPA",
       "Distrito": "CHURCAMPA",
@@ -5954,7 +6048,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 591,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "CHURCAMPA",
       "Distrito": "SAN PEDRO DE CORIS",
@@ -5964,7 +6058,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 592,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "PAMPAS",
@@ -5974,7 +6068,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 593,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "PAMPAS",
@@ -5984,7 +6078,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 594,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "PAMPAS",
@@ -5994,7 +6088,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 595,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "ACRAQUIA",
@@ -6004,7 +6098,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 596,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "ACRAQUIA",
@@ -6014,7 +6108,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 597,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "AHUAYCHA",
@@ -6024,7 +6118,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 598,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "COLCABAMBA",
@@ -6034,7 +6128,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 599,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "COLCABAMBA",
@@ -6044,7 +6138,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 600,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "HUACHOCOLPA",
@@ -6054,7 +6148,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 601,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "HUACHOCOLPA",
@@ -6064,7 +6158,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 602,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "PAZOS",
@@ -6074,7 +6168,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 603,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "SALCAHUASI",
@@ -6084,7 +6178,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 604,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "SURCUBAMBA",
@@ -6094,7 +6188,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 605,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "SURCUBAMBA",
@@ -6104,7 +6198,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 606,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "TINTAY PUNCU",
@@ -6114,7 +6208,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 607,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "QUICHUAS",
@@ -6124,7 +6218,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 608,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "QUICHUAS",
@@ -6134,39 +6228,39 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 609,
-      "Mes": 4,
-      "Departamento": "HUANUCO",
-      "Provincia": "HUANUCO",
-      "Distrito": "HUANUCO",
+      "Mes": "Abril",
+      "Departamento": "HUÁNUCO",
+      "Provincia": "HUÁNUCO",
+      "Distrito": "HUÁNUCO",
       "Inicio": 18,
       "Fin": 29,
       "Metodo": "PROGESTAGENO"
     },
     {
       "Id": 610,
-      "Mes": 4,
-      "Departamento": "HUANUCO",
-      "Provincia": "HUANUCO",
-      "Distrito": "HUANUCO",
+      "Mes": "Abril",
+      "Departamento": "HUÁNUCO",
+      "Provincia": "HUÁNUCO",
+      "Distrito": "HUÁNUCO",
       "Inicio": 18,
       "Fin": 29,
       "Metodo": "YUZPE"
     },
     {
       "Id": 611,
-      "Mes": 4,
-      "Departamento": "HUANUCO",
-      "Provincia": "HUANUCO",
-      "Distrito": "HUANUCO",
+      "Mes": "Abril",
+      "Departamento": "HUÁNUCO",
+      "Provincia": "HUÁNUCO",
+      "Distrito": "HUÁNUCO",
       "Inicio": 30,
       "Fin": 59,
       "Metodo": "PROGESTAGENO"
     },
     {
       "Id": 612,
-      "Mes": 4,
-      "Departamento": "HUANUCO",
-      "Provincia": "HUANUCO",
+      "Mes": "Abril",
+      "Departamento": "HUÁNUCO",
+      "Provincia": "HUÁNUCO",
       "Distrito": "SANTA MARIA DEL VALLE",
       "Inicio": 18,
       "Fin": 29,
@@ -6174,8 +6268,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 613,
-      "Mes": 4,
-      "Departamento": "HUANUCO",
+      "Mes": "Abril",
+      "Departamento": "HUÁNUCO",
       "Provincia": "AMBO",
       "Distrito": "AMBO",
       "Inicio": 18,
@@ -6184,8 +6278,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 614,
-      "Mes": 4,
-      "Departamento": "HUANUCO",
+      "Mes": "Abril",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUACAYBAMBA",
       "Distrito": "HUACAYBAMBA",
       "Inicio": 18,
@@ -6194,8 +6288,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 615,
-      "Mes": 4,
-      "Departamento": "HUANUCO",
+      "Mes": "Abril",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUACAYBAMBA",
       "Distrito": "PINRA",
       "Inicio": 12,
@@ -6204,8 +6298,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 616,
-      "Mes": 4,
-      "Departamento": "HUANUCO",
+      "Mes": "Abril",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUAMALIES",
       "Distrito": "LLATA",
       "Inicio": 12,
@@ -6214,8 +6308,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 617,
-      "Mes": 4,
-      "Departamento": "HUANUCO",
+      "Mes": "Abril",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUAMALIES",
       "Distrito": "LLATA",
       "Inicio": 18,
@@ -6224,8 +6318,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 618,
-      "Mes": 4,
-      "Departamento": "HUANUCO",
+      "Mes": "Abril",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUAMALIES",
       "Distrito": "JIRCAN",
       "Inicio": 18,
@@ -6234,8 +6328,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 619,
-      "Mes": 4,
-      "Departamento": "HUANUCO",
+      "Mes": "Abril",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUAMALIES",
       "Distrito": "MIRAFLORES",
       "Inicio": 12,
@@ -6244,8 +6338,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 620,
-      "Mes": 4,
-      "Departamento": "HUANUCO",
+      "Mes": "Abril",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUAMALIES",
       "Distrito": "MONZON",
       "Inicio": 18,
@@ -6254,8 +6348,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 621,
-      "Mes": 4,
-      "Departamento": "HUANUCO",
+      "Mes": "Abril",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUAMALIES",
       "Distrito": "MONZON",
       "Inicio": 30,
@@ -6264,8 +6358,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 622,
-      "Mes": 4,
-      "Departamento": "HUANUCO",
+      "Mes": "Abril",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUAMALIES",
       "Distrito": "PUNCHAO",
       "Inicio": 18,
@@ -6274,8 +6368,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 623,
-      "Mes": 4,
-      "Departamento": "HUANUCO",
+      "Mes": "Abril",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUAMALIES",
       "Distrito": "PUÑOS",
       "Inicio": 18,
@@ -6284,8 +6378,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 624,
-      "Mes": 4,
-      "Departamento": "HUANUCO",
+      "Mes": "Abril",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUAMALIES",
       "Distrito": "SINGA",
       "Inicio": 30,
@@ -6294,8 +6388,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 625,
-      "Mes": 4,
-      "Departamento": "HUANUCO",
+      "Mes": "Abril",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUAMALIES",
       "Distrito": "TANTAMAYO",
       "Inicio": 12,
@@ -6304,8 +6398,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 626,
-      "Mes": 4,
-      "Departamento": "HUANUCO",
+      "Mes": "Abril",
+      "Departamento": "HUÁNUCO",
       "Provincia": "LEONCIO PRADO",
       "Distrito": "JOSE CRESPO Y CASTILLO",
       "Inicio": 18,
@@ -6314,8 +6408,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 627,
-      "Mes": 4,
-      "Departamento": "HUANUCO",
+      "Mes": "Abril",
+      "Departamento": "HUÁNUCO",
       "Provincia": "PUERTO INCA",
       "Distrito": "YUYAPICHIS",
       "Inicio": 12,
@@ -6324,8 +6418,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 628,
-      "Mes": 4,
-      "Departamento": "HUANUCO",
+      "Mes": "Abril",
+      "Departamento": "HUÁNUCO",
       "Provincia": "LAURICOCHA",
       "Distrito": "BAÑOS",
       "Inicio": 12,
@@ -6334,7 +6428,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 629,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "ICA",
@@ -6344,7 +6438,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 630,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "ICA",
@@ -6354,7 +6448,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 631,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "PARCONA",
@@ -6364,7 +6458,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 632,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "SANTIAGO",
@@ -6374,7 +6468,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 633,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "TATE",
@@ -6384,7 +6478,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 634,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "ICA",
       "Provincia": "CHINCHA",
       "Distrito": "ALTO LARAN",
@@ -6394,7 +6488,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 635,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "ICA",
       "Provincia": "NAZCA",
       "Distrito": "NAZCA",
@@ -6404,7 +6498,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 636,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "ICA",
       "Provincia": "NAZCA",
       "Distrito": "VISTA ALEGRE",
@@ -6414,7 +6508,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 637,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "ICA",
       "Provincia": "PALPA",
       "Distrito": "PALPA",
@@ -6424,7 +6518,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 638,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "ICA",
       "Provincia": "PISCO",
       "Distrito": "PISCO",
@@ -6434,7 +6528,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 639,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "ICA",
       "Provincia": "PISCO",
       "Distrito": "INDEPENDENCIA",
@@ -6444,7 +6538,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 640,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "ICA",
       "Provincia": "PISCO",
       "Distrito": "INDEPENDENCIA",
@@ -6454,7 +6548,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 641,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "ICA",
       "Provincia": "PISCO",
       "Distrito": "SAN ANDRES",
@@ -6464,8 +6558,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 642,
-      "Mes": 4,
-      "Departamento": "JUNIN",
+      "Mes": "Abril",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "HUANCAYO",
       "Inicio": 18,
@@ -6474,8 +6568,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 643,
-      "Mes": 4,
-      "Departamento": "JUNIN",
+      "Mes": "Abril",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "CHILCA",
       "Inicio": 18,
@@ -6484,8 +6578,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 644,
-      "Mes": 4,
-      "Departamento": "JUNIN",
+      "Mes": "Abril",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "CHILCA",
       "Inicio": 30,
@@ -6494,8 +6588,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 645,
-      "Mes": 4,
-      "Departamento": "JUNIN",
+      "Mes": "Abril",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "EL TAMBO",
       "Inicio": 30,
@@ -6504,8 +6598,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 646,
-      "Mes": 4,
-      "Departamento": "JUNIN",
+      "Mes": "Abril",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "EL TAMBO",
       "Inicio": 30,
@@ -6514,8 +6608,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 647,
-      "Mes": 4,
-      "Departamento": "JUNIN",
+      "Mes": "Abril",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "HUAYUCACHI",
       "Inicio": 18,
@@ -6524,8 +6618,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 648,
-      "Mes": 4,
-      "Departamento": "JUNIN",
+      "Mes": "Abril",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "INGENIO",
       "Inicio": 12,
@@ -6534,8 +6628,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 649,
-      "Mes": 4,
-      "Departamento": "JUNIN",
+      "Mes": "Abril",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "PILCOMAYO",
       "Inicio": 18,
@@ -6544,8 +6638,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 650,
-      "Mes": 4,
-      "Departamento": "JUNIN",
+      "Mes": "Abril",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "SAPALLANGA",
       "Inicio": 30,
@@ -6554,8 +6648,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 651,
-      "Mes": 4,
-      "Departamento": "JUNIN",
+      "Mes": "Abril",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "SICAYA",
       "Inicio": 30,
@@ -6564,8 +6658,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 652,
-      "Mes": 4,
-      "Departamento": "JUNIN",
+      "Mes": "Abril",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "SANTO DOMINGO DE ACOBAMBA",
       "Inicio": 12,
@@ -6574,8 +6668,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 653,
-      "Mes": 4,
-      "Departamento": "JUNIN",
+      "Mes": "Abril",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "SANTO DOMINGO DE ACOBAMBA",
       "Inicio": 18,
@@ -6584,8 +6678,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 654,
-      "Mes": 4,
-      "Departamento": "JUNIN",
+      "Mes": "Abril",
+      "Departamento": "JUNÍN",
       "Provincia": "CONCEPCION",
       "Distrito": "HEROINAS TOLEDO",
       "Inicio": 30,
@@ -6594,8 +6688,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 655,
-      "Mes": 4,
-      "Departamento": "JUNIN",
+      "Mes": "Abril",
+      "Departamento": "JUNÍN",
       "Provincia": "CONCEPCION",
       "Distrito": "SANTA ROSA DE OCOPA",
       "Inicio": 30,
@@ -6604,8 +6698,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 656,
-      "Mes": 4,
-      "Departamento": "JUNIN",
+      "Mes": "Abril",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "CHANCHAMAYO",
       "Inicio": 30,
@@ -6614,8 +6708,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 657,
-      "Mes": 4,
-      "Departamento": "JUNIN",
+      "Mes": "Abril",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "PERENE",
       "Inicio": 18,
@@ -6624,8 +6718,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 658,
-      "Mes": 4,
-      "Departamento": "JUNIN",
+      "Mes": "Abril",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "SAN RAMON",
       "Inicio": 30,
@@ -6634,8 +6728,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 659,
-      "Mes": 4,
-      "Departamento": "JUNIN",
+      "Mes": "Abril",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "JAUJA",
       "Inicio": 30,
@@ -6644,8 +6738,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 660,
-      "Mes": 4,
-      "Departamento": "JUNIN",
+      "Mes": "Abril",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "MONOBAMBA",
       "Inicio": 12,
@@ -6654,8 +6748,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 661,
-      "Mes": 4,
-      "Departamento": "JUNIN",
+      "Mes": "Abril",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "MUQUI",
       "Inicio": 30,
@@ -6664,19 +6758,19 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 662,
-      "Mes": 4,
-      "Departamento": "JUNIN",
-      "Provincia": "JUNIN",
-      "Distrito": "JUNIN",
+      "Mes": "Abril",
+      "Departamento": "JUNÍN",
+      "Provincia": "JUNÍN",
+      "Distrito": "JUNÍN",
       "Inicio": 18,
       "Fin": 29,
       "Metodo": "YUZPE"
     },
     {
       "Id": 663,
-      "Mes": 4,
-      "Departamento": "JUNIN",
-      "Provincia": "JUNIN",
+      "Mes": "Abril",
+      "Departamento": "JUNÍN",
+      "Provincia": "JUNÍN",
       "Distrito": "ULCUMAYO",
       "Inicio": 30,
       "Fin": 59,
@@ -6684,8 +6778,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 664,
-      "Mes": 4,
-      "Departamento": "JUNIN",
+      "Mes": "Abril",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "SATIPO",
       "Inicio": 18,
@@ -6694,8 +6788,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 665,
-      "Mes": 4,
-      "Departamento": "JUNIN",
+      "Mes": "Abril",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "PAMPA HERMOSA",
       "Inicio": 30,
@@ -6704,8 +6798,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 666,
-      "Mes": 4,
-      "Departamento": "JUNIN",
+      "Mes": "Abril",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "PANGOA",
       "Inicio": 18,
@@ -6714,8 +6808,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 667,
-      "Mes": 4,
-      "Departamento": "JUNIN",
+      "Mes": "Abril",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "RIO NEGRO",
       "Inicio": 30,
@@ -6724,8 +6818,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 668,
-      "Mes": 4,
-      "Departamento": "JUNIN",
+      "Mes": "Abril",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "RIO TAMBO",
       "Inicio": 12,
@@ -6734,8 +6828,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 669,
-      "Mes": 4,
-      "Departamento": "JUNIN",
+      "Mes": "Abril",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "RIO TAMBO",
       "Inicio": 18,
@@ -6744,8 +6838,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 670,
-      "Mes": 4,
-      "Departamento": "JUNIN",
+      "Mes": "Abril",
+      "Departamento": "JUNÍN",
       "Provincia": "TARMA",
       "Distrito": "TARMA",
       "Inicio": 18,
@@ -6754,8 +6848,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 671,
-      "Mes": 4,
-      "Departamento": "JUNIN",
+      "Mes": "Abril",
+      "Departamento": "JUNÍN",
       "Provincia": "TARMA",
       "Distrito": "ACOBAMBA",
       "Inicio": 12,
@@ -6764,8 +6858,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 672,
-      "Mes": 4,
-      "Departamento": "JUNIN",
+      "Mes": "Abril",
+      "Departamento": "JUNÍN",
       "Provincia": "TARMA",
       "Distrito": "ACOBAMBA",
       "Inicio": 18,
@@ -6774,8 +6868,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 673,
-      "Mes": 4,
-      "Departamento": "JUNIN",
+      "Mes": "Abril",
+      "Departamento": "JUNÍN",
       "Provincia": "TARMA",
       "Distrito": "ACOBAMBA",
       "Inicio": 30,
@@ -6784,8 +6878,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 674,
-      "Mes": 4,
-      "Departamento": "JUNIN",
+      "Mes": "Abril",
+      "Departamento": "JUNÍN",
       "Provincia": "TARMA",
       "Distrito": "LA UNION",
       "Inicio": 18,
@@ -6794,8 +6888,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 675,
-      "Mes": 4,
-      "Departamento": "JUNIN",
+      "Mes": "Abril",
+      "Departamento": "JUNÍN",
       "Provincia": "TARMA",
       "Distrito": "LA UNION",
       "Inicio": 30,
@@ -6804,8 +6898,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 676,
-      "Mes": 4,
-      "Departamento": "JUNIN",
+      "Mes": "Abril",
+      "Departamento": "JUNÍN",
       "Provincia": "TARMA",
       "Distrito": "PALCAMAYO",
       "Inicio": 18,
@@ -6814,8 +6908,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 677,
-      "Mes": 4,
-      "Departamento": "JUNIN",
+      "Mes": "Abril",
+      "Departamento": "JUNÍN",
       "Provincia": "YAULI",
       "Distrito": "MARCAPOMACOCHA",
       "Inicio": 18,
@@ -6824,7 +6918,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 678,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "LA LIBERTAD",
       "Provincia": "TRUJILLO",
       "Distrito": "POROTO",
@@ -6834,7 +6928,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 679,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "LA LIBERTAD",
       "Provincia": "CHEPEN",
       "Distrito": "PACANGA",
@@ -6844,7 +6938,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 680,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "CHICLAYO",
@@ -6854,7 +6948,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 681,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "ETEN",
@@ -6864,7 +6958,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 682,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "ETEN PUERTO",
@@ -6874,7 +6968,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 683,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "JOSE LEONARDO ORTIZ",
@@ -6884,7 +6978,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 684,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "FERREÑAFE",
       "Distrito": "CAÑARIS",
@@ -6894,7 +6988,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 685,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "FERREÑAFE",
       "Distrito": "INCAHUASI",
@@ -6904,7 +6998,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 686,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "FERREÑAFE",
       "Distrito": "PITIPO",
@@ -6914,7 +7008,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 687,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "FERREÑAFE",
       "Distrito": "PUEBLO NUEVO",
@@ -6924,7 +7018,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 688,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "FERREÑAFE",
       "Distrito": "PUEBLO NUEVO",
@@ -6934,7 +7028,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 689,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "LAMBAYEQUE",
       "Distrito": "LAMBAYEQUE",
@@ -6944,7 +7038,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 690,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "LAMBAYEQUE",
       "Distrito": "SAN JOSE",
@@ -6954,7 +7048,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 691,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "ATE",
@@ -6964,7 +7058,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 692,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "ATE",
@@ -6974,7 +7068,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 693,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "ATE",
@@ -6984,7 +7078,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 694,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "CHACLACAYO",
@@ -6994,7 +7088,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 695,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "CHACLACAYO",
@@ -7004,7 +7098,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 696,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "CHORRILLOS",
@@ -7014,7 +7108,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 697,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "CHORRILLOS",
@@ -7024,7 +7118,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 698,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "CHORRILLOS",
@@ -7034,7 +7128,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 699,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "CHORRILLOS",
@@ -7044,7 +7138,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 700,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "LURIGANCHO (CHOSICA)",
@@ -7054,7 +7148,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 701,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "LURIGANCHO (CHOSICA)",
@@ -7064,7 +7158,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 702,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "LURIN",
@@ -7074,7 +7168,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 703,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "PACHACAMAC",
@@ -7084,7 +7178,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 704,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "PUCUSANA",
@@ -7094,7 +7188,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 705,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "PUNTA HERMOSA",
@@ -7104,7 +7198,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 706,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "PUNTA NEGRA",
@@ -7114,7 +7208,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 707,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "SANTIAGO DE SURCO",
@@ -7124,7 +7218,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 708,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "SANTIAGO DE SURCO",
@@ -7134,7 +7228,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 709,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "VILLA EL SALVADOR",
@@ -7144,7 +7238,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 710,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "VILLA EL SALVADOR",
@@ -7154,7 +7248,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 711,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "LIMA",
       "Provincia": "CAJATAMBO",
       "Distrito": "CAJATAMBO",
@@ -7164,7 +7258,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 712,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "LIMA",
       "Provincia": "CAÑETE",
       "Distrito": "SAN LUIS",
@@ -7174,7 +7268,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 713,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "LIMA",
       "Provincia": "YAUYOS",
       "Distrito": "YAUYOS",
@@ -7184,7 +7278,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 714,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "MADRE DE DIOS",
       "Provincia": "TAMBOPATA",
       "Distrito": "LAS PIEDRAS",
@@ -7194,7 +7288,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 715,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "MOQUEGUA",
       "Provincia": "GENERAL SANCHEZ CERRO",
       "Distrito": "UBINAS",
@@ -7204,7 +7298,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 716,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "MOQUEGUA",
       "Provincia": "GENERAL SANCHEZ CERRO",
       "Distrito": "UBINAS",
@@ -7214,7 +7308,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 717,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "MOQUEGUA",
       "Provincia": "ILO",
       "Distrito": "ILO",
@@ -7224,7 +7318,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 718,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "PIURA",
       "Provincia": "AYABACA",
       "Distrito": "AYABACA",
@@ -7234,7 +7328,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 719,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "PIURA",
       "Provincia": "AYABACA",
       "Distrito": "PAIMAS",
@@ -7244,7 +7338,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 720,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "PUNO",
       "Provincia": "PUNO",
       "Distrito": "PUNO",
@@ -7254,8 +7348,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 721,
-      "Mes": 4,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Abril",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "MOYOBAMBA",
       "Distrito": "MOYOBAMBA",
       "Inicio": 18,
@@ -7264,8 +7358,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 722,
-      "Mes": 4,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Abril",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "BELLAVISTA",
       "Distrito": "BAJO BIAVO",
       "Inicio": 12,
@@ -7274,8 +7368,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 723,
-      "Mes": 4,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Abril",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "BELLAVISTA",
       "Distrito": "BAJO BIAVO",
       "Inicio": 18,
@@ -7284,8 +7378,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 724,
-      "Mes": 4,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Abril",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "BELLAVISTA",
       "Distrito": "BAJO BIAVO",
       "Inicio": 30,
@@ -7294,8 +7388,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 725,
-      "Mes": 4,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Abril",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "EL DORADO",
       "Distrito": "AGUA BLANCA",
       "Inicio": 30,
@@ -7304,8 +7398,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 726,
-      "Mes": 4,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Abril",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "LAMAS",
       "Distrito": "CAYNARACHI",
       "Inicio": 18,
@@ -7314,9 +7408,9 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 727,
-      "Mes": 4,
-      "Departamento": "SAN MARTIN",
-      "Provincia": "SAN MARTIN",
+      "Mes": "Abril",
+      "Departamento": "SAN MARTÍN",
+      "Provincia": "SAN MARTÍN",
       "Distrito": "HUIMBAYOC",
       "Inicio": 12,
       "Fin": 17,
@@ -7324,9 +7418,9 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 728,
-      "Mes": 4,
-      "Departamento": "SAN MARTIN",
-      "Provincia": "SAN MARTIN",
+      "Mes": "Abril",
+      "Departamento": "SAN MARTÍN",
+      "Provincia": "SAN MARTÍN",
       "Distrito": "LA BANDA DE SHILCAYO",
       "Inicio": 30,
       "Fin": 59,
@@ -7334,9 +7428,9 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 729,
-      "Mes": 4,
-      "Departamento": "SAN MARTIN",
-      "Provincia": "SAN MARTIN",
+      "Mes": "Abril",
+      "Departamento": "SAN MARTÍN",
+      "Provincia": "SAN MARTÍN",
       "Distrito": "PAPAPLAYA",
       "Inicio": 30,
       "Fin": 59,
@@ -7344,7 +7438,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 730,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "TACNA",
@@ -7354,7 +7448,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 731,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "TACNA",
@@ -7364,7 +7458,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 732,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "TACNA",
@@ -7374,7 +7468,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 733,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "TACNA",
@@ -7384,7 +7478,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 734,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "ALTO DE LA ALIANZA",
@@ -7394,7 +7488,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 735,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "ALTO DE LA ALIANZA",
@@ -7404,7 +7498,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 736,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "CIUDAD NUEVA",
@@ -7414,7 +7508,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 737,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "PACHIA",
@@ -7424,7 +7518,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 738,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "PALCA",
@@ -7434,7 +7528,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 739,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "CORONEL GREGORIO ALBARRACIN LANCHIPA",
@@ -7444,7 +7538,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 740,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "CORONEL GREGORIO ALBARRACIN LANCHIPA",
@@ -7454,7 +7548,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 741,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "CORONEL GREGORIO ALBARRACIN LANCHIPA",
@@ -7464,7 +7558,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 742,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "CORONEL GREGORIO ALBARRACIN LANCHIPA",
@@ -7474,7 +7568,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 743,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "TACNA",
       "Provincia": "CANDARAVE",
       "Distrito": "CANDARAVE",
@@ -7484,7 +7578,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 744,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "TACNA",
       "Provincia": "JORGE BASADRE",
       "Distrito": "ILABAYA",
@@ -7494,7 +7588,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 745,
-      "Mes": 4,
+      "Mes": "Abril",
       "Departamento": "TACNA",
       "Provincia": "TARATA",
       "Distrito": "TARUCACHI",
@@ -7504,8 +7598,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 746,
-      "Mes": 5,
-      "Departamento": "ANCASH",
+      "Mes": "Mayo",
+      "Departamento": "ÁNCASH",
       "Provincia": "HUARAZ",
       "Distrito": "INDEPENDENCIA",
       "Inicio": 30,
@@ -7514,8 +7608,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 747,
-      "Mes": 5,
-      "Departamento": "ANCASH",
+      "Mes": "Mayo",
+      "Departamento": "ÁNCASH",
       "Provincia": "HUAYLAS",
       "Distrito": "MATO",
       "Inicio": 18,
@@ -7524,8 +7618,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 748,
-      "Mes": 5,
-      "Departamento": "ANCASH",
+      "Mes": "Mayo",
+      "Departamento": "ÁNCASH",
       "Provincia": "SANTA",
       "Distrito": "CHIMBOTE",
       "Inicio": 30,
@@ -7534,8 +7628,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 749,
-      "Mes": 5,
-      "Departamento": "APURIMAC",
+      "Mes": "Mayo",
+      "Departamento": "APURÍMAC",
       "Provincia": "ABANCAY",
       "Distrito": "ABANCAY",
       "Inicio": 18,
@@ -7544,8 +7638,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 750,
-      "Mes": 5,
-      "Departamento": "APURIMAC",
+      "Mes": "Mayo",
+      "Departamento": "APURÍMAC",
       "Provincia": "ABANCAY",
       "Distrito": "CURAHUASI",
       "Inicio": 18,
@@ -7554,8 +7648,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 751,
-      "Mes": 5,
-      "Departamento": "APURIMAC",
+      "Mes": "Mayo",
+      "Departamento": "APURÍMAC",
       "Provincia": "ABANCAY",
       "Distrito": "HUANIPACA",
       "Inicio": 18,
@@ -7564,8 +7658,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 752,
-      "Mes": 5,
-      "Departamento": "APURIMAC",
+      "Mes": "Mayo",
+      "Departamento": "APURÍMAC",
       "Provincia": "ABANCAY",
       "Distrito": "LAMBRAMA",
       "Inicio": 18,
@@ -7574,8 +7668,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 753,
-      "Mes": 5,
-      "Departamento": "APURIMAC",
+      "Mes": "Mayo",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "ANDAHUAYLAS",
       "Inicio": 18,
@@ -7584,8 +7678,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 754,
-      "Mes": 5,
-      "Departamento": "APURIMAC",
+      "Mes": "Mayo",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "ANDAHUAYLAS",
       "Inicio": 30,
@@ -7594,8 +7688,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 755,
-      "Mes": 5,
-      "Departamento": "APURIMAC",
+      "Mes": "Mayo",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "ANDARAPA",
       "Inicio": 18,
@@ -7604,8 +7698,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 756,
-      "Mes": 5,
-      "Departamento": "APURIMAC",
+      "Mes": "Mayo",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "HUANCARAMA",
       "Inicio": 18,
@@ -7614,8 +7708,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 757,
-      "Mes": 5,
-      "Departamento": "APURIMAC",
+      "Mes": "Mayo",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "KISHUARA",
       "Inicio": 12,
@@ -7624,8 +7718,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 758,
-      "Mes": 5,
-      "Departamento": "APURIMAC",
+      "Mes": "Mayo",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "PAMPACHIRI",
       "Inicio": 18,
@@ -7634,8 +7728,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 759,
-      "Mes": 5,
-      "Departamento": "APURIMAC",
+      "Mes": "Mayo",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "SAN MIGUEL DE CHACCRAMPA",
       "Inicio": 18,
@@ -7644,8 +7738,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 760,
-      "Mes": 5,
-      "Departamento": "APURIMAC",
+      "Mes": "Mayo",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "KAQUIABAMBA",
       "Inicio": 30,
@@ -7654,8 +7748,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 761,
-      "Mes": 5,
-      "Departamento": "APURIMAC",
+      "Mes": "Mayo",
+      "Departamento": "APURÍMAC",
       "Provincia": "AYMARAES",
       "Distrito": "COTARUSE",
       "Inicio": 12,
@@ -7664,8 +7758,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 762,
-      "Mes": 5,
-      "Departamento": "APURIMAC",
+      "Mes": "Mayo",
+      "Departamento": "APURÍMAC",
       "Provincia": "COTABAMBAS",
       "Distrito": "TAMBOBAMBA",
       "Inicio": 18,
@@ -7674,8 +7768,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 763,
-      "Mes": 5,
-      "Departamento": "APURIMAC",
+      "Mes": "Mayo",
+      "Departamento": "APURÍMAC",
       "Provincia": "COTABAMBAS",
       "Distrito": "COYLLURQUI",
       "Inicio": 18,
@@ -7684,8 +7778,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 764,
-      "Mes": 5,
-      "Departamento": "APURIMAC",
+      "Mes": "Mayo",
+      "Departamento": "APURÍMAC",
       "Provincia": "COTABAMBAS",
       "Distrito": "COYLLURQUI",
       "Inicio": 30,
@@ -7694,8 +7788,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 765,
-      "Mes": 5,
-      "Departamento": "APURIMAC",
+      "Mes": "Mayo",
+      "Departamento": "APURÍMAC",
       "Provincia": "COTABAMBAS",
       "Distrito": "HAQUIRA",
       "Inicio": 12,
@@ -7704,8 +7798,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 766,
-      "Mes": 5,
-      "Departamento": "APURIMAC",
+      "Mes": "Mayo",
+      "Departamento": "APURÍMAC",
       "Provincia": "COTABAMBAS",
       "Distrito": "HAQUIRA",
       "Inicio": 30,
@@ -7714,8 +7808,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 767,
-      "Mes": 5,
-      "Departamento": "APURIMAC",
+      "Mes": "Mayo",
+      "Departamento": "APURÍMAC",
       "Provincia": "CHINCHEROS",
       "Distrito": "CHINCHEROS",
       "Inicio": 18,
@@ -7724,8 +7818,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 768,
-      "Mes": 5,
-      "Departamento": "APURIMAC",
+      "Mes": "Mayo",
+      "Departamento": "APURÍMAC",
       "Provincia": "CHINCHEROS",
       "Distrito": "CHINCHEROS",
       "Inicio": 30,
@@ -7734,8 +7828,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 769,
-      "Mes": 5,
-      "Departamento": "APURIMAC",
+      "Mes": "Mayo",
+      "Departamento": "APURÍMAC",
       "Provincia": "GRAU",
       "Distrito": "VILCABAMBA",
       "Inicio": 18,
@@ -7744,8 +7838,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 770,
-      "Mes": 5,
-      "Departamento": "APURIMAC",
+      "Mes": "Mayo",
+      "Departamento": "APURÍMAC",
       "Provincia": "GRAU",
       "Distrito": "VILCABAMBA",
       "Inicio": 30,
@@ -7754,8 +7848,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 771,
-      "Mes": 5,
-      "Departamento": "APURIMAC",
+      "Mes": "Mayo",
+      "Departamento": "APURÍMAC",
       "Provincia": "GRAU",
       "Distrito": "CURASCO",
       "Inicio": 18,
@@ -7764,7 +7858,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 772,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "AREQUIPA",
       "Provincia": "AREQUIPA",
       "Distrito": "MIRAFLORES",
@@ -7774,7 +7868,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 773,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "AREQUIPA",
       "Provincia": "AREQUIPA",
       "Distrito": "YANAHUARA",
@@ -7784,7 +7878,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 774,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "AREQUIPA",
       "Provincia": "CAMANA",
       "Distrito": "MARIANO NICOLAS VALCARCEL",
@@ -7794,7 +7888,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 775,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "AREQUIPA",
       "Provincia": "CARAVELI",
       "Distrito": "ACARI",
@@ -7804,7 +7898,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 776,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "AREQUIPA",
       "Provincia": "CARAVELI",
       "Distrito": "ATICO",
@@ -7814,7 +7908,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 777,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "AREQUIPA",
       "Provincia": "CASTILLA",
       "Distrito": "URACA",
@@ -7824,7 +7918,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 778,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "AREQUIPA",
       "Provincia": "CAYLLOMA",
       "Distrito": "TUTI",
@@ -7834,7 +7928,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 779,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "AYACUCHO",
       "Provincia": "HUAMANGA",
       "Distrito": "AYACUCHO",
@@ -7844,7 +7938,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 780,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "AYACUCHO",
       "Provincia": "HUAMANGA",
       "Distrito": "AYACUCHO",
@@ -7854,7 +7948,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 781,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "AYACUCHO",
       "Provincia": "HUAMANGA",
       "Distrito": "CARMEN ALTO",
@@ -7864,7 +7958,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 782,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "AYACUCHO",
       "Provincia": "HUAMANGA",
       "Distrito": "SAN JUAN BAUTISTA",
@@ -7874,7 +7968,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 783,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "AYACUCHO",
       "Provincia": "HUAMANGA",
       "Distrito": "JESUS NAZARENO",
@@ -7884,7 +7978,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 784,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "AYACUCHO",
       "Provincia": "HUANTA",
       "Distrito": "AYAHUANCO",
@@ -7894,7 +7988,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 785,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "AYACUCHO",
       "Provincia": "LA MAR",
       "Distrito": "SAN MIGUEL",
@@ -7904,7 +7998,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 786,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "AYACUCHO",
       "Provincia": "LA MAR",
       "Distrito": "SAN MIGUEL",
@@ -7914,7 +8008,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 787,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "AYACUCHO",
       "Provincia": "LUCANAS",
       "Distrito": "CHIPAO",
@@ -7924,7 +8018,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 788,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "AYACUCHO",
       "Provincia": "LUCANAS",
       "Distrito": "SAN CRISTOBAL",
@@ -7934,7 +8028,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 789,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "AYACUCHO",
       "Provincia": "PAUCAR DEL SARA SARA",
       "Distrito": "OYOLO",
@@ -7944,7 +8038,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 790,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "AYACUCHO",
       "Provincia": "VICTOR FAJARDO",
       "Distrito": "ALCAMENCA",
@@ -7954,7 +8048,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 791,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "AYACUCHO",
       "Provincia": "VICTOR FAJARDO",
       "Distrito": "HUAMANQUIQUIA",
@@ -7964,7 +8058,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 792,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "CALLAO",
       "Provincia": "CALLAO",
       "Distrito": "CALLAO",
@@ -7974,7 +8068,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 793,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "CALLAO",
       "Provincia": "CALLAO",
       "Distrito": "CALLAO",
@@ -7984,7 +8078,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 794,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "CALLAO",
       "Provincia": "CALLAO",
       "Distrito": "VENTANILLA",
@@ -7994,7 +8088,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 795,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "CUSCO",
       "Provincia": "CANCHIS",
       "Distrito": "MARANGANI",
@@ -8004,7 +8098,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 796,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "CUSCO",
       "Provincia": "CANCHIS",
       "Distrito": "TINTA",
@@ -8014,7 +8108,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 797,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "CUSCO",
       "Provincia": "LA CONVENCION",
       "Distrito": "SANTA ANA",
@@ -8024,7 +8118,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 798,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "HUANCAVELICA",
@@ -8034,7 +8128,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 799,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "ACORIA",
@@ -8044,7 +8138,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 800,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "LARIA",
@@ -8054,7 +8148,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 801,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "MOYA",
@@ -8064,7 +8158,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 802,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "YAULI",
@@ -8074,7 +8168,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 803,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "YAULI",
@@ -8084,7 +8178,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 804,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "ASCENSION",
@@ -8094,7 +8188,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 805,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ACOBAMBA",
       "Distrito": "ACOBAMBA",
@@ -8104,7 +8198,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 806,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "LIRCAY",
@@ -8114,7 +8208,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 807,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "LIRCAY",
@@ -8124,7 +8218,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 808,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "LIRCAY",
@@ -8134,7 +8228,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 809,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "ANCHONGA",
@@ -8144,7 +8238,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 810,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "ANCHONGA",
@@ -8154,7 +8248,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 811,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "ANCHONGA",
@@ -8164,7 +8258,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 812,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "JULCAMARCA",
@@ -8174,7 +8268,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 813,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "SAN ANTONIO DE ANTAPARCO",
@@ -8184,7 +8278,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 814,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "CASTROVIRREYNA",
       "Distrito": "CASTROVIRREYNA",
@@ -8194,7 +8288,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 815,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "CASTROVIRREYNA",
       "Distrito": "TANTARA",
@@ -8204,7 +8298,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 816,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "CASTROVIRREYNA",
       "Distrito": "TANTARA",
@@ -8214,7 +8308,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 817,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "CASTROVIRREYNA",
       "Distrito": "TANTARA",
@@ -8224,7 +8318,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 818,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "CASTROVIRREYNA",
       "Distrito": "TICRAPO",
@@ -8234,7 +8328,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 819,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "CHURCAMPA",
       "Distrito": "ANCO",
@@ -8244,7 +8338,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 820,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "CHURCAMPA",
       "Distrito": "EL CARMEN",
@@ -8254,7 +8348,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 821,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "CHURCAMPA",
       "Distrito": "PACHAMARCA",
@@ -8264,7 +8358,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 822,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "PAMPAS",
@@ -8274,7 +8368,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 823,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "COLCABAMBA",
@@ -8284,7 +8378,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 824,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "HUACHOCOLPA",
@@ -8294,7 +8388,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 825,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "HUARIBAMBA",
@@ -8304,7 +8398,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 826,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "HUARIBAMBA",
@@ -8314,7 +8408,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 827,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "SALCAHUASI",
@@ -8324,7 +8418,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 828,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "SAN MARCOS DE ROCCHAC",
@@ -8334,7 +8428,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 829,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "TINTAY PUNCU",
@@ -8344,7 +8438,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 830,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "QUICHUAS",
@@ -8354,7 +8448,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 831,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "QUICHUAS",
@@ -8364,8 +8458,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 832,
-      "Mes": 5,
-      "Departamento": "HUANUCO",
+      "Mes": "Mayo",
+      "Departamento": "HUÁNUCO",
       "Provincia": "AMBO",
       "Distrito": "HUACAR",
       "Inicio": 18,
@@ -8374,8 +8468,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 833,
-      "Mes": 5,
-      "Departamento": "HUANUCO",
+      "Mes": "Mayo",
+      "Departamento": "HUÁNUCO",
       "Provincia": "DOS DE MAYO",
       "Distrito": "QUIVILLA",
       "Inicio": 18,
@@ -8384,8 +8478,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 834,
-      "Mes": 5,
-      "Departamento": "HUANUCO",
+      "Mes": "Mayo",
+      "Departamento": "HUÁNUCO",
       "Provincia": "DOS DE MAYO",
       "Distrito": "QUIVILLA",
       "Inicio": 30,
@@ -8394,8 +8488,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 835,
-      "Mes": 5,
-      "Departamento": "HUANUCO",
+      "Mes": "Mayo",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUACAYBAMBA",
       "Distrito": "HUACAYBAMBA",
       "Inicio": 18,
@@ -8404,8 +8498,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 836,
-      "Mes": 5,
-      "Departamento": "HUANUCO",
+      "Mes": "Mayo",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUACAYBAMBA",
       "Distrito": "CANCHABAMBA",
       "Inicio": 18,
@@ -8414,8 +8508,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 837,
-      "Mes": 5,
-      "Departamento": "HUANUCO",
+      "Mes": "Mayo",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUAMALIES",
       "Distrito": "LLATA",
       "Inicio": 18,
@@ -8424,8 +8518,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 838,
-      "Mes": 5,
-      "Departamento": "HUANUCO",
+      "Mes": "Mayo",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUAMALIES",
       "Distrito": "ARANCAY",
       "Inicio": 30,
@@ -8434,8 +8528,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 839,
-      "Mes": 5,
-      "Departamento": "HUANUCO",
+      "Mes": "Mayo",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUAMALIES",
       "Distrito": "PUÑOS",
       "Inicio": 18,
@@ -8444,8 +8538,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 840,
-      "Mes": 5,
-      "Departamento": "HUANUCO",
+      "Mes": "Mayo",
+      "Departamento": "HUÁNUCO",
       "Provincia": "LEONCIO PRADO",
       "Distrito": "LUYANDO",
       "Inicio": 18,
@@ -8454,8 +8548,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 841,
-      "Mes": 5,
-      "Departamento": "HUANUCO",
+      "Mes": "Mayo",
+      "Departamento": "HUÁNUCO",
       "Provincia": "LEONCIO PRADO",
       "Distrito": "MARIANO DAMASO BERAUN",
       "Inicio": 30,
@@ -8464,8 +8558,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 842,
-      "Mes": 5,
-      "Departamento": "HUANUCO",
+      "Mes": "Mayo",
+      "Departamento": "HUÁNUCO",
       "Provincia": "LAURICOCHA",
       "Distrito": "BAÑOS",
       "Inicio": 18,
@@ -8474,8 +8568,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 843,
-      "Mes": 5,
-      "Departamento": "HUANUCO",
+      "Mes": "Mayo",
+      "Departamento": "HUÁNUCO",
       "Provincia": "LAURICOCHA",
       "Distrito": "BAÑOS",
       "Inicio": 30,
@@ -8484,7 +8578,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 844,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "ICA",
@@ -8494,7 +8588,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 845,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "ICA",
@@ -8504,7 +8598,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 846,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "ICA",
@@ -8514,7 +8608,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 847,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "SANTIAGO",
@@ -8524,7 +8618,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 848,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "SUBTANJALLA",
@@ -8534,7 +8628,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 849,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "ICA",
       "Provincia": "CHINCHA",
       "Distrito": "CHINCHA ALTA",
@@ -8544,7 +8638,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 850,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "ICA",
       "Provincia": "NAZCA",
       "Distrito": "NAZCA",
@@ -8554,7 +8648,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 851,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "ICA",
       "Provincia": "NAZCA",
       "Distrito": "EL INGENIO",
@@ -8564,7 +8658,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 852,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "ICA",
       "Provincia": "PISCO",
       "Distrito": "PISCO",
@@ -8574,7 +8668,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 853,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "ICA",
       "Provincia": "PISCO",
       "Distrito": "PISCO",
@@ -8584,7 +8678,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 854,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "ICA",
       "Provincia": "PISCO",
       "Distrito": "HUMAY",
@@ -8594,7 +8688,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 855,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "ICA",
       "Provincia": "PISCO",
       "Distrito": "TUPAC AMARU INCA",
@@ -8604,8 +8698,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 856,
-      "Mes": 5,
-      "Departamento": "JUNIN",
+      "Mes": "Mayo",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "HUANCAYO",
       "Inicio": 12,
@@ -8614,8 +8708,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 857,
-      "Mes": 5,
-      "Departamento": "JUNIN",
+      "Mes": "Mayo",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "HUANCAYO",
       "Inicio": 18,
@@ -8624,8 +8718,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 858,
-      "Mes": 5,
-      "Departamento": "JUNIN",
+      "Mes": "Mayo",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "HUANCAYO",
       "Inicio": 30,
@@ -8634,8 +8728,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 859,
-      "Mes": 5,
-      "Departamento": "JUNIN",
+      "Mes": "Mayo",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "CHILCA",
       "Inicio": 30,
@@ -8644,8 +8738,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 860,
-      "Mes": 5,
-      "Departamento": "JUNIN",
+      "Mes": "Mayo",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "HUAYUCACHI",
       "Inicio": 30,
@@ -8654,8 +8748,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 861,
-      "Mes": 5,
-      "Departamento": "JUNIN",
+      "Mes": "Mayo",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "PARIAHUANCA",
       "Inicio": 30,
@@ -8664,8 +8758,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 862,
-      "Mes": 5,
-      "Departamento": "JUNIN",
+      "Mes": "Mayo",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "SANTO DOMINGO DE ACOBAMBA",
       "Inicio": 18,
@@ -8674,8 +8768,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 863,
-      "Mes": 5,
-      "Departamento": "JUNIN",
+      "Mes": "Mayo",
+      "Departamento": "JUNÍN",
       "Provincia": "CONCEPCION",
       "Distrito": "ANDAMARCA",
       "Inicio": 12,
@@ -8684,8 +8778,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 864,
-      "Mes": 5,
-      "Departamento": "JUNIN",
+      "Mes": "Mayo",
+      "Departamento": "JUNÍN",
       "Provincia": "CONCEPCION",
       "Distrito": "COMAS",
       "Inicio": 18,
@@ -8694,8 +8788,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 865,
-      "Mes": 5,
-      "Departamento": "JUNIN",
+      "Mes": "Mayo",
+      "Departamento": "JUNÍN",
       "Provincia": "CONCEPCION",
       "Distrito": "ORCOTUNA",
       "Inicio": 30,
@@ -8704,8 +8798,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 866,
-      "Mes": 5,
-      "Departamento": "JUNIN",
+      "Mes": "Mayo",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "CHANCHAMAYO",
       "Inicio": 18,
@@ -8714,8 +8808,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 867,
-      "Mes": 5,
-      "Departamento": "JUNIN",
+      "Mes": "Mayo",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "CHANCHAMAYO",
       "Inicio": 30,
@@ -8724,8 +8818,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 868,
-      "Mes": 5,
-      "Departamento": "JUNIN",
+      "Mes": "Mayo",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "PERENE",
       "Inicio": 18,
@@ -8734,8 +8828,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 869,
-      "Mes": 5,
-      "Departamento": "JUNIN",
+      "Mes": "Mayo",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "PERENE",
       "Inicio": 30,
@@ -8744,8 +8838,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 870,
-      "Mes": 5,
-      "Departamento": "JUNIN",
+      "Mes": "Mayo",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "PICHANAKI",
       "Inicio": 12,
@@ -8754,8 +8848,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 871,
-      "Mes": 5,
-      "Departamento": "JUNIN",
+      "Mes": "Mayo",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "JAUJA",
       "Inicio": 18,
@@ -8764,8 +8858,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 872,
-      "Mes": 5,
-      "Departamento": "JUNIN",
+      "Mes": "Mayo",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "JAUJA",
       "Inicio": 30,
@@ -8774,8 +8868,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 873,
-      "Mes": 5,
-      "Departamento": "JUNIN",
+      "Mes": "Mayo",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "CURICACA",
       "Inicio": 18,
@@ -8784,8 +8878,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 874,
-      "Mes": 5,
-      "Departamento": "JUNIN",
+      "Mes": "Mayo",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "JULCAN",
       "Inicio": 30,
@@ -8794,8 +8888,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 875,
-      "Mes": 5,
-      "Departamento": "JUNIN",
+      "Mes": "Mayo",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "MASMA",
       "Inicio": 12,
@@ -8804,8 +8898,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 876,
-      "Mes": 5,
-      "Departamento": "JUNIN",
+      "Mes": "Mayo",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "SINCOS",
       "Inicio": 18,
@@ -8814,8 +8908,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 877,
-      "Mes": 5,
-      "Departamento": "JUNIN",
+      "Mes": "Mayo",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "SINCOS",
       "Inicio": 30,
@@ -8824,8 +8918,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 878,
-      "Mes": 5,
-      "Departamento": "JUNIN",
+      "Mes": "Mayo",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "YAUYOS",
       "Inicio": 18,
@@ -8834,8 +8928,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 879,
-      "Mes": 5,
-      "Departamento": "JUNIN",
+      "Mes": "Mayo",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "SATIPO",
       "Inicio": 18,
@@ -8844,8 +8938,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 880,
-      "Mes": 5,
-      "Departamento": "JUNIN",
+      "Mes": "Mayo",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "SATIPO",
       "Inicio": 30,
@@ -8854,8 +8948,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 881,
-      "Mes": 5,
-      "Departamento": "JUNIN",
+      "Mes": "Mayo",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "PANGOA",
       "Inicio": 12,
@@ -8864,8 +8958,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 882,
-      "Mes": 5,
-      "Departamento": "JUNIN",
+      "Mes": "Mayo",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "RIO TAMBO",
       "Inicio": 12,
@@ -8874,8 +8968,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 883,
-      "Mes": 5,
-      "Departamento": "JUNIN",
+      "Mes": "Mayo",
+      "Departamento": "JUNÍN",
       "Provincia": "TARMA",
       "Distrito": "TARMA",
       "Inicio": 18,
@@ -8884,8 +8978,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 884,
-      "Mes": 5,
-      "Departamento": "JUNIN",
+      "Mes": "Mayo",
+      "Departamento": "JUNÍN",
       "Provincia": "TARMA",
       "Distrito": "PALCA",
       "Inicio": 18,
@@ -8894,8 +8988,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 885,
-      "Mes": 5,
-      "Departamento": "JUNIN",
+      "Mes": "Mayo",
+      "Departamento": "JUNÍN",
       "Provincia": "YAULI",
       "Distrito": "MARCAPOMACOCHA",
       "Inicio": 18,
@@ -8904,8 +8998,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 886,
-      "Mes": 5,
-      "Departamento": "JUNIN",
+      "Mes": "Mayo",
+      "Departamento": "JUNÍN",
       "Provincia": "CHUPACA",
       "Distrito": "CHUPACA",
       "Inicio": 18,
@@ -8914,8 +9008,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 887,
-      "Mes": 5,
-      "Departamento": "JUNIN",
+      "Mes": "Mayo",
+      "Departamento": "JUNÍN",
       "Provincia": "CHUPACA",
       "Distrito": "AHUAC",
       "Inicio": 30,
@@ -8924,8 +9018,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 888,
-      "Mes": 5,
-      "Departamento": "JUNIN",
+      "Mes": "Mayo",
+      "Departamento": "JUNÍN",
       "Provincia": "CHUPACA",
       "Distrito": "CHONGOS BAJO",
       "Inicio": 18,
@@ -8934,8 +9028,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 889,
-      "Mes": 5,
-      "Departamento": "JUNIN",
+      "Mes": "Mayo",
+      "Departamento": "JUNÍN",
       "Provincia": "CHUPACA",
       "Distrito": "SAN JUAN DE ISCOS",
       "Inicio": 30,
@@ -8944,8 +9038,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 890,
-      "Mes": 5,
-      "Departamento": "JUNIN",
+      "Mes": "Mayo",
+      "Departamento": "JUNÍN",
       "Provincia": "CHUPACA",
       "Distrito": "TRES DE DICIEMBRE",
       "Inicio": 18,
@@ -8954,8 +9048,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 891,
-      "Mes": 5,
-      "Departamento": "JUNIN",
+      "Mes": "Mayo",
+      "Departamento": "JUNÍN",
       "Provincia": "CHUPACA",
       "Distrito": "TRES DE DICIEMBRE",
       "Inicio": 30,
@@ -8964,7 +9058,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 892,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "CHICLAYO",
@@ -8974,7 +9068,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 893,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "CHICLAYO",
@@ -8984,7 +9078,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 894,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "CHICLAYO",
@@ -8994,7 +9088,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 895,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "CHICLAYO",
@@ -9004,7 +9098,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 896,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "LAGUNAS",
@@ -9014,7 +9108,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 897,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "MONSEFU",
@@ -9024,7 +9118,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 898,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "REQUE",
@@ -9034,7 +9128,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 899,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "REQUE",
@@ -9044,7 +9138,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 900,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "REQUE",
@@ -9054,7 +9148,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 901,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "FERREÑAFE",
       "Distrito": "PITIPO",
@@ -9064,7 +9158,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 902,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "LAMBAYEQUE",
       "Distrito": "MOCHUMI",
@@ -9074,7 +9168,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 903,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "LAMBAYEQUE",
       "Distrito": "OLMOS",
@@ -9084,7 +9178,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 904,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "LAMBAYEQUE",
       "Distrito": "SAN JOSE",
@@ -9094,7 +9188,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 905,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "ATE",
@@ -9104,7 +9198,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 906,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "ATE",
@@ -9114,7 +9208,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 907,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "CHACLACAYO",
@@ -9124,7 +9218,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 908,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "CHACLACAYO",
@@ -9134,7 +9228,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 909,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "CHORRILLOS",
@@ -9144,7 +9238,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 910,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "CHORRILLOS",
@@ -9154,7 +9248,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 911,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "CHORRILLOS",
@@ -9164,7 +9258,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 912,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "CIENEGUILLA",
@@ -9174,7 +9268,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 913,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "EL AGUSTINO",
@@ -9184,7 +9278,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 914,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "EL AGUSTINO",
@@ -9194,7 +9288,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 915,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "EL AGUSTINO",
@@ -9204,7 +9298,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 916,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "EL AGUSTINO",
@@ -9214,7 +9308,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 917,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "LA MOLINA",
@@ -9224,7 +9318,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 918,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "LURIGANCHO (CHOSICA)",
@@ -9234,7 +9328,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 919,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "PACHACAMAC",
@@ -9244,7 +9338,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 920,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "SAN BARTOLO",
@@ -9254,7 +9348,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 921,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "VILLA EL SALVADOR",
@@ -9264,7 +9358,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 922,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "VILLA EL SALVADOR",
@@ -9274,7 +9368,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 923,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "VILLA EL SALVADOR",
@@ -9284,7 +9378,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 924,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "LIMA",
       "Provincia": "CAÑETE",
       "Distrito": "SAN LUIS",
@@ -9294,7 +9388,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 925,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "LIMA",
       "Provincia": "HUARAL",
       "Distrito": "AUCALLAMA",
@@ -9304,7 +9398,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 926,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "LIMA",
       "Provincia": "HUAURA",
       "Distrito": "SANTA MARIA",
@@ -9314,7 +9408,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 927,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "LIMA",
       "Provincia": "YAUYOS",
       "Distrito": "YAUYOS",
@@ -9324,7 +9418,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 928,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "MADRE DE DIOS",
       "Provincia": "TAMBOPATA",
       "Distrito": "TAMBOPATA",
@@ -9334,7 +9428,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 929,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "MADRE DE DIOS",
       "Provincia": "TAMBOPATA",
       "Distrito": "TAMBOPATA",
@@ -9344,7 +9438,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 930,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "MADRE DE DIOS",
       "Provincia": "TAMBOPATA",
       "Distrito": "TAMBOPATA",
@@ -9354,7 +9448,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 931,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "MADRE DE DIOS",
       "Provincia": "TAMBOPATA",
       "Distrito": "LAS PIEDRAS",
@@ -9364,7 +9458,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 932,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "MOQUEGUA",
       "Provincia": "MARISCAL NIETO",
       "Distrito": "MOQUEGUA",
@@ -9374,7 +9468,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 933,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "MOQUEGUA",
       "Provincia": "GENERAL SANCHEZ CERRO",
       "Distrito": "UBINAS",
@@ -9384,7 +9478,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 934,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "MOQUEGUA",
       "Provincia": "GENERAL SANCHEZ CERRO",
       "Distrito": "UBINAS",
@@ -9394,7 +9488,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 935,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "MOQUEGUA",
       "Provincia": "ILO",
       "Distrito": "ILO",
@@ -9404,7 +9498,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 936,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "MOQUEGUA",
       "Provincia": "ILO",
       "Distrito": "ILO",
@@ -9414,7 +9508,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 937,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "MOQUEGUA",
       "Provincia": "ILO",
       "Distrito": "ILO",
@@ -9424,7 +9518,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 938,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "MOQUEGUA",
       "Provincia": "ILO",
       "Distrito": "EL ALGARROBAL",
@@ -9434,7 +9528,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 939,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "MOQUEGUA",
       "Provincia": "ILO",
       "Distrito": "PACOCHA",
@@ -9444,7 +9538,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 940,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "PIURA",
       "Provincia": "PIURA",
       "Distrito": "CATACAOS",
@@ -9454,7 +9548,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 941,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "PIURA",
       "Provincia": "PIURA",
       "Distrito": "CATACAOS",
@@ -9464,7 +9558,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 942,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "PIURA",
       "Provincia": "PIURA",
       "Distrito": "LA UNION",
@@ -9474,7 +9568,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 943,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "PIURA",
       "Provincia": "AYABACA",
       "Distrito": "AYABACA",
@@ -9484,7 +9578,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 944,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "PIURA",
       "Provincia": "AYABACA",
       "Distrito": "AYABACA",
@@ -9494,7 +9588,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 945,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "PIURA",
       "Provincia": "AYABACA",
       "Distrito": "PAIMAS",
@@ -9504,7 +9598,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 946,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "PUNO",
       "Provincia": "PUNO",
       "Distrito": "PUNO",
@@ -9514,8 +9608,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 947,
-      "Mes": 5,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Mayo",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "MOYOBAMBA",
       "Distrito": "MOYOBAMBA",
       "Inicio": 18,
@@ -9524,8 +9618,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 948,
-      "Mes": 5,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Mayo",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "BELLAVISTA",
       "Distrito": "BELLAVISTA",
       "Inicio": 18,
@@ -9534,8 +9628,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 949,
-      "Mes": 5,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Mayo",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "BELLAVISTA",
       "Distrito": "SAN PABLO",
       "Inicio": 18,
@@ -9544,8 +9638,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 950,
-      "Mes": 5,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Mayo",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "MARISCAL CACERES",
       "Distrito": "PAJARILLO",
       "Inicio": 18,
@@ -9554,8 +9648,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 951,
-      "Mes": 5,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Mayo",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "RIOJA",
       "Distrito": "RIOJA",
       "Inicio": 18,
@@ -9564,8 +9658,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 952,
-      "Mes": 5,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Mayo",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "RIOJA",
       "Distrito": "RIOJA",
       "Inicio": 30,
@@ -9574,9 +9668,9 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 953,
-      "Mes": 5,
-      "Departamento": "SAN MARTIN",
-      "Provincia": "SAN MARTIN",
+      "Mes": "Mayo",
+      "Departamento": "SAN MARTÍN",
+      "Provincia": "SAN MARTÍN",
       "Distrito": "TARAPOTO",
       "Inicio": 18,
       "Fin": 29,
@@ -9584,7 +9678,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 954,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "TACNA",
@@ -9594,7 +9688,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 955,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "TACNA",
@@ -9604,7 +9698,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 956,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "TACNA",
@@ -9614,7 +9708,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 957,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "TACNA",
@@ -9624,7 +9718,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 958,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "ALTO DE LA ALIANZA",
@@ -9634,7 +9728,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 959,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "ALTO DE LA ALIANZA",
@@ -9644,7 +9738,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 960,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "CIUDAD NUEVA",
@@ -9654,7 +9748,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 961,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "INCLAN",
@@ -9664,7 +9758,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 962,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "PALCA",
@@ -9674,7 +9768,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 963,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "CORONEL GREGORIO ALBARRACIN LANCHIPA",
@@ -9684,7 +9778,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 964,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "CORONEL GREGORIO ALBARRACIN LANCHIPA",
@@ -9694,7 +9788,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 965,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "CORONEL GREGORIO ALBARRACIN LANCHIPA",
@@ -9704,7 +9798,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 966,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "TACNA",
       "Provincia": "CANDARAVE",
       "Distrito": "HUANUARA",
@@ -9714,7 +9808,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 967,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "TACNA",
       "Provincia": "CANDARAVE",
       "Distrito": "QUILAHUANI",
@@ -9724,7 +9818,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 968,
-      "Mes": 5,
+      "Mes": "Mayo",
       "Departamento": "TACNA",
       "Provincia": "JORGE BASADRE",
       "Distrito": "ILABAYA",
@@ -9734,8 +9828,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 969,
-      "Mes": 6,
-      "Departamento": "ANCASH",
+      "Mes": "Junio",
+      "Departamento": "ÁNCASH",
       "Provincia": "HUARAZ",
       "Distrito": "HUARAZ",
       "Inicio": 18,
@@ -9744,8 +9838,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 970,
-      "Mes": 6,
-      "Departamento": "ANCASH",
+      "Mes": "Junio",
+      "Departamento": "ÁNCASH",
       "Provincia": "CARHUAZ",
       "Distrito": "CARHUAZ",
       "Inicio": 30,
@@ -9754,8 +9848,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 971,
-      "Mes": 6,
-      "Departamento": "ANCASH",
+      "Mes": "Junio",
+      "Departamento": "ÁNCASH",
       "Provincia": "CARHUAZ",
       "Distrito": "YUNGAR",
       "Inicio": 30,
@@ -9764,8 +9858,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 972,
-      "Mes": 6,
-      "Departamento": "ANCASH",
+      "Mes": "Junio",
+      "Departamento": "ÁNCASH",
       "Provincia": "HUAYLAS",
       "Distrito": "MATO",
       "Inicio": 18,
@@ -9774,8 +9868,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 973,
-      "Mes": 6,
-      "Departamento": "ANCASH",
+      "Mes": "Junio",
+      "Departamento": "ÁNCASH",
       "Provincia": "HUAYLAS",
       "Distrito": "PAMPAROMAS",
       "Inicio": 18,
@@ -9784,8 +9878,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 974,
-      "Mes": 6,
-      "Departamento": "ANCASH",
+      "Mes": "Junio",
+      "Departamento": "ÁNCASH",
       "Provincia": "RECUAY",
       "Distrito": "RECUAY",
       "Inicio": 30,
@@ -9794,8 +9888,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 975,
-      "Mes": 6,
-      "Departamento": "ANCASH",
+      "Mes": "Junio",
+      "Departamento": "ÁNCASH",
       "Provincia": "SANTA",
       "Distrito": "CHIMBOTE",
       "Inicio": 18,
@@ -9804,8 +9898,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 976,
-      "Mes": 6,
-      "Departamento": "APURIMAC",
+      "Mes": "Junio",
+      "Departamento": "APURÍMAC",
       "Provincia": "ABANCAY",
       "Distrito": "ABANCAY",
       "Inicio": 18,
@@ -9814,8 +9908,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 977,
-      "Mes": 6,
-      "Departamento": "APURIMAC",
+      "Mes": "Junio",
+      "Departamento": "APURÍMAC",
       "Provincia": "ABANCAY",
       "Distrito": "CIRCA",
       "Inicio": 18,
@@ -9824,8 +9918,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 978,
-      "Mes": 6,
-      "Departamento": "APURIMAC",
+      "Mes": "Junio",
+      "Departamento": "APURÍMAC",
       "Provincia": "ABANCAY",
       "Distrito": "LAMBRAMA",
       "Inicio": 18,
@@ -9834,8 +9928,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 979,
-      "Mes": 6,
-      "Departamento": "APURIMAC",
+      "Mes": "Junio",
+      "Departamento": "APURÍMAC",
       "Provincia": "ABANCAY",
       "Distrito": "PICHIRHUA",
       "Inicio": 30,
@@ -9844,8 +9938,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 980,
-      "Mes": 6,
-      "Departamento": "APURIMAC",
+      "Mes": "Junio",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "ANDAHUAYLAS",
       "Inicio": 30,
@@ -9854,8 +9948,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 981,
-      "Mes": 6,
-      "Departamento": "APURIMAC",
+      "Mes": "Junio",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "ANDAHUAYLAS",
       "Inicio": 30,
@@ -9864,8 +9958,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 982,
-      "Mes": 6,
-      "Departamento": "APURIMAC",
+      "Mes": "Junio",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "ANDARAPA",
       "Inicio": 18,
@@ -9874,8 +9968,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 983,
-      "Mes": 6,
-      "Departamento": "APURIMAC",
+      "Mes": "Junio",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "HUANCARAMA",
       "Inicio": 12,
@@ -9884,8 +9978,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 984,
-      "Mes": 6,
-      "Departamento": "APURIMAC",
+      "Mes": "Junio",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "KISHUARA",
       "Inicio": 12,
@@ -9894,8 +9988,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 985,
-      "Mes": 6,
-      "Departamento": "APURIMAC",
+      "Mes": "Junio",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "KISHUARA",
       "Inicio": 30,
@@ -9904,8 +9998,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 986,
-      "Mes": 6,
-      "Departamento": "APURIMAC",
+      "Mes": "Junio",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "PACUCHA",
       "Inicio": 30,
@@ -9914,8 +10008,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 987,
-      "Mes": 6,
-      "Departamento": "APURIMAC",
+      "Mes": "Junio",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "SAN ANTONIO DE CACHI",
       "Inicio": 30,
@@ -9924,8 +10018,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 988,
-      "Mes": 6,
-      "Departamento": "APURIMAC",
+      "Mes": "Junio",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "SAN MIGUEL DE CHACCRAMPA",
       "Inicio": 30,
@@ -9934,8 +10028,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 989,
-      "Mes": 6,
-      "Departamento": "APURIMAC",
+      "Mes": "Junio",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "SANTA MARIA DE CHICMO",
       "Inicio": 12,
@@ -9944,8 +10038,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 990,
-      "Mes": 6,
-      "Departamento": "APURIMAC",
+      "Mes": "Junio",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "TURPO",
       "Inicio": 30,
@@ -9954,8 +10048,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 991,
-      "Mes": 6,
-      "Departamento": "APURIMAC",
+      "Mes": "Junio",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "KAQUIABAMBA",
       "Inicio": 30,
@@ -9964,8 +10058,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 992,
-      "Mes": 6,
-      "Departamento": "APURIMAC",
+      "Mes": "Junio",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "JOSÉ MARÍA ARGUEDAS",
       "Inicio": 18,
@@ -9974,8 +10068,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 993,
-      "Mes": 6,
-      "Departamento": "APURIMAC",
+      "Mes": "Junio",
+      "Departamento": "APURÍMAC",
       "Provincia": "AYMARAES",
       "Distrito": "SAN JUAN DE CHACÑA",
       "Inicio": 18,
@@ -9984,8 +10078,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 994,
-      "Mes": 6,
-      "Departamento": "APURIMAC",
+      "Mes": "Junio",
+      "Departamento": "APURÍMAC",
       "Provincia": "AYMARAES",
       "Distrito": "SAÑAYCA",
       "Inicio": 30,
@@ -9994,8 +10088,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 995,
-      "Mes": 6,
-      "Departamento": "APURIMAC",
+      "Mes": "Junio",
+      "Departamento": "APURÍMAC",
       "Provincia": "COTABAMBAS",
       "Distrito": "TAMBOBAMBA",
       "Inicio": 12,
@@ -10004,8 +10098,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 996,
-      "Mes": 6,
-      "Departamento": "APURIMAC",
+      "Mes": "Junio",
+      "Departamento": "APURÍMAC",
       "Provincia": "COTABAMBAS",
       "Distrito": "TAMBOBAMBA",
       "Inicio": 18,
@@ -10014,8 +10108,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 997,
-      "Mes": 6,
-      "Departamento": "APURIMAC",
+      "Mes": "Junio",
+      "Departamento": "APURÍMAC",
       "Provincia": "COTABAMBAS",
       "Distrito": "COTABAMBAS",
       "Inicio": 30,
@@ -10024,8 +10118,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 998,
-      "Mes": 6,
-      "Departamento": "APURIMAC",
+      "Mes": "Junio",
+      "Departamento": "APURÍMAC",
       "Provincia": "COTABAMBAS",
       "Distrito": "COYLLURQUI",
       "Inicio": 18,
@@ -10034,8 +10128,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 999,
-      "Mes": 6,
-      "Departamento": "APURIMAC",
+      "Mes": "Junio",
+      "Departamento": "APURÍMAC",
       "Provincia": "COTABAMBAS",
       "Distrito": "HAQUIRA",
       "Inicio": 18,
@@ -10044,8 +10138,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1000,
-      "Mes": 6,
-      "Departamento": "APURIMAC",
+      "Mes": "Junio",
+      "Departamento": "APURÍMAC",
       "Provincia": "COTABAMBAS",
       "Distrito": "HAQUIRA",
       "Inicio": 30,
@@ -10054,8 +10148,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1001,
-      "Mes": 6,
-      "Departamento": "APURIMAC",
+      "Mes": "Junio",
+      "Departamento": "APURÍMAC",
       "Provincia": "CHINCHEROS",
       "Distrito": "ANCO-HUALLO",
       "Inicio": 18,
@@ -10064,8 +10158,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1002,
-      "Mes": 6,
-      "Departamento": "APURIMAC",
+      "Mes": "Junio",
+      "Departamento": "APURÍMAC",
       "Provincia": "CHINCHEROS",
       "Distrito": "COCHARCAS",
       "Inicio": 30,
@@ -10074,8 +10168,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1003,
-      "Mes": 6,
-      "Departamento": "APURIMAC",
+      "Mes": "Junio",
+      "Departamento": "APURÍMAC",
       "Provincia": "CHINCHEROS",
       "Distrito": "ONGOY",
       "Inicio": 30,
@@ -10084,8 +10178,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1004,
-      "Mes": 6,
-      "Departamento": "APURIMAC",
+      "Mes": "Junio",
+      "Departamento": "APURÍMAC",
       "Provincia": "GRAU",
       "Distrito": "CHUQUIBAMBILLA",
       "Inicio": 30,
@@ -10094,8 +10188,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1005,
-      "Mes": 6,
-      "Departamento": "APURIMAC",
+      "Mes": "Junio",
+      "Departamento": "APURÍMAC",
       "Provincia": "GRAU",
       "Distrito": "VIRUNDO",
       "Inicio": 18,
@@ -10104,7 +10198,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1006,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "AREQUIPA",
       "Provincia": "AREQUIPA",
       "Distrito": "MARIANO MELGAR",
@@ -10114,7 +10208,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1007,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "AREQUIPA",
       "Provincia": "AREQUIPA",
       "Distrito": "MIRAFLORES",
@@ -10124,7 +10218,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1008,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "AREQUIPA",
       "Provincia": "AREQUIPA",
       "Distrito": "YANAHUARA",
@@ -10134,7 +10228,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1009,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "AREQUIPA",
       "Provincia": "CARAVELI",
       "Distrito": "ATICO",
@@ -10144,7 +10238,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1010,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "AREQUIPA",
       "Provincia": "CARAVELI",
       "Distrito": "ATICO",
@@ -10154,7 +10248,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1011,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "AREQUIPA",
       "Provincia": "CASTILLA",
       "Distrito": "URACA",
@@ -10164,7 +10258,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1012,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "AREQUIPA",
       "Provincia": "CASTILLA",
       "Distrito": "URACA",
@@ -10174,7 +10268,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1013,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "AREQUIPA",
       "Provincia": "CASTILLA",
       "Distrito": "VIRACO",
@@ -10184,7 +10278,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1014,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "AREQUIPA",
       "Provincia": "CAYLLOMA",
       "Distrito": "CHIVAY",
@@ -10194,7 +10288,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1015,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "AYACUCHO",
       "Provincia": "HUAMANGA",
       "Distrito": "AYACUCHO",
@@ -10204,7 +10298,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1016,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "AYACUCHO",
       "Provincia": "HUAMANGA",
       "Distrito": "AYACUCHO",
@@ -10214,7 +10308,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1017,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "AYACUCHO",
       "Provincia": "HUAMANGA",
       "Distrito": "ACOCRO",
@@ -10224,7 +10318,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1018,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "AYACUCHO",
       "Provincia": "HUAMANGA",
       "Distrito": "CARMEN ALTO",
@@ -10234,7 +10328,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1019,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "AYACUCHO",
       "Provincia": "HUAMANGA",
       "Distrito": "ANDRES AVELINO CACERES DORREGARAY",
@@ -10244,7 +10338,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1020,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "AYACUCHO",
       "Provincia": "CANGALLO",
       "Distrito": "CHUSCHI",
@@ -10254,7 +10348,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1021,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "AYACUCHO",
       "Provincia": "CANGALLO",
       "Distrito": "MARIA PARADO DE BELLIDO",
@@ -10264,7 +10358,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1022,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "AYACUCHO",
       "Provincia": "HUANTA",
       "Distrito": "SANTILLANA",
@@ -10274,7 +10368,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1023,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "AYACUCHO",
       "Provincia": "LA MAR",
       "Distrito": "SAN MIGUEL",
@@ -10284,7 +10378,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1024,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "AYACUCHO",
       "Provincia": "LA MAR",
       "Distrito": "ANCO",
@@ -10294,7 +10388,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1025,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "AYACUCHO",
       "Provincia": "LA MAR",
       "Distrito": "CHILCAS",
@@ -10304,7 +10398,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1026,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "AYACUCHO",
       "Provincia": "LUCANAS",
       "Distrito": "SAN PEDRO DE PALCO",
@@ -10314,7 +10408,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1027,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "AYACUCHO",
       "Provincia": "PAUCAR DEL SARA SARA",
       "Distrito": "PAUSA",
@@ -10324,7 +10418,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1028,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "AYACUCHO",
       "Provincia": "PAUCAR DEL SARA SARA",
       "Distrito": "OYOLO",
@@ -10334,7 +10428,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1029,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "AYACUCHO",
       "Provincia": "SUCRE",
       "Distrito": "QUEROBAMBA",
@@ -10344,7 +10438,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1030,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "AYACUCHO",
       "Provincia": "VICTOR FAJARDO",
       "Distrito": "HUANCAPI",
@@ -10354,7 +10448,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1031,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "AYACUCHO",
       "Provincia": "VICTOR FAJARDO",
       "Distrito": "ALCAMENCA",
@@ -10364,7 +10458,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1032,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "AYACUCHO",
       "Provincia": "VICTOR FAJARDO",
       "Distrito": "HUAMANQUIQUIA",
@@ -10374,7 +10468,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1033,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "AYACUCHO",
       "Provincia": "VILCAS HUAMAN",
       "Distrito": "ACCOMARCA",
@@ -10384,7 +10478,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1034,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "CALLAO",
       "Provincia": "CALLAO",
       "Distrito": "CALLAO",
@@ -10394,7 +10488,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1035,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "CALLAO",
       "Provincia": "CALLAO",
       "Distrito": "CALLAO",
@@ -10404,7 +10498,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1036,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "CALLAO",
       "Provincia": "CALLAO",
       "Distrito": "CALLAO",
@@ -10414,7 +10508,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1037,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "CUSCO",
       "Provincia": "CANCHIS",
       "Distrito": "SICUANI",
@@ -10424,7 +10518,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1038,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "CUSCO",
       "Provincia": "CANCHIS",
       "Distrito": "SICUANI",
@@ -10434,7 +10528,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1039,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "CUSCO",
       "Provincia": "CANCHIS",
       "Distrito": "COMBAPATA",
@@ -10444,7 +10538,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1040,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "CUSCO",
       "Provincia": "LA CONVENCION",
       "Distrito": "VILCABAMBA",
@@ -10454,7 +10548,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1041,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "HUANCAVELICA",
@@ -10464,7 +10558,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1042,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "HUANCAVELICA",
@@ -10474,7 +10568,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1043,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "HUANCAVELICA",
@@ -10484,7 +10578,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1044,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "ACORIA",
@@ -10494,7 +10588,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1045,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "MOYA",
@@ -10504,7 +10598,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1046,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "YAULI",
@@ -10514,7 +10608,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1047,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "YAULI",
@@ -10524,7 +10618,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1048,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "ASCENSION",
@@ -10534,7 +10628,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1049,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "HUANDO",
@@ -10544,7 +10638,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1050,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ACOBAMBA",
       "Distrito": "ANDABAMBA",
@@ -10554,7 +10648,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1051,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ACOBAMBA",
       "Distrito": "CAJA",
@@ -10564,7 +10658,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1052,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ACOBAMBA",
       "Distrito": "MARCAS",
@@ -10574,7 +10668,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1053,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "LIRCAY",
@@ -10584,7 +10678,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1054,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "CCOCHACCASA",
@@ -10594,7 +10688,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1055,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "CHINCHO",
@@ -10604,7 +10698,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1056,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "JULCAMARCA",
@@ -10614,7 +10708,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1057,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "SAN ANTONIO DE ANTAPARCO",
@@ -10624,7 +10718,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1058,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "SAN ANTONIO DE ANTAPARCO",
@@ -10634,7 +10728,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1059,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "CASTROVIRREYNA",
       "Distrito": "CASTROVIRREYNA",
@@ -10644,7 +10738,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1060,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "CASTROVIRREYNA",
       "Distrito": "CHUPAMARCA",
@@ -10654,7 +10748,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1061,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "CASTROVIRREYNA",
       "Distrito": "CHUPAMARCA",
@@ -10664,7 +10758,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1062,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "CASTROVIRREYNA",
       "Distrito": "MOLLEPAMPA",
@@ -10674,7 +10768,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1063,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "CASTROVIRREYNA",
       "Distrito": "MOLLEPAMPA",
@@ -10684,7 +10778,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1064,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "CHURCAMPA",
       "Distrito": "CHURCAMPA",
@@ -10694,7 +10788,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1065,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "CHURCAMPA",
       "Distrito": "CHURCAMPA",
@@ -10704,7 +10798,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1066,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "PAMPAS",
@@ -10714,7 +10808,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1067,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "ACRAQUIA",
@@ -10724,7 +10818,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1068,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "COLCABAMBA",
@@ -10734,7 +10828,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1069,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "COLCABAMBA",
@@ -10744,7 +10838,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1070,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "DANIEL HERNANDEZ",
@@ -10754,7 +10848,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1071,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "DANIEL HERNANDEZ",
@@ -10764,7 +10858,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1072,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "HUACHOCOLPA",
@@ -10774,7 +10868,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1073,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "HUARIBAMBA",
@@ -10784,7 +10878,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1074,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "PAZOS",
@@ -10794,7 +10888,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1075,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "SALCAHUASI",
@@ -10804,7 +10898,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1076,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "TINTAY PUNCU",
@@ -10814,7 +10908,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1077,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "TINTAY PUNCU",
@@ -10824,19 +10918,19 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1078,
-      "Mes": 6,
-      "Departamento": "HUANUCO",
-      "Provincia": "HUANUCO",
-      "Distrito": "HUANUCO",
+      "Mes": "Junio",
+      "Departamento": "HUÁNUCO",
+      "Provincia": "HUÁNUCO",
+      "Distrito": "HUÁNUCO",
       "Inicio": 18,
       "Fin": 29,
       "Metodo": "PROGESTAGENO"
     },
     {
       "Id": 1079,
-      "Mes": 6,
-      "Departamento": "HUANUCO",
-      "Provincia": "HUANUCO",
+      "Mes": "Junio",
+      "Departamento": "HUÁNUCO",
+      "Provincia": "HUÁNUCO",
       "Distrito": "CHINCHAO",
       "Inicio": 18,
       "Fin": 29,
@@ -10844,9 +10938,9 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1080,
-      "Mes": 6,
-      "Departamento": "HUANUCO",
-      "Provincia": "HUANUCO",
+      "Mes": "Junio",
+      "Departamento": "HUÁNUCO",
+      "Provincia": "HUÁNUCO",
       "Distrito": "SANTA MARIA DEL VALLE",
       "Inicio": 18,
       "Fin": 29,
@@ -10854,9 +10948,9 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1081,
-      "Mes": 6,
-      "Departamento": "HUANUCO",
-      "Provincia": "HUANUCO",
+      "Mes": "Junio",
+      "Departamento": "HUÁNUCO",
+      "Provincia": "HUÁNUCO",
       "Distrito": "YARUMAYO",
       "Inicio": 18,
       "Fin": 29,
@@ -10864,8 +10958,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1082,
-      "Mes": 6,
-      "Departamento": "HUANUCO",
+      "Mes": "Junio",
+      "Departamento": "HUÁNUCO",
       "Provincia": "AMBO",
       "Distrito": "HUACAR",
       "Inicio": 18,
@@ -10874,8 +10968,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1083,
-      "Mes": 6,
-      "Departamento": "HUANUCO",
+      "Mes": "Junio",
+      "Departamento": "HUÁNUCO",
       "Provincia": "AMBO",
       "Distrito": "SAN RAFAEL",
       "Inicio": 18,
@@ -10884,8 +10978,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1084,
-      "Mes": 6,
-      "Departamento": "HUANUCO",
+      "Mes": "Junio",
+      "Departamento": "HUÁNUCO",
       "Provincia": "DOS DE MAYO",
       "Distrito": "MARIAS",
       "Inicio": 18,
@@ -10894,8 +10988,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1085,
-      "Mes": 6,
-      "Departamento": "HUANUCO",
+      "Mes": "Junio",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUAMALIES",
       "Distrito": "LLATA",
       "Inicio": 12,
@@ -10904,8 +10998,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1086,
-      "Mes": 6,
-      "Departamento": "HUANUCO",
+      "Mes": "Junio",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUAMALIES",
       "Distrito": "JACAS GRANDE",
       "Inicio": 18,
@@ -10914,8 +11008,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1087,
-      "Mes": 6,
-      "Departamento": "HUANUCO",
+      "Mes": "Junio",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUAMALIES",
       "Distrito": "MONZON",
       "Inicio": 30,
@@ -10924,8 +11018,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1088,
-      "Mes": 6,
-      "Departamento": "HUANUCO",
+      "Mes": "Junio",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUAMALIES",
       "Distrito": "PUÑOS",
       "Inicio": 18,
@@ -10934,8 +11028,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1089,
-      "Mes": 6,
-      "Departamento": "HUANUCO",
+      "Mes": "Junio",
+      "Departamento": "HUÁNUCO",
       "Provincia": "LEONCIO PRADO",
       "Distrito": "DANIEL ALOMIA ROBLES",
       "Inicio": 30,
@@ -10944,8 +11038,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1090,
-      "Mes": 6,
-      "Departamento": "HUANUCO",
+      "Mes": "Junio",
+      "Departamento": "HUÁNUCO",
       "Provincia": "LEONCIO PRADO",
       "Distrito": "LUYANDO",
       "Inicio": 18,
@@ -10954,8 +11048,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1091,
-      "Mes": 6,
-      "Departamento": "HUANUCO",
+      "Mes": "Junio",
+      "Departamento": "HUÁNUCO",
       "Provincia": "LEONCIO PRADO",
       "Distrito": "LUYANDO",
       "Inicio": 30,
@@ -10964,8 +11058,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1092,
-      "Mes": 6,
-      "Departamento": "HUANUCO",
+      "Mes": "Junio",
+      "Departamento": "HUÁNUCO",
       "Provincia": "PACHITEA",
       "Distrito": "PANAO",
       "Inicio": 18,
@@ -10974,8 +11068,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1093,
-      "Mes": 6,
-      "Departamento": "HUANUCO",
+      "Mes": "Junio",
+      "Departamento": "HUÁNUCO",
       "Provincia": "PUERTO INCA",
       "Distrito": "HONORIA",
       "Inicio": 12,
@@ -10984,8 +11078,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1094,
-      "Mes": 6,
-      "Departamento": "HUANUCO",
+      "Mes": "Junio",
+      "Departamento": "HUÁNUCO",
       "Provincia": "LAURICOCHA",
       "Distrito": "JESUS",
       "Inicio": 18,
@@ -10994,8 +11088,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1095,
-      "Mes": 6,
-      "Departamento": "HUANUCO",
+      "Mes": "Junio",
+      "Departamento": "HUÁNUCO",
       "Provincia": "LAURICOCHA",
       "Distrito": "RONDOS",
       "Inicio": 30,
@@ -11004,8 +11098,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1096,
-      "Mes": 6,
-      "Departamento": "HUANUCO",
+      "Mes": "Junio",
+      "Departamento": "HUÁNUCO",
       "Provincia": "YAROWILCA",
       "Distrito": "CHACABAMBA",
       "Inicio": 18,
@@ -11014,8 +11108,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1097,
-      "Mes": 6,
-      "Departamento": "HUANUCO",
+      "Mes": "Junio",
+      "Departamento": "HUÁNUCO",
       "Provincia": "YAROWILCA",
       "Distrito": "OBAS",
       "Inicio": 30,
@@ -11024,7 +11118,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1098,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "ICA",
@@ -11034,7 +11128,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1099,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "ICA",
@@ -11044,7 +11138,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1100,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "SALAS",
@@ -11054,7 +11148,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1101,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "SAN JUAN BAUTISTA",
@@ -11064,7 +11158,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1102,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "SANTIAGO",
@@ -11074,7 +11168,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1103,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "ICA",
       "Provincia": "PALPA",
       "Distrito": "PALPA",
@@ -11084,7 +11178,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1104,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "ICA",
       "Provincia": "PISCO",
       "Distrito": "PISCO",
@@ -11094,7 +11188,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1105,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "ICA",
       "Provincia": "PISCO",
       "Distrito": "INDEPENDENCIA",
@@ -11104,7 +11198,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1106,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "ICA",
       "Provincia": "PISCO",
       "Distrito": "TUPAC AMARU INCA",
@@ -11114,7 +11208,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1107,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "ICA",
       "Provincia": "PISCO",
       "Distrito": "TUPAC AMARU INCA",
@@ -11124,8 +11218,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1108,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "HUANCAYO",
       "Inicio": 18,
@@ -11134,8 +11228,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1109,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "CHACAPAMPA",
       "Inicio": 18,
@@ -11144,8 +11238,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1110,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "CHACAPAMPA",
       "Inicio": 18,
@@ -11154,8 +11248,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1111,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "CHILCA",
       "Inicio": 18,
@@ -11164,8 +11258,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1112,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "CHILCA",
       "Inicio": 30,
@@ -11174,8 +11268,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1113,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "CHONGOS ALTO",
       "Inicio": 18,
@@ -11184,8 +11278,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1114,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "EL TAMBO",
       "Inicio": 18,
@@ -11194,8 +11288,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1115,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "EL TAMBO",
       "Inicio": 30,
@@ -11204,8 +11298,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1116,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "HUANCAN",
       "Inicio": 18,
@@ -11214,8 +11308,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1117,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "HUAYUCACHI",
       "Inicio": 18,
@@ -11224,8 +11318,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1118,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "HUAYUCACHI",
       "Inicio": 30,
@@ -11234,8 +11328,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1119,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "SAPALLANGA",
       "Inicio": 18,
@@ -11244,8 +11338,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1120,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "SAPALLANGA",
       "Inicio": 30,
@@ -11254,8 +11348,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1121,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "SANTO DOMINGO DE ACOBAMBA",
       "Inicio": 18,
@@ -11264,8 +11358,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1122,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "SANTO DOMINGO DE ACOBAMBA",
       "Inicio": 30,
@@ -11274,8 +11368,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1123,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "CONCEPCION",
       "Distrito": "ANDAMARCA",
       "Inicio": 30,
@@ -11284,8 +11378,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1124,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "CONCEPCION",
       "Distrito": "COMAS",
       "Inicio": 18,
@@ -11294,8 +11388,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1125,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "CHANCHAMAYO",
       "Inicio": 18,
@@ -11304,8 +11398,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1126,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "PERENE",
       "Inicio": 12,
@@ -11314,8 +11408,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1127,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "PICHANAKI",
       "Inicio": 18,
@@ -11324,8 +11418,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1128,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "PICHANAKI",
       "Inicio": 30,
@@ -11334,8 +11428,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1129,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "SAN LUIS DE SHUARO",
       "Inicio": 18,
@@ -11344,8 +11438,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1130,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "SAN RAMON",
       "Inicio": 30,
@@ -11354,8 +11448,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1131,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "MASMA",
       "Inicio": 18,
@@ -11364,8 +11458,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1132,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "MUQUIYAUYO",
       "Inicio": 30,
@@ -11374,8 +11468,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1133,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "PARCO",
       "Inicio": 12,
@@ -11384,8 +11478,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1134,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "YAUYOS",
       "Inicio": 18,
@@ -11394,8 +11488,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1135,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "YAUYOS",
       "Inicio": 30,
@@ -11404,9 +11498,9 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1136,
-      "Mes": 6,
-      "Departamento": "JUNIN",
-      "Provincia": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
+      "Provincia": "JUNÍN",
       "Distrito": "CARHUAMAYO",
       "Inicio": 30,
       "Fin": 59,
@@ -11414,9 +11508,9 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1137,
-      "Mes": 6,
-      "Departamento": "JUNIN",
-      "Provincia": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
+      "Provincia": "JUNÍN",
       "Distrito": "ULCUMAYO",
       "Inicio": 30,
       "Fin": 59,
@@ -11424,8 +11518,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1138,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "SATIPO",
       "Inicio": 18,
@@ -11434,8 +11528,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1139,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "COVIRIALI",
       "Inicio": 30,
@@ -11444,8 +11538,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1140,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "LLAYLLA",
       "Inicio": 30,
@@ -11454,8 +11548,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1141,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "MAZAMARI",
       "Inicio": 18,
@@ -11464,8 +11558,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1142,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "PANGOA",
       "Inicio": 12,
@@ -11474,8 +11568,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1143,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "PANGOA",
       "Inicio": 18,
@@ -11484,8 +11578,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1144,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "PANGOA",
       "Inicio": 30,
@@ -11494,8 +11588,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1145,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "RIO TAMBO",
       "Inicio": 12,
@@ -11504,8 +11598,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1146,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "RIO TAMBO",
       "Inicio": 18,
@@ -11514,8 +11608,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1147,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "TARMA",
       "Distrito": "HUASAHUASI",
       "Inicio": 12,
@@ -11524,8 +11618,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1148,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "YAULI",
       "Distrito": "LA OROYA",
       "Inicio": 18,
@@ -11534,8 +11628,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1149,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "YAULI",
       "Distrito": "SANTA ROSA DE SACCO",
       "Inicio": 18,
@@ -11544,8 +11638,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1150,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "CHUPACA",
       "Distrito": "AHUAC",
       "Inicio": 12,
@@ -11554,8 +11648,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1151,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "CHUPACA",
       "Distrito": "AHUAC",
       "Inicio": 18,
@@ -11564,8 +11658,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1152,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "CHUPACA",
       "Distrito": "CHONGOS BAJO",
       "Inicio": 30,
@@ -11574,8 +11668,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1153,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "CHUPACA",
       "Distrito": "HUACHAC",
       "Inicio": 30,
@@ -11584,8 +11678,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1154,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "CHUPACA",
       "Distrito": "HUAMANCACA CHICO",
       "Inicio": 18,
@@ -11594,8 +11688,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1155,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "CHUPACA",
       "Distrito": "TRES DE DICIEMBRE",
       "Inicio": 18,
@@ -11604,8 +11698,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1156,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "CHUPACA",
       "Distrito": "TRES DE DICIEMBRE",
       "Inicio": 30,
@@ -11614,8 +11708,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1157,
-      "Mes": 6,
-      "Departamento": "JUNIN",
+      "Mes": "Junio",
+      "Departamento": "JUNÍN",
       "Provincia": "CHUPACA",
       "Distrito": "YANACANCHA",
       "Inicio": 18,
@@ -11624,7 +11718,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1158,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "LA LIBERTAD",
       "Provincia": "BOLIVAR",
       "Distrito": "UCUNCHA",
@@ -11634,7 +11728,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1159,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "CHICLAYO",
@@ -11644,7 +11738,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1160,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "ETEN",
@@ -11654,7 +11748,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1161,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "JOSE LEONARDO ORTIZ",
@@ -11664,7 +11758,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1162,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "LA VICTORIA",
@@ -11674,7 +11768,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1163,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "LA VICTORIA",
@@ -11684,7 +11778,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1164,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "LA VICTORIA",
@@ -11694,7 +11788,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1165,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "SANTA ROSA",
@@ -11704,7 +11798,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1166,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "FERREÑAFE",
       "Distrito": "CAÑARIS",
@@ -11714,7 +11808,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1167,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "LAMBAYEQUE",
       "Distrito": "SAN JOSE",
@@ -11724,7 +11818,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1168,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "ATE",
@@ -11734,7 +11828,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1169,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "ATE",
@@ -11744,7 +11838,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1170,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "ATE",
@@ -11754,7 +11848,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1171,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "BREÑA",
@@ -11764,7 +11858,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1172,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "CHACLACAYO",
@@ -11774,7 +11868,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1173,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "CHORRILLOS",
@@ -11784,7 +11878,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1174,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "CHORRILLOS",
@@ -11794,7 +11888,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1175,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "CHORRILLOS",
@@ -11804,7 +11898,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1176,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "CIENEGUILLA",
@@ -11814,7 +11908,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1177,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "EL AGUSTINO",
@@ -11824,7 +11918,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1178,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "LOS OLIVOS",
@@ -11834,7 +11928,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1179,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "LURIGANCHO (CHOSICA)",
@@ -11844,7 +11938,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1180,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "LURIGANCHO (CHOSICA)",
@@ -11854,7 +11948,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1181,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "LURIN",
@@ -11864,7 +11958,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1182,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "LURIN",
@@ -11874,7 +11968,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1183,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "MAGDALENA VIEJA (PUEBLO LIBRE)",
@@ -11884,7 +11978,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1184,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "MAGDALENA VIEJA (PUEBLO LIBRE)",
@@ -11894,7 +11988,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1185,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "PUCUSANA",
@@ -11904,17 +11998,17 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1186,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
-      "Distrito": "SAN MARTIN DE PORRES",
+      "Distrito": "SAN MARTÍN DE PORRES",
       "Inicio": 18,
       "Fin": 29,
       "Metodo": "YUZPE"
     },
     {
       "Id": 1187,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "SANTIAGO DE SURCO",
@@ -11924,7 +12018,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1188,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "VILLA EL SALVADOR",
@@ -11934,7 +12028,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1189,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "LIMA",
       "Provincia": "HUARAL",
       "Distrito": "AUCALLAMA",
@@ -11944,7 +12038,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1190,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "MADRE DE DIOS",
       "Provincia": "TAMBOPATA",
       "Distrito": "TAMBOPATA",
@@ -11954,7 +12048,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1191,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "MADRE DE DIOS",
       "Provincia": "TAMBOPATA",
       "Distrito": "TAMBOPATA",
@@ -11964,7 +12058,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1192,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "MOQUEGUA",
       "Provincia": "ILO",
       "Distrito": "ILO",
@@ -11974,7 +12068,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1193,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "PIURA",
       "Provincia": "PIURA",
       "Distrito": "CATACAOS",
@@ -11984,7 +12078,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1194,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "PIURA",
       "Provincia": "PIURA",
       "Distrito": "CATACAOS",
@@ -11994,7 +12088,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1195,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "PIURA",
       "Provincia": "PIURA",
       "Distrito": "LA ARENA",
@@ -12004,7 +12098,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1196,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "PIURA",
       "Provincia": "AYABACA",
       "Distrito": "PAIMAS",
@@ -12014,7 +12108,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1197,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "PIURA",
       "Provincia": "HUANCABAMBA",
       "Distrito": "HUANCABAMBA",
@@ -12024,7 +12118,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1198,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "PIURA",
       "Provincia": "MORROPON",
       "Distrito": "MORROPON",
@@ -12034,7 +12128,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1199,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "PUNO",
       "Provincia": "PUNO",
       "Distrito": "PUNO",
@@ -12044,7 +12138,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1200,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "PUNO",
       "Provincia": "PUNO",
       "Distrito": "PUNO",
@@ -12054,8 +12148,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1201,
-      "Mes": 6,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Junio",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "BELLAVISTA",
       "Distrito": "ALTO BIAVO",
       "Inicio": 30,
@@ -12064,8 +12158,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1202,
-      "Mes": 6,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Junio",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "BELLAVISTA",
       "Distrito": "SAN PABLO",
       "Inicio": 30,
@@ -12074,8 +12168,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1203,
-      "Mes": 6,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Junio",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "RIOJA",
       "Distrito": "ELIAS SOPLIN VARGAS",
       "Inicio": 30,
@@ -12084,9 +12178,9 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1204,
-      "Mes": 6,
-      "Departamento": "SAN MARTIN",
-      "Provincia": "SAN MARTIN",
+      "Mes": "Junio",
+      "Departamento": "SAN MARTÍN",
+      "Provincia": "SAN MARTÍN",
       "Distrito": "TARAPOTO",
       "Inicio": 18,
       "Fin": 29,
@@ -12094,9 +12188,9 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1205,
-      "Mes": 6,
-      "Departamento": "SAN MARTIN",
-      "Provincia": "SAN MARTIN",
+      "Mes": "Junio",
+      "Departamento": "SAN MARTÍN",
+      "Provincia": "SAN MARTÍN",
       "Distrito": "HUIMBAYOC",
       "Inicio": 18,
       "Fin": 29,
@@ -12104,9 +12198,9 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1206,
-      "Mes": 6,
-      "Departamento": "SAN MARTIN",
-      "Provincia": "SAN MARTIN",
+      "Mes": "Junio",
+      "Departamento": "SAN MARTÍN",
+      "Provincia": "SAN MARTÍN",
       "Distrito": "LA BANDA DE SHILCAYO",
       "Inicio": 18,
       "Fin": 29,
@@ -12114,9 +12208,9 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1207,
-      "Mes": 6,
-      "Departamento": "SAN MARTIN",
-      "Provincia": "SAN MARTIN",
+      "Mes": "Junio",
+      "Departamento": "SAN MARTÍN",
+      "Provincia": "SAN MARTÍN",
       "Distrito": "LA BANDA DE SHILCAYO",
       "Inicio": 30,
       "Fin": 59,
@@ -12124,7 +12218,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1208,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "TACNA",
@@ -12134,7 +12228,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1209,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "ALTO DE LA ALIANZA",
@@ -12144,7 +12238,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1210,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "ALTO DE LA ALIANZA",
@@ -12154,7 +12248,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1211,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "PALCA",
@@ -12164,7 +12258,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1212,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "POCOLLAY",
@@ -12174,7 +12268,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1213,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "POCOLLAY",
@@ -12184,7 +12278,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1214,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "CORONEL GREGORIO ALBARRACIN LANCHIPA",
@@ -12194,7 +12288,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1215,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "CORONEL GREGORIO ALBARRACIN LANCHIPA",
@@ -12204,7 +12298,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1216,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "CORONEL GREGORIO ALBARRACIN LANCHIPA",
@@ -12214,7 +12308,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1217,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "TACNA",
       "Provincia": "CANDARAVE",
       "Distrito": "CANDARAVE",
@@ -12224,7 +12318,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1218,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "TACNA",
       "Provincia": "JORGE BASADRE",
       "Distrito": "ILABAYA",
@@ -12234,7 +12328,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1219,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "TACNA",
       "Provincia": "JORGE BASADRE",
       "Distrito": "ITE",
@@ -12244,7 +12338,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1220,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "TACNA",
       "Provincia": "TARATA",
       "Distrito": "TICACO",
@@ -12254,7 +12348,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1221,
-      "Mes": 6,
+      "Mes": "Junio",
       "Departamento": "TACNA",
       "Provincia": "TARATA",
       "Distrito": "TICACO",
@@ -12264,8 +12358,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1222,
-      "Mes": 7,
-      "Departamento": "ANCASH",
+      "Mes": "Julio",
+      "Departamento": "ÁNCASH",
       "Provincia": "CARHUAZ",
       "Distrito": "ACOPAMPA",
       "Inicio": 18,
@@ -12274,8 +12368,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1223,
-      "Mes": 7,
-      "Departamento": "ANCASH",
+      "Mes": "Julio",
+      "Departamento": "ÁNCASH",
       "Provincia": "HUAYLAS",
       "Distrito": "PAMPAROMAS",
       "Inicio": 18,
@@ -12284,8 +12378,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1224,
-      "Mes": 7,
-      "Departamento": "ANCASH",
+      "Mes": "Julio",
+      "Departamento": "ÁNCASH",
       "Provincia": "PALLASCA",
       "Distrito": "LACABAMBA",
       "Inicio": 30,
@@ -12294,8 +12388,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1225,
-      "Mes": 7,
-      "Departamento": "ANCASH",
+      "Mes": "Julio",
+      "Departamento": "ÁNCASH",
       "Provincia": "RECUAY",
       "Distrito": "COTAPARACO",
       "Inicio": 18,
@@ -12304,8 +12398,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1226,
-      "Mes": 7,
-      "Departamento": "ANCASH",
+      "Mes": "Julio",
+      "Departamento": "ÁNCASH",
       "Provincia": "RECUAY",
       "Distrito": "TICAPAMPA",
       "Inicio": 30,
@@ -12314,8 +12408,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1227,
-      "Mes": 7,
-      "Departamento": "ANCASH",
+      "Mes": "Julio",
+      "Departamento": "ÁNCASH",
       "Provincia": "SANTA",
       "Distrito": "NUEVO CHIMBOTE",
       "Inicio": 18,
@@ -12324,8 +12418,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1228,
-      "Mes": 7,
-      "Departamento": "APURIMAC",
+      "Mes": "Julio",
+      "Departamento": "APURÍMAC",
       "Provincia": "ABANCAY",
       "Distrito": "ABANCAY",
       "Inicio": 18,
@@ -12334,8 +12428,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1229,
-      "Mes": 7,
-      "Departamento": "APURIMAC",
+      "Mes": "Julio",
+      "Departamento": "APURÍMAC",
       "Provincia": "ABANCAY",
       "Distrito": "CURAHUASI",
       "Inicio": 30,
@@ -12344,8 +12438,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1230,
-      "Mes": 7,
-      "Departamento": "APURIMAC",
+      "Mes": "Julio",
+      "Departamento": "APURÍMAC",
       "Provincia": "ABANCAY",
       "Distrito": "CURAHUASI",
       "Inicio": 30,
@@ -12354,8 +12448,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1231,
-      "Mes": 7,
-      "Departamento": "APURIMAC",
+      "Mes": "Julio",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "ANDAHUAYLAS",
       "Inicio": 30,
@@ -12364,8 +12458,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1232,
-      "Mes": 7,
-      "Departamento": "APURIMAC",
+      "Mes": "Julio",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "ANDARAPA",
       "Inicio": 18,
@@ -12374,8 +12468,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1233,
-      "Mes": 7,
-      "Departamento": "APURIMAC",
+      "Mes": "Julio",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "CHIARA",
       "Inicio": 18,
@@ -12384,8 +12478,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1234,
-      "Mes": 7,
-      "Departamento": "APURIMAC",
+      "Mes": "Julio",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "CHIARA",
       "Inicio": 30,
@@ -12394,8 +12488,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1235,
-      "Mes": 7,
-      "Departamento": "APURIMAC",
+      "Mes": "Julio",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "PACOBAMBA",
       "Inicio": 30,
@@ -12404,8 +12498,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1236,
-      "Mes": 7,
-      "Departamento": "APURIMAC",
+      "Mes": "Julio",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "PAMPACHIRI",
       "Inicio": 12,
@@ -12414,8 +12508,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1237,
-      "Mes": 7,
-      "Departamento": "APURIMAC",
+      "Mes": "Julio",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "PAMPACHIRI",
       "Inicio": 18,
@@ -12424,8 +12518,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1238,
-      "Mes": 7,
-      "Departamento": "APURIMAC",
+      "Mes": "Julio",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "PAMPACHIRI",
       "Inicio": 30,
@@ -12434,8 +12528,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1239,
-      "Mes": 7,
-      "Departamento": "APURIMAC",
+      "Mes": "Julio",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "TALAVERA",
       "Inicio": 18,
@@ -12444,8 +12538,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1240,
-      "Mes": 7,
-      "Departamento": "APURIMAC",
+      "Mes": "Julio",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "TALAVERA",
       "Inicio": 30,
@@ -12454,8 +12548,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1241,
-      "Mes": 7,
-      "Departamento": "APURIMAC",
+      "Mes": "Julio",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "KAQUIABAMBA",
       "Inicio": 18,
@@ -12464,8 +12558,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1242,
-      "Mes": 7,
-      "Departamento": "APURIMAC",
+      "Mes": "Julio",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "KAQUIABAMBA",
       "Inicio": 30,
@@ -12474,8 +12568,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1243,
-      "Mes": 7,
-      "Departamento": "APURIMAC",
+      "Mes": "Julio",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "KAQUIABAMBA",
       "Inicio": 30,
@@ -12484,8 +12578,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1244,
-      "Mes": 7,
-      "Departamento": "APURIMAC",
+      "Mes": "Julio",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "JOSÉ MARÍA ARGUEDAS",
       "Inicio": 18,
@@ -12494,8 +12588,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1245,
-      "Mes": 7,
-      "Departamento": "APURIMAC",
+      "Mes": "Julio",
+      "Departamento": "APURÍMAC",
       "Provincia": "AYMARAES",
       "Distrito": "CHALHUANCA",
       "Inicio": 18,
@@ -12504,8 +12598,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1246,
-      "Mes": 7,
-      "Departamento": "APURIMAC",
+      "Mes": "Julio",
+      "Departamento": "APURÍMAC",
       "Provincia": "AYMARAES",
       "Distrito": "CHALHUANCA",
       "Inicio": 30,
@@ -12514,8 +12608,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1247,
-      "Mes": 7,
-      "Departamento": "APURIMAC",
+      "Mes": "Julio",
+      "Departamento": "APURÍMAC",
       "Provincia": "AYMARAES",
       "Distrito": "SAÑAYCA",
       "Inicio": 30,
@@ -12524,8 +12618,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1248,
-      "Mes": 7,
-      "Departamento": "APURIMAC",
+      "Mes": "Julio",
+      "Departamento": "APURÍMAC",
       "Provincia": "COTABAMBAS",
       "Distrito": "COTABAMBAS",
       "Inicio": 30,
@@ -12534,8 +12628,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1249,
-      "Mes": 7,
-      "Departamento": "APURIMAC",
+      "Mes": "Julio",
+      "Departamento": "APURÍMAC",
       "Provincia": "GRAU",
       "Distrito": "PROGRESO",
       "Inicio": 30,
@@ -12544,7 +12638,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1250,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "AREQUIPA",
       "Provincia": "AREQUIPA",
       "Distrito": "CERRO COLORADO",
@@ -12554,7 +12648,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1251,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "AREQUIPA",
       "Provincia": "AREQUIPA",
       "Distrito": "MIRAFLORES",
@@ -12564,7 +12658,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1252,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "AREQUIPA",
       "Provincia": "CAMANA",
       "Distrito": "MARISCAL CACERES",
@@ -12574,7 +12668,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1253,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "AREQUIPA",
       "Provincia": "CAMANA",
       "Distrito": "NICOLAS DE PIEROLA",
@@ -12584,7 +12678,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1254,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "AREQUIPA",
       "Provincia": "CAYLLOMA",
       "Distrito": "CALLALLI",
@@ -12594,7 +12688,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1255,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "AREQUIPA",
       "Provincia": "CAYLLOMA",
       "Distrito": "CALLALLI",
@@ -12604,7 +12698,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1256,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "AREQUIPA",
       "Provincia": "CAYLLOMA",
       "Distrito": "TISCO",
@@ -12614,7 +12708,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1257,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "AREQUIPA",
       "Provincia": "ISLAY",
       "Distrito": "MOLLENDO",
@@ -12624,7 +12718,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1258,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "AYACUCHO",
       "Provincia": "HUAMANGA",
       "Distrito": "AYACUCHO",
@@ -12634,7 +12728,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1259,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "AYACUCHO",
       "Provincia": "HUAMANGA",
       "Distrito": "TAMBILLO",
@@ -12644,7 +12738,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1260,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "AYACUCHO",
       "Provincia": "HUAMANGA",
       "Distrito": "ANDRES AVELINO CACERES DORREGARAY",
@@ -12654,7 +12748,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1261,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "AYACUCHO",
       "Provincia": "CANGALLO",
       "Distrito": "PARAS",
@@ -12664,7 +12758,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1262,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "AYACUCHO",
       "Provincia": "CANGALLO",
       "Distrito": "PARAS",
@@ -12674,7 +12768,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1263,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "AYACUCHO",
       "Provincia": "CANGALLO",
       "Distrito": "TOTOS",
@@ -12684,7 +12778,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1264,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "AYACUCHO",
       "Provincia": "HUANTA",
       "Distrito": "AYAHUANCO",
@@ -12694,7 +12788,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1265,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "AYACUCHO",
       "Provincia": "HUANTA",
       "Distrito": "SIVIA",
@@ -12704,7 +12798,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1266,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "AYACUCHO",
       "Provincia": "LA MAR",
       "Distrito": "ANCO",
@@ -12714,7 +12808,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1267,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "AYACUCHO",
       "Provincia": "LA MAR",
       "Distrito": "ANCO",
@@ -12724,7 +12818,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1268,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "AYACUCHO",
       "Provincia": "LA MAR",
       "Distrito": "AYNA",
@@ -12734,7 +12828,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1269,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "AYACUCHO",
       "Provincia": "LA MAR",
       "Distrito": "AYNA",
@@ -12744,7 +12838,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1270,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "AYACUCHO",
       "Provincia": "LUCANAS",
       "Distrito": "PUQUIO",
@@ -12754,7 +12848,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1271,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "AYACUCHO",
       "Provincia": "LUCANAS",
       "Distrito": "PUQUIO",
@@ -12764,7 +12858,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1272,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "AYACUCHO",
       "Provincia": "LUCANAS",
       "Distrito": "HUAC-HUAS",
@@ -12774,7 +12868,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1273,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "AYACUCHO",
       "Provincia": "LUCANAS",
       "Distrito": "OCAÑA",
@@ -12784,7 +12878,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1274,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "AYACUCHO",
       "Provincia": "LUCANAS",
       "Distrito": "SAN PEDRO",
@@ -12794,7 +12888,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1275,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "AYACUCHO",
       "Provincia": "VICTOR FAJARDO",
       "Distrito": "HUAYA",
@@ -12804,7 +12898,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1276,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "AYACUCHO",
       "Provincia": "VILCAS HUAMAN",
       "Distrito": "VISCHONGO",
@@ -12814,7 +12908,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1277,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "CALLAO",
       "Provincia": "CALLAO",
       "Distrito": "CALLAO",
@@ -12824,7 +12918,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1278,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "CALLAO",
       "Provincia": "CALLAO",
       "Distrito": "CALLAO",
@@ -12834,7 +12928,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1279,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "CALLAO",
       "Provincia": "CALLAO",
       "Distrito": "LA PERLA",
@@ -12844,7 +12938,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1280,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "CUSCO",
       "Provincia": "CUSCO",
       "Distrito": "CCORCA",
@@ -12854,7 +12948,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1281,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "CUSCO",
       "Provincia": "CUSCO",
       "Distrito": "SAN JERONIMO",
@@ -12864,7 +12958,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1282,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "CUSCO",
       "Provincia": "ANTA",
       "Distrito": "LIMATAMBO",
@@ -12874,7 +12968,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1283,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "CUSCO",
       "Provincia": "CANCHIS",
       "Distrito": "COMBAPATA",
@@ -12884,7 +12978,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1284,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "CUSCO",
       "Provincia": "CANCHIS",
       "Distrito": "SAN PABLO",
@@ -12894,7 +12988,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1285,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "CUSCO",
       "Provincia": "LA CONVENCION",
       "Distrito": "SANTA ANA",
@@ -12904,7 +12998,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1286,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "CUSCO",
       "Provincia": "LA CONVENCION",
       "Distrito": "KIMBIRI",
@@ -12914,7 +13008,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1287,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "CUSCO",
       "Provincia": "LA CONVENCION",
       "Distrito": "VILCABAMBA",
@@ -12924,7 +13018,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1288,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "CUSCO",
       "Provincia": "LA CONVENCION",
       "Distrito": "PICHARI",
@@ -12934,7 +13028,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1289,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "HUANCAVELICA",
@@ -12944,7 +13038,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1290,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "HUANCAVELICA",
@@ -12954,7 +13048,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1291,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "CONAYCA",
@@ -12964,7 +13058,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1292,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "HUACHOCOLPA",
@@ -12974,7 +13068,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1293,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "PALCA",
@@ -12984,7 +13078,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1294,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "HUANDO",
@@ -12994,7 +13088,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1295,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "LIRCAY",
@@ -13004,7 +13098,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1296,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "ANCHONGA",
@@ -13014,7 +13108,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1297,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "ANCHONGA",
@@ -13024,7 +13118,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1298,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "CHINCHO",
@@ -13034,7 +13128,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1299,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "SANTO TOMAS DE PATA",
@@ -13044,7 +13138,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1300,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "SECCLLA",
@@ -13054,7 +13148,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1301,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "SECCLLA",
@@ -13064,7 +13158,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1302,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "CASTROVIRREYNA",
       "Distrito": "CASTROVIRREYNA",
@@ -13074,7 +13168,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1303,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "CASTROVIRREYNA",
       "Distrito": "CASTROVIRREYNA",
@@ -13084,7 +13178,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1304,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "CASTROVIRREYNA",
       "Distrito": "MOLLEPAMPA",
@@ -13094,7 +13188,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1305,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "CHURCAMPA",
       "Distrito": "CHURCAMPA",
@@ -13104,7 +13198,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1306,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "ACOSTAMBO",
@@ -13114,7 +13208,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1307,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "COLCABAMBA",
@@ -13124,7 +13218,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1308,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "COLCABAMBA",
@@ -13134,7 +13228,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1309,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "COLCABAMBA",
@@ -13144,7 +13238,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1310,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "DANIEL HERNANDEZ",
@@ -13154,7 +13248,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1311,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "HUARIBAMBA",
@@ -13164,19 +13258,19 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1312,
-      "Mes": 7,
-      "Departamento": "HUANUCO",
-      "Provincia": "HUANUCO",
-      "Distrito": "HUANUCO",
+      "Mes": "Julio",
+      "Departamento": "HUÁNUCO",
+      "Provincia": "HUÁNUCO",
+      "Distrito": "HUÁNUCO",
       "Inicio": 30,
       "Fin": 59,
       "Metodo": "YUZPE"
     },
     {
       "Id": 1313,
-      "Mes": 7,
-      "Departamento": "HUANUCO",
-      "Provincia": "HUANUCO",
+      "Mes": "Julio",
+      "Departamento": "HUÁNUCO",
+      "Provincia": "HUÁNUCO",
       "Distrito": "YACUS",
       "Inicio": 12,
       "Fin": 17,
@@ -13184,8 +13278,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1314,
-      "Mes": 7,
-      "Departamento": "HUANUCO",
+      "Mes": "Julio",
+      "Departamento": "HUÁNUCO",
       "Provincia": "DOS DE MAYO",
       "Distrito": "PACHAS",
       "Inicio": 12,
@@ -13194,8 +13288,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1315,
-      "Mes": 7,
-      "Departamento": "HUANUCO",
+      "Mes": "Julio",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUACAYBAMBA",
       "Distrito": "HUACAYBAMBA",
       "Inicio": 12,
@@ -13204,8 +13298,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1316,
-      "Mes": 7,
-      "Departamento": "HUANUCO",
+      "Mes": "Julio",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUAMALIES",
       "Distrito": "LLATA",
       "Inicio": 30,
@@ -13214,8 +13308,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1317,
-      "Mes": 7,
-      "Departamento": "HUANUCO",
+      "Mes": "Julio",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUAMALIES",
       "Distrito": "ARANCAY",
       "Inicio": 18,
@@ -13224,8 +13318,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1318,
-      "Mes": 7,
-      "Departamento": "HUANUCO",
+      "Mes": "Julio",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUAMALIES",
       "Distrito": "PUÑOS",
       "Inicio": 18,
@@ -13234,8 +13328,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1319,
-      "Mes": 7,
-      "Departamento": "HUANUCO",
+      "Mes": "Julio",
+      "Departamento": "HUÁNUCO",
       "Provincia": "LEONCIO PRADO",
       "Distrito": "JOSE CRESPO Y CASTILLO",
       "Inicio": 18,
@@ -13244,8 +13338,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1320,
-      "Mes": 7,
-      "Departamento": "HUANUCO",
+      "Mes": "Julio",
+      "Departamento": "HUÁNUCO",
       "Provincia": "LEONCIO PRADO",
       "Distrito": "JOSE CRESPO Y CASTILLO",
       "Inicio": 30,
@@ -13254,8 +13348,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1321,
-      "Mes": 7,
-      "Departamento": "HUANUCO",
+      "Mes": "Julio",
+      "Departamento": "HUÁNUCO",
       "Provincia": "MARAÑON",
       "Distrito": "CHOLON",
       "Inicio": 18,
@@ -13264,8 +13358,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1322,
-      "Mes": 7,
-      "Departamento": "HUANUCO",
+      "Mes": "Julio",
+      "Departamento": "HUÁNUCO",
       "Provincia": "PUERTO INCA",
       "Distrito": "HONORIA",
       "Inicio": 18,
@@ -13274,8 +13368,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1323,
-      "Mes": 7,
-      "Departamento": "HUANUCO",
+      "Mes": "Julio",
+      "Departamento": "HUÁNUCO",
       "Provincia": "PUERTO INCA",
       "Distrito": "TOURNAVISTA",
       "Inicio": 12,
@@ -13284,8 +13378,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1324,
-      "Mes": 7,
-      "Departamento": "HUANUCO",
+      "Mes": "Julio",
+      "Departamento": "HUÁNUCO",
       "Provincia": "PUERTO INCA",
       "Distrito": "TOURNAVISTA",
       "Inicio": 18,
@@ -13294,8 +13388,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1325,
-      "Mes": 7,
-      "Departamento": "HUANUCO",
+      "Mes": "Julio",
+      "Departamento": "HUÁNUCO",
       "Provincia": "PUERTO INCA",
       "Distrito": "TOURNAVISTA",
       "Inicio": 30,
@@ -13304,8 +13398,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1326,
-      "Mes": 7,
-      "Departamento": "HUANUCO",
+      "Mes": "Julio",
+      "Departamento": "HUÁNUCO",
       "Provincia": "LAURICOCHA",
       "Distrito": "BAÑOS",
       "Inicio": 18,
@@ -13314,8 +13408,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1327,
-      "Mes": 7,
-      "Departamento": "HUANUCO",
+      "Mes": "Julio",
+      "Departamento": "HUÁNUCO",
       "Provincia": "YAROWILCA",
       "Distrito": "OBAS",
       "Inicio": 12,
@@ -13324,7 +13418,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1328,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "ICA",
@@ -13334,7 +13428,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1329,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "ICA",
@@ -13344,7 +13438,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1330,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "LA TINGUIÑA",
@@ -13354,7 +13448,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1331,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "PACHACUTEC",
@@ -13364,7 +13458,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1332,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "PARCONA",
@@ -13374,7 +13468,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1333,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "SANTIAGO",
@@ -13384,7 +13478,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1334,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "YAUCA DEL ROSARIO",
@@ -13394,7 +13488,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1335,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "ICA",
       "Provincia": "PISCO",
       "Distrito": "PISCO",
@@ -13404,7 +13498,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1336,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "ICA",
       "Provincia": "PISCO",
       "Distrito": "INDEPENDENCIA",
@@ -13414,7 +13508,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1337,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "ICA",
       "Provincia": "PISCO",
       "Distrito": "INDEPENDENCIA",
@@ -13424,7 +13518,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1338,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "ICA",
       "Provincia": "PISCO",
       "Distrito": "PARACAS",
@@ -13434,7 +13528,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1339,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "ICA",
       "Provincia": "PISCO",
       "Distrito": "SAN ANDRES",
@@ -13444,8 +13538,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1340,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "HUANCAYO",
       "Inicio": 18,
@@ -13454,8 +13548,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1341,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "CHILCA",
       "Inicio": 18,
@@ -13464,8 +13558,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1342,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "EL TAMBO",
       "Inicio": 18,
@@ -13474,8 +13568,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1343,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "EL TAMBO",
       "Inicio": 30,
@@ -13484,8 +13578,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1344,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "HUAYUCACHI",
       "Inicio": 18,
@@ -13494,8 +13588,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1345,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "SANTO DOMINGO DE ACOBAMBA",
       "Inicio": 12,
@@ -13504,8 +13598,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1346,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "SANTO DOMINGO DE ACOBAMBA",
       "Inicio": 18,
@@ -13514,8 +13608,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1347,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "SANTO DOMINGO DE ACOBAMBA",
       "Inicio": 18,
@@ -13524,8 +13618,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1348,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "CONCEPCION",
       "Distrito": "CONCEPCION",
       "Inicio": 18,
@@ -13534,8 +13628,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1349,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "CONCEPCION",
       "Distrito": "SAN JOSE DE QUERO",
       "Inicio": 12,
@@ -13544,8 +13638,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1350,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "CONCEPCION",
       "Distrito": "SAN JOSE DE QUERO",
       "Inicio": 18,
@@ -13554,8 +13648,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1351,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "CONCEPCION",
       "Distrito": "SANTA ROSA DE OCOPA",
       "Inicio": 30,
@@ -13564,8 +13658,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1352,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "CHANCHAMAYO",
       "Inicio": 18,
@@ -13574,8 +13668,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1353,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "PERENE",
       "Inicio": 18,
@@ -13584,8 +13678,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1354,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "PICHANAKI",
       "Inicio": 12,
@@ -13594,8 +13688,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1355,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "PICHANAKI",
       "Inicio": 18,
@@ -13604,8 +13698,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1356,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "PICHANAKI",
       "Inicio": 30,
@@ -13614,8 +13708,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1357,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "SAN RAMON",
       "Inicio": 18,
@@ -13624,8 +13718,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1358,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "SAN RAMON",
       "Inicio": 30,
@@ -13634,8 +13728,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1359,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "JAUJA",
       "Inicio": 30,
@@ -13644,8 +13738,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1360,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "ACOLLA",
       "Inicio": 30,
@@ -13654,8 +13748,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1361,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "CANCHAYLLO",
       "Inicio": 18,
@@ -13664,8 +13758,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1362,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "LLOCLLAPAMPA",
       "Inicio": 18,
@@ -13674,8 +13768,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1363,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "MASMA",
       "Inicio": 18,
@@ -13684,8 +13778,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1364,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "MASMA",
       "Inicio": 30,
@@ -13694,8 +13788,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1365,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "SAN LORENZO",
       "Inicio": 12,
@@ -13704,8 +13798,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1366,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "SAN LORENZO",
       "Inicio": 18,
@@ -13714,9 +13808,9 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1367,
-      "Mes": 7,
-      "Departamento": "JUNIN",
-      "Provincia": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
+      "Provincia": "JUNÍN",
       "Distrito": "ULCUMAYO",
       "Inicio": 18,
       "Fin": 29,
@@ -13724,9 +13818,9 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1368,
-      "Mes": 7,
-      "Departamento": "JUNIN",
-      "Provincia": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
+      "Provincia": "JUNÍN",
       "Distrito": "ULCUMAYO",
       "Inicio": 30,
       "Fin": 59,
@@ -13734,8 +13828,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1369,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "SATIPO",
       "Inicio": 30,
@@ -13744,8 +13838,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1370,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "PANGOA",
       "Inicio": 12,
@@ -13754,8 +13848,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1371,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "PANGOA",
       "Inicio": 18,
@@ -13764,8 +13858,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1372,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "PANGOA",
       "Inicio": 30,
@@ -13774,8 +13868,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1373,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "RIO TAMBO",
       "Inicio": 12,
@@ -13784,8 +13878,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1374,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "RIO TAMBO",
       "Inicio": 30,
@@ -13794,8 +13888,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1375,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "TARMA",
       "Distrito": "TARMA",
       "Inicio": 12,
@@ -13804,8 +13898,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1376,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "TARMA",
       "Distrito": "TARMA",
       "Inicio": 30,
@@ -13814,8 +13908,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1377,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "TARMA",
       "Distrito": "ACOBAMBA",
       "Inicio": 18,
@@ -13824,8 +13918,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1378,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "TARMA",
       "Distrito": "PALCA",
       "Inicio": 18,
@@ -13834,8 +13928,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1379,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "TARMA",
       "Distrito": "PALCA",
       "Inicio": 18,
@@ -13844,8 +13938,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1380,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "TARMA",
       "Distrito": "SAN PEDRO DE CAJAS",
       "Inicio": 30,
@@ -13854,8 +13948,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1381,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "TARMA",
       "Distrito": "TAPO",
       "Inicio": 18,
@@ -13864,8 +13958,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1382,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "YAULI",
       "Distrito": "SANTA ROSA DE SACCO",
       "Inicio": 30,
@@ -13874,8 +13968,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1383,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "YAULI",
       "Distrito": "SUITUCANCHA",
       "Inicio": 18,
@@ -13884,8 +13978,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1384,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "CHUPACA",
       "Distrito": "CHUPACA",
       "Inicio": 12,
@@ -13894,8 +13988,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1385,
-      "Mes": 7,
-      "Departamento": "JUNIN",
+      "Mes": "Julio",
+      "Departamento": "JUNÍN",
       "Provincia": "CHUPACA",
       "Distrito": "CHUPACA",
       "Inicio": 18,
@@ -13904,7 +13998,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1386,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LA LIBERTAD",
       "Provincia": "PATAZ",
       "Distrito": "BULDIBUYO",
@@ -13914,7 +14008,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1387,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "ETEN PUERTO",
@@ -13924,7 +14018,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1388,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "JOSE LEONARDO ORTIZ",
@@ -13934,7 +14028,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1389,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "LAGUNAS",
@@ -13944,7 +14038,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1390,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "LAGUNAS",
@@ -13954,7 +14048,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1391,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "MONSEFU",
@@ -13964,7 +14058,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1392,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "FERREÑAFE",
       "Distrito": "FERREÑAFE",
@@ -13974,7 +14068,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1393,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "FERREÑAFE",
       "Distrito": "MANUEL ANTONIO MESONES MURO",
@@ -13984,7 +14078,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1394,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "LAMBAYEQUE",
       "Distrito": "LAMBAYEQUE",
@@ -13994,7 +14088,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1395,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "LAMBAYEQUE",
       "Distrito": "OLMOS",
@@ -14004,7 +14098,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1396,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "LAMBAYEQUE",
       "Distrito": "PACORA",
@@ -14014,7 +14108,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1397,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "LAMBAYEQUE",
       "Distrito": "SALAS",
@@ -14024,7 +14118,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1398,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "LAMBAYEQUE",
       "Distrito": "SALAS",
@@ -14034,7 +14128,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1399,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "LAMBAYEQUE",
       "Distrito": "SAN JOSE",
@@ -14044,7 +14138,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1400,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "LIMA",
@@ -14054,7 +14148,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1401,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "ATE",
@@ -14064,7 +14158,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1402,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "ATE",
@@ -14074,7 +14168,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1403,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "BREÑA",
@@ -14084,7 +14178,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1404,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "CHACLACAYO",
@@ -14094,7 +14188,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1405,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "EL AGUSTINO",
@@ -14104,7 +14198,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1406,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "EL AGUSTINO",
@@ -14114,7 +14208,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1407,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "LOS OLIVOS",
@@ -14124,7 +14218,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1408,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "LURIGANCHO (CHOSICA)",
@@ -14134,7 +14228,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1409,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "LURIGANCHO (CHOSICA)",
@@ -14144,7 +14238,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1410,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "LURIGANCHO (CHOSICA)",
@@ -14154,7 +14248,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1411,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "PACHACAMAC",
@@ -14164,7 +14258,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1412,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "RIMAC",
@@ -14174,7 +14268,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1413,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "RIMAC",
@@ -14184,7 +14278,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1414,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "SAN BORJA",
@@ -14194,7 +14288,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1415,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "SAN JUAN DE MIRAFLORES",
@@ -14204,7 +14298,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1416,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "SAN JUAN DE MIRAFLORES",
@@ -14214,7 +14308,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1417,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "SAN JUAN DE MIRAFLORES",
@@ -14224,7 +14318,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1418,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "SAN JUAN DE MIRAFLORES",
@@ -14234,27 +14328,27 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1419,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
-      "Distrito": "SAN MARTIN DE PORRES",
+      "Distrito": "SAN MARTÍN DE PORRES",
       "Inicio": 18,
       "Fin": 29,
       "Metodo": "PROGESTAGENO"
     },
     {
       "Id": 1420,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
-      "Distrito": "SAN MARTIN DE PORRES",
+      "Distrito": "SAN MARTÍN DE PORRES",
       "Inicio": 18,
       "Fin": 29,
       "Metodo": "YUZPE"
     },
     {
       "Id": 1421,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "VILLA EL SALVADOR",
@@ -14264,7 +14358,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1422,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "VILLA EL SALVADOR",
@@ -14274,7 +14368,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1423,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "VILLA EL SALVADOR",
@@ -14284,7 +14378,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1424,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "VILLA EL SALVADOR",
@@ -14294,7 +14388,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1425,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "VILLA MARIA DEL TRIUNFO",
@@ -14304,7 +14398,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1426,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "VILLA MARIA DEL TRIUNFO",
@@ -14314,7 +14408,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1427,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LIMA",
       "Provincia": "CANTA",
       "Distrito": "CANTA",
@@ -14324,7 +14418,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1428,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LORETO",
       "Provincia": "MAYNAS",
       "Distrito": "IQUITOS",
@@ -14334,7 +14428,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1429,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LORETO",
       "Provincia": "MAYNAS",
       "Distrito": "IQUITOS",
@@ -14344,7 +14438,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1430,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LORETO",
       "Provincia": "MAYNAS",
       "Distrito": "BELEN",
@@ -14354,7 +14448,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1431,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LORETO",
       "Provincia": "MAYNAS",
       "Distrito": "BELEN",
@@ -14364,7 +14458,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1432,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LORETO",
       "Provincia": "MAYNAS",
       "Distrito": "SAN JUAN BAUTISTA",
@@ -14374,7 +14468,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1433,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LORETO",
       "Provincia": "MAYNAS",
       "Distrito": "SAN JUAN BAUTISTA",
@@ -14384,7 +14478,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1434,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LORETO",
       "Provincia": "MAYNAS",
       "Distrito": "SAN JUAN BAUTISTA",
@@ -14394,7 +14488,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1435,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "LORETO",
       "Provincia": "LORETO",
       "Distrito": "TROMPETEROS",
@@ -14404,7 +14498,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1436,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "MADRE DE DIOS",
       "Provincia": "TAMBOPATA",
       "Distrito": "TAMBOPATA",
@@ -14414,7 +14508,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1437,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "MADRE DE DIOS",
       "Provincia": "TAMBOPATA",
       "Distrito": "INAMBARI",
@@ -14424,7 +14518,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1438,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "MOQUEGUA",
       "Provincia": "MARISCAL NIETO",
       "Distrito": "MOQUEGUA",
@@ -14434,7 +14528,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1439,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "MOQUEGUA",
       "Provincia": "GENERAL SANCHEZ CERRO",
       "Distrito": "UBINAS",
@@ -14444,7 +14538,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1440,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "MOQUEGUA",
       "Provincia": "ILO",
       "Distrito": "ILO",
@@ -14454,7 +14548,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1441,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "PIURA",
       "Provincia": "PIURA",
       "Distrito": "LA ARENA",
@@ -14464,7 +14558,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1442,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "PIURA",
       "Provincia": "AYABACA",
       "Distrito": "AYABACA",
@@ -14474,7 +14568,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1443,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "PIURA",
       "Provincia": "AYABACA",
       "Distrito": "AYABACA",
@@ -14484,7 +14578,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1444,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "PIURA",
       "Provincia": "HUANCABAMBA",
       "Distrito": "HUANCABAMBA",
@@ -14494,7 +14588,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1445,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "PIURA",
       "Provincia": "HUANCABAMBA",
       "Distrito": "HUANCABAMBA",
@@ -14504,7 +14598,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1446,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "PUNO",
       "Provincia": "AZANGARO",
       "Distrito": "MUÑANI",
@@ -14514,7 +14608,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1447,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "PUNO",
       "Provincia": "AZANGARO",
       "Distrito": "MUÑANI",
@@ -14524,7 +14618,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1448,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "PUNO",
       "Provincia": "SANDIA",
       "Distrito": "SANDIA",
@@ -14534,7 +14628,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1449,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "PUNO",
       "Provincia": "SANDIA",
       "Distrito": "SANDIA",
@@ -14544,7 +14638,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1450,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "PUNO",
       "Provincia": "YUNGUYO",
       "Distrito": "COPANI",
@@ -14554,7 +14648,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1451,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "PUNO",
       "Provincia": "YUNGUYO",
       "Distrito": "OLLARAYA",
@@ -14564,8 +14658,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1452,
-      "Mes": 7,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Julio",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "MOYOBAMBA",
       "Distrito": "CALZADA",
       "Inicio": 12,
@@ -14574,8 +14668,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1453,
-      "Mes": 7,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Julio",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "BELLAVISTA",
       "Distrito": "BELLAVISTA",
       "Inicio": 30,
@@ -14584,8 +14678,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1454,
-      "Mes": 7,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Julio",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "BELLAVISTA",
       "Distrito": "ALTO BIAVO",
       "Inicio": 12,
@@ -14594,8 +14688,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1455,
-      "Mes": 7,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Julio",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "BELLAVISTA",
       "Distrito": "BAJO BIAVO",
       "Inicio": 30,
@@ -14604,8 +14698,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1456,
-      "Mes": 7,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Julio",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "RIOJA",
       "Distrito": "RIOJA",
       "Inicio": 30,
@@ -14614,8 +14708,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1457,
-      "Mes": 7,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Julio",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "RIOJA",
       "Distrito": "RIOJA",
       "Inicio": 30,
@@ -14624,8 +14718,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1458,
-      "Mes": 7,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Julio",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "RIOJA",
       "Distrito": "SAN FERNANDO",
       "Inicio": 18,
@@ -14634,9 +14728,9 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1459,
-      "Mes": 7,
-      "Departamento": "SAN MARTIN",
-      "Provincia": "SAN MARTIN",
+      "Mes": "Julio",
+      "Departamento": "SAN MARTÍN",
+      "Provincia": "SAN MARTÍN",
       "Distrito": "TARAPOTO",
       "Inicio": 30,
       "Fin": 59,
@@ -14644,9 +14738,9 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1460,
-      "Mes": 7,
-      "Departamento": "SAN MARTIN",
-      "Provincia": "SAN MARTIN",
+      "Mes": "Julio",
+      "Departamento": "SAN MARTÍN",
+      "Provincia": "SAN MARTÍN",
       "Distrito": "CHIPURANA",
       "Inicio": 18,
       "Fin": 29,
@@ -14654,9 +14748,9 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1461,
-      "Mes": 7,
-      "Departamento": "SAN MARTIN",
-      "Provincia": "SAN MARTIN",
+      "Mes": "Julio",
+      "Departamento": "SAN MARTÍN",
+      "Provincia": "SAN MARTÍN",
       "Distrito": "CHIPURANA",
       "Inicio": 30,
       "Fin": 59,
@@ -14664,9 +14758,9 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1462,
-      "Mes": 7,
-      "Departamento": "SAN MARTIN",
-      "Provincia": "SAN MARTIN",
+      "Mes": "Julio",
+      "Departamento": "SAN MARTÍN",
+      "Provincia": "SAN MARTÍN",
       "Distrito": "LA BANDA DE SHILCAYO",
       "Inicio": 18,
       "Fin": 29,
@@ -14674,9 +14768,9 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1463,
-      "Mes": 7,
-      "Departamento": "SAN MARTIN",
-      "Provincia": "SAN MARTIN",
+      "Mes": "Julio",
+      "Departamento": "SAN MARTÍN",
+      "Provincia": "SAN MARTÍN",
       "Distrito": "LA BANDA DE SHILCAYO",
       "Inicio": 30,
       "Fin": 59,
@@ -14684,7 +14778,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1464,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "TACNA",
@@ -14694,7 +14788,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1465,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "TACNA",
@@ -14704,7 +14798,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1466,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "TACNA",
@@ -14714,7 +14808,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1467,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "TACNA",
@@ -14724,7 +14818,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1468,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "TACNA",
@@ -14734,7 +14828,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1469,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "ALTO DE LA ALIANZA",
@@ -14744,7 +14838,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1470,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "ALTO DE LA ALIANZA",
@@ -14754,7 +14848,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1471,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "CALANA",
@@ -14764,7 +14858,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1472,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "INCLAN",
@@ -14774,7 +14868,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1473,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "PACHIA",
@@ -14784,7 +14878,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1474,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "PACHIA",
@@ -14794,7 +14888,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1475,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "PALCA",
@@ -14804,7 +14898,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1476,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "POCOLLAY",
@@ -14814,7 +14908,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1477,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "CORONEL GREGORIO ALBARRACIN LANCHIPA",
@@ -14824,7 +14918,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1478,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "TACNA",
       "Provincia": "CANDARAVE",
       "Distrito": "CAIRANI",
@@ -14834,7 +14928,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1479,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "TACNA",
       "Provincia": "JORGE BASADRE",
       "Distrito": "LOCUMBA",
@@ -14844,7 +14938,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1480,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "TACNA",
       "Provincia": "JORGE BASADRE",
       "Distrito": "LOCUMBA",
@@ -14854,7 +14948,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1481,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "TACNA",
       "Provincia": "JORGE BASADRE",
       "Distrito": "ILABAYA",
@@ -14864,7 +14958,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1482,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "TACNA",
       "Provincia": "JORGE BASADRE",
       "Distrito": "ILABAYA",
@@ -14874,7 +14968,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1483,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "TACNA",
       "Provincia": "TARATA",
       "Distrito": "TARATA",
@@ -14884,7 +14978,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1484,
-      "Mes": 7,
+      "Mes": "Julio",
       "Departamento": "TACNA",
       "Provincia": "TARATA",
       "Distrito": "ESTIQUE",
@@ -14894,8 +14988,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1485,
-      "Mes": 8,
-      "Departamento": "ANCASH",
+      "Mes": "Agosto",
+      "Departamento": "ÁNCASH",
       "Provincia": "BOLOGNESI",
       "Distrito": "COLQUIOC",
       "Inicio": 18,
@@ -14904,8 +14998,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1486,
-      "Mes": 8,
-      "Departamento": "ANCASH",
+      "Mes": "Agosto",
+      "Departamento": "ÁNCASH",
       "Provincia": "CARHUAZ",
       "Distrito": "MARCARA",
       "Inicio": 18,
@@ -14914,8 +15008,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1487,
-      "Mes": 8,
-      "Departamento": "ANCASH",
+      "Mes": "Agosto",
+      "Departamento": "ÁNCASH",
       "Provincia": "HUARMEY",
       "Distrito": "HUARMEY",
       "Inicio": 30,
@@ -14924,8 +15018,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1488,
-      "Mes": 8,
-      "Departamento": "ANCASH",
+      "Mes": "Agosto",
+      "Departamento": "ÁNCASH",
       "Provincia": "HUAYLAS",
       "Distrito": "MATO",
       "Inicio": 30,
@@ -14934,8 +15028,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1489,
-      "Mes": 8,
-      "Departamento": "ANCASH",
+      "Mes": "Agosto",
+      "Departamento": "ÁNCASH",
       "Provincia": "SANTA",
       "Distrito": "CHIMBOTE",
       "Inicio": 18,
@@ -14944,8 +15038,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1490,
-      "Mes": 8,
-      "Departamento": "ANCASH",
+      "Mes": "Agosto",
+      "Departamento": "ÁNCASH",
       "Provincia": "SANTA",
       "Distrito": "CHIMBOTE",
       "Inicio": 30,
@@ -14954,8 +15048,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1491,
-      "Mes": 8,
-      "Departamento": "APURIMAC",
+      "Mes": "Agosto",
+      "Departamento": "APURÍMAC",
       "Provincia": "ABANCAY",
       "Distrito": "CHACOCHE",
       "Inicio": 18,
@@ -14964,8 +15058,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1492,
-      "Mes": 8,
-      "Departamento": "APURIMAC",
+      "Mes": "Agosto",
+      "Departamento": "APURÍMAC",
       "Provincia": "ABANCAY",
       "Distrito": "CURAHUASI",
       "Inicio": 18,
@@ -14974,8 +15068,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1493,
-      "Mes": 8,
-      "Departamento": "APURIMAC",
+      "Mes": "Agosto",
+      "Departamento": "APURÍMAC",
       "Provincia": "ABANCAY",
       "Distrito": "PICHIRHUA",
       "Inicio": 12,
@@ -14984,8 +15078,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1494,
-      "Mes": 8,
-      "Departamento": "APURIMAC",
+      "Mes": "Agosto",
+      "Departamento": "APURÍMAC",
       "Provincia": "ABANCAY",
       "Distrito": "TAMBURCO",
       "Inicio": 30,
@@ -14994,8 +15088,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1495,
-      "Mes": 8,
-      "Departamento": "APURIMAC",
+      "Mes": "Agosto",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "ANDAHUAYLAS",
       "Inicio": 18,
@@ -15004,8 +15098,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1496,
-      "Mes": 8,
-      "Departamento": "APURIMAC",
+      "Mes": "Agosto",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "ANDAHUAYLAS",
       "Inicio": 18,
@@ -15014,8 +15108,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1497,
-      "Mes": 8,
-      "Departamento": "APURIMAC",
+      "Mes": "Agosto",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "ANDAHUAYLAS",
       "Inicio": 30,
@@ -15024,8 +15118,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1498,
-      "Mes": 8,
-      "Departamento": "APURIMAC",
+      "Mes": "Agosto",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "ANDAHUAYLAS",
       "Inicio": 30,
@@ -15034,8 +15128,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1499,
-      "Mes": 8,
-      "Departamento": "APURIMAC",
+      "Mes": "Agosto",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "HUANCARAMA",
       "Inicio": 18,
@@ -15044,8 +15138,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1500,
-      "Mes": 8,
-      "Departamento": "APURIMAC",
+      "Mes": "Agosto",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "HUANCARAY",
       "Inicio": 18,
@@ -15054,8 +15148,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1501,
-      "Mes": 8,
-      "Departamento": "APURIMAC",
+      "Mes": "Agosto",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "HUANCARAY",
       "Inicio": 30,
@@ -15064,8 +15158,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1502,
-      "Mes": 8,
-      "Departamento": "APURIMAC",
+      "Mes": "Agosto",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "HUAYANA",
       "Inicio": 12,
@@ -15074,8 +15168,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1503,
-      "Mes": 8,
-      "Departamento": "APURIMAC",
+      "Mes": "Agosto",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "HUAYANA",
       "Inicio": 18,
@@ -15084,8 +15178,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1504,
-      "Mes": 8,
-      "Departamento": "APURIMAC",
+      "Mes": "Agosto",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "HUAYANA",
       "Inicio": 30,
@@ -15094,8 +15188,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1505,
-      "Mes": 8,
-      "Departamento": "APURIMAC",
+      "Mes": "Agosto",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "KISHUARA",
       "Inicio": 30,
@@ -15104,8 +15198,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1506,
-      "Mes": 8,
-      "Departamento": "APURIMAC",
+      "Mes": "Agosto",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "PACOBAMBA",
       "Inicio": 12,
@@ -15114,8 +15208,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1507,
-      "Mes": 8,
-      "Departamento": "APURIMAC",
+      "Mes": "Agosto",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "PACUCHA",
       "Inicio": 18,
@@ -15124,8 +15218,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1508,
-      "Mes": 8,
-      "Departamento": "APURIMAC",
+      "Mes": "Agosto",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "PAMPACHIRI",
       "Inicio": 12,
@@ -15134,8 +15228,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1509,
-      "Mes": 8,
-      "Departamento": "APURIMAC",
+      "Mes": "Agosto",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "PAMPACHIRI",
       "Inicio": 18,
@@ -15144,8 +15238,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1510,
-      "Mes": 8,
-      "Departamento": "APURIMAC",
+      "Mes": "Agosto",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "PAMPACHIRI",
       "Inicio": 30,
@@ -15154,8 +15248,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1511,
-      "Mes": 8,
-      "Departamento": "APURIMAC",
+      "Mes": "Agosto",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "POMACOCHA",
       "Inicio": 18,
@@ -15164,8 +15258,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1512,
-      "Mes": 8,
-      "Departamento": "APURIMAC",
+      "Mes": "Agosto",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "KAQUIABAMBA",
       "Inicio": 30,
@@ -15174,8 +15268,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1513,
-      "Mes": 8,
-      "Departamento": "APURIMAC",
+      "Mes": "Agosto",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "KAQUIABAMBA",
       "Inicio": 30,
@@ -15184,8 +15278,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1514,
-      "Mes": 8,
-      "Departamento": "APURIMAC",
+      "Mes": "Agosto",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "JOSÉ MARÍA ARGUEDAS",
       "Inicio": 12,
@@ -15194,8 +15288,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1515,
-      "Mes": 8,
-      "Departamento": "APURIMAC",
+      "Mes": "Agosto",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANDAHUAYLAS",
       "Distrito": "JOSÉ MARÍA ARGUEDAS",
       "Inicio": 18,
@@ -15204,8 +15298,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1516,
-      "Mes": 8,
-      "Departamento": "APURIMAC",
+      "Mes": "Agosto",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANTABAMBA",
       "Distrito": "HUAQUIRCA",
       "Inicio": 12,
@@ -15214,8 +15308,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1517,
-      "Mes": 8,
-      "Departamento": "APURIMAC",
+      "Mes": "Agosto",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANTABAMBA",
       "Distrito": "JUAN ESPINOZA MEDRANO",
       "Inicio": 30,
@@ -15224,8 +15318,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1518,
-      "Mes": 8,
-      "Departamento": "APURIMAC",
+      "Mes": "Agosto",
+      "Departamento": "APURÍMAC",
       "Provincia": "ANTABAMBA",
       "Distrito": "SABAINO",
       "Inicio": 30,
@@ -15234,8 +15328,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1519,
-      "Mes": 8,
-      "Departamento": "APURIMAC",
+      "Mes": "Agosto",
+      "Departamento": "APURÍMAC",
       "Provincia": "AYMARAES",
       "Distrito": "SAÑAYCA",
       "Inicio": 18,
@@ -15244,8 +15338,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1520,
-      "Mes": 8,
-      "Departamento": "APURIMAC",
+      "Mes": "Agosto",
+      "Departamento": "APURÍMAC",
       "Provincia": "COTABAMBAS",
       "Distrito": "TAMBOBAMBA",
       "Inicio": 12,
@@ -15254,8 +15348,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1521,
-      "Mes": 8,
-      "Departamento": "APURIMAC",
+      "Mes": "Agosto",
+      "Departamento": "APURÍMAC",
       "Provincia": "COTABAMBAS",
       "Distrito": "COYLLURQUI",
       "Inicio": 18,
@@ -15264,8 +15358,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1522,
-      "Mes": 8,
-      "Departamento": "APURIMAC",
+      "Mes": "Agosto",
+      "Departamento": "APURÍMAC",
       "Provincia": "COTABAMBAS",
       "Distrito": "HAQUIRA",
       "Inicio": 30,
@@ -15274,8 +15368,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1523,
-      "Mes": 8,
-      "Departamento": "APURIMAC",
+      "Mes": "Agosto",
+      "Departamento": "APURÍMAC",
       "Provincia": "CHINCHEROS",
       "Distrito": "ANCO-HUALLO",
       "Inicio": 30,
@@ -15284,8 +15378,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1524,
-      "Mes": 8,
-      "Departamento": "APURIMAC",
+      "Mes": "Agosto",
+      "Departamento": "APURÍMAC",
       "Provincia": "CHINCHEROS",
       "Distrito": "COCHARCAS",
       "Inicio": 12,
@@ -15294,8 +15388,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1525,
-      "Mes": 8,
-      "Departamento": "APURIMAC",
+      "Mes": "Agosto",
+      "Departamento": "APURÍMAC",
       "Provincia": "CHINCHEROS",
       "Distrito": "HUACCANA",
       "Inicio": 18,
@@ -15304,8 +15398,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1526,
-      "Mes": 8,
-      "Departamento": "APURIMAC",
+      "Mes": "Agosto",
+      "Departamento": "APURÍMAC",
       "Provincia": "CHINCHEROS",
       "Distrito": "RANRACANCHA",
       "Inicio": 12,
@@ -15314,8 +15408,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1527,
-      "Mes": 8,
-      "Departamento": "APURIMAC",
+      "Mes": "Agosto",
+      "Departamento": "APURÍMAC",
       "Provincia": "GRAU",
       "Distrito": "HUAYLLATI",
       "Inicio": 12,
@@ -15324,7 +15418,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1528,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "AREQUIPA",
       "Provincia": "AREQUIPA",
       "Distrito": "CERRO COLORADO",
@@ -15334,7 +15428,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1529,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "AREQUIPA",
       "Provincia": "AREQUIPA",
       "Distrito": "PAUCARPATA",
@@ -15344,7 +15438,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1530,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "AREQUIPA",
       "Provincia": "CAMANA",
       "Distrito": "SAMUEL PASTOR",
@@ -15354,7 +15448,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1531,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "AREQUIPA",
       "Provincia": "CAYLLOMA",
       "Distrito": "CHIVAY",
@@ -15364,7 +15458,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1532,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "AYACUCHO",
       "Provincia": "HUAMANGA",
       "Distrito": "ANDRES AVELINO CACERES DORREGARAY",
@@ -15374,7 +15468,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1533,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "AYACUCHO",
       "Provincia": "CANGALLO",
       "Distrito": "CANGALLO",
@@ -15384,7 +15478,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1534,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "AYACUCHO",
       "Provincia": "HUANTA",
       "Distrito": "SIVIA",
@@ -15394,7 +15488,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1535,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "AYACUCHO",
       "Provincia": "LA MAR",
       "Distrito": "SAN MIGUEL",
@@ -15404,7 +15498,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1536,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "AYACUCHO",
       "Provincia": "LA MAR",
       "Distrito": "SAN MIGUEL",
@@ -15414,7 +15508,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1537,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "AYACUCHO",
       "Provincia": "LA MAR",
       "Distrito": "AYNA",
@@ -15424,7 +15518,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1538,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "AYACUCHO",
       "Provincia": "LA MAR",
       "Distrito": "AYNA",
@@ -15434,7 +15528,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1539,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "AYACUCHO",
       "Provincia": "LA MAR",
       "Distrito": "TAMBO",
@@ -15444,7 +15538,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1540,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "AYACUCHO",
       "Provincia": "LUCANAS",
       "Distrito": "PUQUIO",
@@ -15454,7 +15548,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1541,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "AYACUCHO",
       "Provincia": "LUCANAS",
       "Distrito": "PUQUIO",
@@ -15464,7 +15558,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1542,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "AYACUCHO",
       "Provincia": "LUCANAS",
       "Distrito": "OCAÑA",
@@ -15474,7 +15568,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1543,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "AYACUCHO",
       "Provincia": "LUCANAS",
       "Distrito": "OCAÑA",
@@ -15484,7 +15578,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1544,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "AYACUCHO",
       "Provincia": "LUCANAS",
       "Distrito": "OCAÑA",
@@ -15494,7 +15588,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1545,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "AYACUCHO",
       "Provincia": "PAUCAR DEL SARA SARA",
       "Distrito": "OYOLO",
@@ -15504,7 +15598,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1546,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "AYACUCHO",
       "Provincia": "PAUCAR DEL SARA SARA",
       "Distrito": "OYOLO",
@@ -15514,7 +15608,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1547,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "AYACUCHO",
       "Provincia": "PAUCAR DEL SARA SARA",
       "Distrito": "SARA SARA",
@@ -15524,7 +15618,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1548,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "AYACUCHO",
       "Provincia": "VICTOR FAJARDO",
       "Distrito": "APONGO",
@@ -15534,7 +15628,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1549,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "AYACUCHO",
       "Provincia": "VILCAS HUAMAN",
       "Distrito": "VILCAS HUAMAN",
@@ -15544,7 +15638,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1550,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "AYACUCHO",
       "Provincia": "VILCAS HUAMAN",
       "Distrito": "VISCHONGO",
@@ -15554,7 +15648,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1551,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "CALLAO",
       "Provincia": "CALLAO",
       "Distrito": "CALLAO",
@@ -15564,7 +15658,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1552,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "CALLAO",
       "Provincia": "CALLAO",
       "Distrito": "CALLAO",
@@ -15574,7 +15668,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1553,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "CALLAO",
       "Provincia": "CALLAO",
       "Distrito": "CALLAO",
@@ -15584,7 +15678,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1554,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "CALLAO",
       "Provincia": "CALLAO",
       "Distrito": "LA PERLA",
@@ -15594,7 +15688,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1555,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "CUSCO",
       "Provincia": "CUSCO",
       "Distrito": "CUSCO",
@@ -15604,7 +15698,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1556,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "CUSCO",
       "Provincia": "CUSCO",
       "Distrito": "WANCHAQ",
@@ -15614,7 +15708,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1557,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "CUSCO",
       "Provincia": "CANAS",
       "Distrito": "YANAOCA",
@@ -15624,7 +15718,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1558,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "CUSCO",
       "Provincia": "CANAS",
       "Distrito": "LAYO",
@@ -15634,7 +15728,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1559,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "CUSCO",
       "Provincia": "CANAS",
       "Distrito": "LAYO",
@@ -15644,7 +15738,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1560,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "CUSCO",
       "Provincia": "CANAS",
       "Distrito": "TUPAC AMARU",
@@ -15654,7 +15748,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1561,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "CUSCO",
       "Provincia": "CANCHIS",
       "Distrito": "SICUANI",
@@ -15664,7 +15758,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1562,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "CUSCO",
       "Provincia": "CANCHIS",
       "Distrito": "SICUANI",
@@ -15674,7 +15768,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1563,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "CUSCO",
       "Provincia": "CANCHIS",
       "Distrito": "TINTA",
@@ -15684,7 +15778,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1564,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "CUSCO",
       "Provincia": "CANCHIS",
       "Distrito": "TINTA",
@@ -15694,7 +15788,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1565,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "CUSCO",
       "Provincia": "LA CONVENCION",
       "Distrito": "VILCABAMBA",
@@ -15704,7 +15798,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1566,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "HUANCAVELICA",
@@ -15714,7 +15808,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1567,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "HUANCAVELICA",
@@ -15724,7 +15818,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1568,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "PALCA",
@@ -15734,7 +15828,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1569,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "ASCENSION",
@@ -15744,7 +15838,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1570,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "HUANCAVELICA",
       "Provincia": "HUANCAVELICA",
       "Distrito": "HUANDO",
@@ -15754,7 +15848,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1571,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "LIRCAY",
@@ -15764,7 +15858,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1572,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "LIRCAY",
@@ -15774,7 +15868,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1573,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "HUANCAVELICA",
       "Provincia": "ANGARAES",
       "Distrito": "CCOCHACCASA",
@@ -15784,7 +15878,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1574,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "PAMPAS",
@@ -15794,7 +15888,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1575,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "ACRAQUIA",
@@ -15804,7 +15898,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1576,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "HUANCAVELICA",
       "Provincia": "TAYACAJA",
       "Distrito": "AHUAYCHA",
@@ -15814,19 +15908,19 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1577,
-      "Mes": 8,
-      "Departamento": "HUANUCO",
-      "Provincia": "HUANUCO",
-      "Distrito": "HUANUCO",
+      "Mes": "Agosto",
+      "Departamento": "HUÁNUCO",
+      "Provincia": "HUÁNUCO",
+      "Distrito": "HUÁNUCO",
       "Inicio": 18,
       "Fin": 29,
       "Metodo": "PROGESTAGENO"
     },
     {
       "Id": 1578,
-      "Mes": 8,
-      "Departamento": "HUANUCO",
-      "Provincia": "HUANUCO",
+      "Mes": "Agosto",
+      "Departamento": "HUÁNUCO",
+      "Provincia": "HUÁNUCO",
       "Distrito": "AMARILIS",
       "Inicio": 30,
       "Fin": 59,
@@ -15834,9 +15928,9 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1579,
-      "Mes": 8,
-      "Departamento": "HUANUCO",
-      "Provincia": "HUANUCO",
+      "Mes": "Agosto",
+      "Departamento": "HUÁNUCO",
+      "Provincia": "HUÁNUCO",
       "Distrito": "CHURUBAMBA",
       "Inicio": 30,
       "Fin": 59,
@@ -15844,9 +15938,9 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1580,
-      "Mes": 8,
-      "Departamento": "HUANUCO",
-      "Provincia": "HUANUCO",
+      "Mes": "Agosto",
+      "Departamento": "HUÁNUCO",
+      "Provincia": "HUÁNUCO",
       "Distrito": "SANTA MARIA DEL VALLE",
       "Inicio": 12,
       "Fin": 17,
@@ -15854,9 +15948,9 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1581,
-      "Mes": 8,
-      "Departamento": "HUANUCO",
-      "Provincia": "HUANUCO",
+      "Mes": "Agosto",
+      "Departamento": "HUÁNUCO",
+      "Provincia": "HUÁNUCO",
       "Distrito": "YARUMAYO",
       "Inicio": 18,
       "Fin": 29,
@@ -15864,9 +15958,9 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1582,
-      "Mes": 8,
-      "Departamento": "HUANUCO",
-      "Provincia": "HUANUCO",
+      "Mes": "Agosto",
+      "Departamento": "HUÁNUCO",
+      "Provincia": "HUÁNUCO",
       "Distrito": "YARUMAYO",
       "Inicio": 30,
       "Fin": 59,
@@ -15874,9 +15968,9 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1583,
-      "Mes": 8,
-      "Departamento": "HUANUCO",
-      "Provincia": "HUANUCO",
+      "Mes": "Agosto",
+      "Departamento": "HUÁNUCO",
+      "Provincia": "HUÁNUCO",
       "Distrito": "PILLCO MARCA",
       "Inicio": 18,
       "Fin": 29,
@@ -15884,8 +15978,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1584,
-      "Mes": 8,
-      "Departamento": "HUANUCO",
+      "Mes": "Agosto",
+      "Departamento": "HUÁNUCO",
       "Provincia": "DOS DE MAYO",
       "Distrito": "MARIAS",
       "Inicio": 12,
@@ -15894,8 +15988,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1585,
-      "Mes": 8,
-      "Departamento": "HUANUCO",
+      "Mes": "Agosto",
+      "Departamento": "HUÁNUCO",
       "Provincia": "DOS DE MAYO",
       "Distrito": "PACHAS",
       "Inicio": 30,
@@ -15904,8 +15998,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1586,
-      "Mes": 8,
-      "Departamento": "HUANUCO",
+      "Mes": "Agosto",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUACAYBAMBA",
       "Distrito": "HUACAYBAMBA",
       "Inicio": 12,
@@ -15914,8 +16008,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1587,
-      "Mes": 8,
-      "Departamento": "HUANUCO",
+      "Mes": "Agosto",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUACAYBAMBA",
       "Distrito": "COCHABAMBA",
       "Inicio": 30,
@@ -15924,8 +16018,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1588,
-      "Mes": 8,
-      "Departamento": "HUANUCO",
+      "Mes": "Agosto",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUAMALIES",
       "Distrito": "JACAS GRANDE",
       "Inicio": 12,
@@ -15934,8 +16028,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1589,
-      "Mes": 8,
-      "Departamento": "HUANUCO",
+      "Mes": "Agosto",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUAMALIES",
       "Distrito": "JACAS GRANDE",
       "Inicio": 30,
@@ -15944,8 +16038,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1590,
-      "Mes": 8,
-      "Departamento": "HUANUCO",
+      "Mes": "Agosto",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUAMALIES",
       "Distrito": "MONZON",
       "Inicio": 30,
@@ -15954,8 +16048,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1591,
-      "Mes": 8,
-      "Departamento": "HUANUCO",
+      "Mes": "Agosto",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUAMALIES",
       "Distrito": "PUÑOS",
       "Inicio": 18,
@@ -15964,8 +16058,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1592,
-      "Mes": 8,
-      "Departamento": "HUANUCO",
+      "Mes": "Agosto",
+      "Departamento": "HUÁNUCO",
       "Provincia": "HUAMALIES",
       "Distrito": "SINGA",
       "Inicio": 30,
@@ -15974,8 +16068,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1593,
-      "Mes": 8,
-      "Departamento": "HUANUCO",
+      "Mes": "Agosto",
+      "Departamento": "HUÁNUCO",
       "Provincia": "LEONCIO PRADO",
       "Distrito": "LUYANDO",
       "Inicio": 30,
@@ -15984,8 +16078,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1594,
-      "Mes": 8,
-      "Departamento": "HUANUCO",
+      "Mes": "Agosto",
+      "Departamento": "HUÁNUCO",
       "Provincia": "LEONCIO PRADO",
       "Distrito": "MARIANO DAMASO BERAUN",
       "Inicio": 30,
@@ -15994,8 +16088,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1595,
-      "Mes": 8,
-      "Departamento": "HUANUCO",
+      "Mes": "Agosto",
+      "Departamento": "HUÁNUCO",
       "Provincia": "MARAÑON",
       "Distrito": "HUACRACHUCO",
       "Inicio": 12,
@@ -16004,8 +16098,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1596,
-      "Mes": 8,
-      "Departamento": "HUANUCO",
+      "Mes": "Agosto",
+      "Departamento": "HUÁNUCO",
       "Provincia": "MARAÑON",
       "Distrito": "HUACRACHUCO",
       "Inicio": 18,
@@ -16014,8 +16108,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1597,
-      "Mes": 8,
-      "Departamento": "HUANUCO",
+      "Mes": "Agosto",
+      "Departamento": "HUÁNUCO",
       "Provincia": "PACHITEA",
       "Distrito": "MOLINO",
       "Inicio": 18,
@@ -16024,8 +16118,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1598,
-      "Mes": 8,
-      "Departamento": "HUANUCO",
+      "Mes": "Agosto",
+      "Departamento": "HUÁNUCO",
       "Provincia": "PACHITEA",
       "Distrito": "UMARI",
       "Inicio": 30,
@@ -16034,8 +16128,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1599,
-      "Mes": 8,
-      "Departamento": "HUANUCO",
+      "Mes": "Agosto",
+      "Departamento": "HUÁNUCO",
       "Provincia": "PUERTO INCA",
       "Distrito": "PUERTO INCA",
       "Inicio": 18,
@@ -16044,8 +16138,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1600,
-      "Mes": 8,
-      "Departamento": "HUANUCO",
+      "Mes": "Agosto",
+      "Departamento": "HUÁNUCO",
       "Provincia": "PUERTO INCA",
       "Distrito": "HONORIA",
       "Inicio": 30,
@@ -16054,8 +16148,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1601,
-      "Mes": 8,
-      "Departamento": "HUANUCO",
+      "Mes": "Agosto",
+      "Departamento": "HUÁNUCO",
       "Provincia": "PUERTO INCA",
       "Distrito": "TOURNAVISTA",
       "Inicio": 30,
@@ -16064,8 +16158,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1602,
-      "Mes": 8,
-      "Departamento": "HUANUCO",
+      "Mes": "Agosto",
+      "Departamento": "HUÁNUCO",
       "Provincia": "LAURICOCHA",
       "Distrito": "JIVIA",
       "Inicio": 12,
@@ -16074,8 +16168,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1603,
-      "Mes": 8,
-      "Departamento": "HUANUCO",
+      "Mes": "Agosto",
+      "Departamento": "HUÁNUCO",
       "Provincia": "LAURICOCHA",
       "Distrito": "SAN MIGUEL DE CAURI",
       "Inicio": 18,
@@ -16084,8 +16178,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1604,
-      "Mes": 8,
-      "Departamento": "HUANUCO",
+      "Mes": "Agosto",
+      "Departamento": "HUÁNUCO",
       "Provincia": "YAROWILCA",
       "Distrito": "OBAS",
       "Inicio": 18,
@@ -16094,8 +16188,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1605,
-      "Mes": 8,
-      "Departamento": "HUANUCO",
+      "Mes": "Agosto",
+      "Departamento": "HUÁNUCO",
       "Provincia": "YAROWILCA",
       "Distrito": "CHORAS",
       "Inicio": 12,
@@ -16104,7 +16198,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1606,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "ICA",
@@ -16114,7 +16208,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1607,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "ICA",
@@ -16124,7 +16218,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1608,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "ICA",
@@ -16134,7 +16228,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1609,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "PARCONA",
@@ -16144,7 +16238,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1610,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "PARCONA",
@@ -16154,7 +16248,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1611,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "ICA",
       "Provincia": "ICA",
       "Distrito": "SANTIAGO",
@@ -16164,7 +16258,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1612,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "ICA",
       "Provincia": "CHINCHA",
       "Distrito": "CHINCHA ALTA",
@@ -16174,7 +16268,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1613,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "ICA",
       "Provincia": "CHINCHA",
       "Distrito": "SUNAMPE",
@@ -16184,7 +16278,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1614,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "ICA",
       "Provincia": "PALPA",
       "Distrito": "PALPA",
@@ -16194,7 +16288,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1615,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "ICA",
       "Provincia": "PALPA",
       "Distrito": "SANTA CRUZ",
@@ -16204,7 +16298,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1616,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "ICA",
       "Provincia": "PISCO",
       "Distrito": "INDEPENDENCIA",
@@ -16214,7 +16308,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1617,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "ICA",
       "Provincia": "PISCO",
       "Distrito": "INDEPENDENCIA",
@@ -16224,7 +16318,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1618,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "ICA",
       "Provincia": "PISCO",
       "Distrito": "PARACAS",
@@ -16234,7 +16328,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1619,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "ICA",
       "Provincia": "PISCO",
       "Distrito": "SAN ANDRES",
@@ -16244,7 +16338,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1620,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "ICA",
       "Provincia": "PISCO",
       "Distrito": "SAN CLEMENTE",
@@ -16254,7 +16348,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1621,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "ICA",
       "Provincia": "PISCO",
       "Distrito": "TUPAC AMARU INCA",
@@ -16264,8 +16358,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1622,
-      "Mes": 8,
-      "Departamento": "JUNIN",
+      "Mes": "Agosto",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "HUANCAYO",
       "Inicio": 30,
@@ -16274,8 +16368,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1623,
-      "Mes": 8,
-      "Departamento": "JUNIN",
+      "Mes": "Agosto",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "EL TAMBO",
       "Inicio": 30,
@@ -16284,8 +16378,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1624,
-      "Mes": 8,
-      "Departamento": "JUNIN",
+      "Mes": "Agosto",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "PILCOMAYO",
       "Inicio": 18,
@@ -16294,8 +16388,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1625,
-      "Mes": 8,
-      "Departamento": "JUNIN",
+      "Mes": "Agosto",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "SAN AGUSTIN",
       "Inicio": 30,
@@ -16304,8 +16398,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1626,
-      "Mes": 8,
-      "Departamento": "JUNIN",
+      "Mes": "Agosto",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "SAPALLANGA",
       "Inicio": 30,
@@ -16314,8 +16408,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1627,
-      "Mes": 8,
-      "Departamento": "JUNIN",
+      "Mes": "Agosto",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "SANTO DOMINGO DE ACOBAMBA",
       "Inicio": 18,
@@ -16324,8 +16418,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1628,
-      "Mes": 8,
-      "Departamento": "JUNIN",
+      "Mes": "Agosto",
+      "Departamento": "JUNÍN",
       "Provincia": "HUANCAYO",
       "Distrito": "SANTO DOMINGO DE ACOBAMBA",
       "Inicio": 30,
@@ -16334,8 +16428,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1629,
-      "Mes": 8,
-      "Departamento": "JUNIN",
+      "Mes": "Agosto",
+      "Departamento": "JUNÍN",
       "Provincia": "CONCEPCION",
       "Distrito": "CONCEPCION",
       "Inicio": 12,
@@ -16344,8 +16438,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1630,
-      "Mes": 8,
-      "Departamento": "JUNIN",
+      "Mes": "Agosto",
+      "Departamento": "JUNÍN",
       "Provincia": "CONCEPCION",
       "Distrito": "MANZANARES",
       "Inicio": 18,
@@ -16354,8 +16448,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1631,
-      "Mes": 8,
-      "Departamento": "JUNIN",
+      "Mes": "Agosto",
+      "Departamento": "JUNÍN",
       "Provincia": "CONCEPCION",
       "Distrito": "SAN JOSE DE QUERO",
       "Inicio": 12,
@@ -16364,8 +16458,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1632,
-      "Mes": 8,
-      "Departamento": "JUNIN",
+      "Mes": "Agosto",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "CHANCHAMAYO",
       "Inicio": 18,
@@ -16374,8 +16468,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1633,
-      "Mes": 8,
-      "Departamento": "JUNIN",
+      "Mes": "Agosto",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "PERENE",
       "Inicio": 12,
@@ -16384,8 +16478,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1634,
-      "Mes": 8,
-      "Departamento": "JUNIN",
+      "Mes": "Agosto",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "PERENE",
       "Inicio": 18,
@@ -16394,8 +16488,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1635,
-      "Mes": 8,
-      "Departamento": "JUNIN",
+      "Mes": "Agosto",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "PERENE",
       "Inicio": 30,
@@ -16404,8 +16498,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1636,
-      "Mes": 8,
-      "Departamento": "JUNIN",
+      "Mes": "Agosto",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "PERENE",
       "Inicio": 30,
@@ -16414,8 +16508,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1637,
-      "Mes": 8,
-      "Departamento": "JUNIN",
+      "Mes": "Agosto",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "PICHANAKI",
       "Inicio": 12,
@@ -16424,8 +16518,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1638,
-      "Mes": 8,
-      "Departamento": "JUNIN",
+      "Mes": "Agosto",
+      "Departamento": "JUNÍN",
       "Provincia": "CHANCHAMAYO",
       "Distrito": "PICHANAKI",
       "Inicio": 18,
@@ -16434,8 +16528,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1639,
-      "Mes": 8,
-      "Departamento": "JUNIN",
+      "Mes": "Agosto",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "APATA",
       "Inicio": 12,
@@ -16444,8 +16538,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1640,
-      "Mes": 8,
-      "Departamento": "JUNIN",
+      "Mes": "Agosto",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "CURICACA",
       "Inicio": 12,
@@ -16454,8 +16548,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1641,
-      "Mes": 8,
-      "Departamento": "JUNIN",
+      "Mes": "Agosto",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "MOLINOS",
       "Inicio": 30,
@@ -16464,8 +16558,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1642,
-      "Mes": 8,
-      "Departamento": "JUNIN",
+      "Mes": "Agosto",
+      "Departamento": "JUNÍN",
       "Provincia": "JAUJA",
       "Distrito": "SINCOS",
       "Inicio": 18,
@@ -16474,8 +16568,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1643,
-      "Mes": 8,
-      "Departamento": "JUNIN",
+      "Mes": "Agosto",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "SATIPO",
       "Inicio": 18,
@@ -16484,8 +16578,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1644,
-      "Mes": 8,
-      "Departamento": "JUNIN",
+      "Mes": "Agosto",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "PAMPA HERMOSA",
       "Inicio": 18,
@@ -16494,8 +16588,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1645,
-      "Mes": 8,
-      "Departamento": "JUNIN",
+      "Mes": "Agosto",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "PAMPA HERMOSA",
       "Inicio": 30,
@@ -16504,8 +16598,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1646,
-      "Mes": 8,
-      "Departamento": "JUNIN",
+      "Mes": "Agosto",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "PANGOA",
       "Inicio": 18,
@@ -16514,8 +16608,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1647,
-      "Mes": 8,
-      "Departamento": "JUNIN",
+      "Mes": "Agosto",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "PANGOA",
       "Inicio": 30,
@@ -16524,8 +16618,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1648,
-      "Mes": 8,
-      "Departamento": "JUNIN",
+      "Mes": "Agosto",
+      "Departamento": "JUNÍN",
       "Provincia": "SATIPO",
       "Distrito": "RIO NEGRO",
       "Inicio": 18,
@@ -16534,8 +16628,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1649,
-      "Mes": 8,
-      "Departamento": "JUNIN",
+      "Mes": "Agosto",
+      "Departamento": "JUNÍN",
       "Provincia": "YAULI",
       "Distrito": "SANTA ROSA DE SACCO",
       "Inicio": 18,
@@ -16544,8 +16638,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1650,
-      "Mes": 8,
-      "Departamento": "JUNIN",
+      "Mes": "Agosto",
+      "Departamento": "JUNÍN",
       "Provincia": "CHUPACA",
       "Distrito": "HUACHAC",
       "Inicio": 18,
@@ -16554,7 +16648,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1651,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "LA LIBERTAD",
       "Provincia": "ASCOPE",
       "Distrito": "SANTIAGO DE CAO",
@@ -16564,7 +16658,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1652,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "LA LIBERTAD",
       "Provincia": "CHEPEN",
       "Distrito": "CHEPEN",
@@ -16574,7 +16668,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1653,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "ETEN",
@@ -16584,7 +16678,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1654,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "JOSE LEONARDO ORTIZ",
@@ -16594,7 +16688,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1655,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "MONSEFU",
@@ -16604,7 +16698,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1656,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "MONSEFU",
@@ -16614,7 +16708,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1657,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "REQUE",
@@ -16624,7 +16718,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1658,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "CHICLAYO",
       "Distrito": "REQUE",
@@ -16634,7 +16728,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1659,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "LAMBAYEQUE",
       "Provincia": "FERREÑAFE",
       "Distrito": "PITIPO",
@@ -16644,7 +16738,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1660,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "LURIGANCHO (CHOSICA)",
@@ -16654,7 +16748,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1661,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "SAN JUAN DE MIRAFLORES",
@@ -16664,7 +16758,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1662,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "SANTA ANITA",
@@ -16674,7 +16768,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1663,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "LIMA",
       "Provincia": "LIMA",
       "Distrito": "VILLA EL SALVADOR",
@@ -16684,7 +16778,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1664,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "LIMA",
       "Provincia": "HUAURA",
       "Distrito": "AMBAR",
@@ -16694,7 +16788,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1665,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "LORETO",
       "Provincia": "MAYNAS",
       "Distrito": "SAN JUAN BAUTISTA",
@@ -16704,7 +16798,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1666,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "LORETO",
       "Provincia": "MAYNAS",
       "Distrito": "SAN JUAN BAUTISTA",
@@ -16714,7 +16808,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1667,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "LORETO",
       "Provincia": "LORETO",
       "Distrito": "TROMPETEROS",
@@ -16724,7 +16818,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1668,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "LORETO",
       "Provincia": "MARISCAL RAMON CASTILLA",
       "Distrito": "RAMON CASTILLA",
@@ -16734,7 +16828,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1669,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "MADRE DE DIOS",
       "Provincia": "TAMBOPATA",
       "Distrito": "LABERINTO",
@@ -16744,7 +16838,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1670,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "MOQUEGUA",
       "Provincia": "MARISCAL NIETO",
       "Distrito": "MOQUEGUA",
@@ -16754,7 +16848,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1671,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "MOQUEGUA",
       "Provincia": "ILO",
       "Distrito": "ILO",
@@ -16764,7 +16858,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1672,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "MOQUEGUA",
       "Provincia": "ILO",
       "Distrito": "ILO",
@@ -16774,7 +16868,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1673,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "PIURA",
       "Provincia": "PIURA",
       "Distrito": "LA ARENA",
@@ -16784,7 +16878,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1674,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "PIURA",
       "Provincia": "PIURA",
       "Distrito": "LA ARENA",
@@ -16794,7 +16888,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1675,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "PIURA",
       "Provincia": "PIURA",
       "Distrito": "LA ARENA",
@@ -16804,7 +16898,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1676,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "PIURA",
       "Provincia": "PIURA",
       "Distrito": "LA UNION",
@@ -16814,7 +16908,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1677,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "PIURA",
       "Provincia": "AYABACA",
       "Distrito": "AYABACA",
@@ -16824,7 +16918,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1678,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "PIURA",
       "Provincia": "AYABACA",
       "Distrito": "PAIMAS",
@@ -16834,7 +16928,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1679,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "PIURA",
       "Provincia": "HUANCABAMBA",
       "Distrito": "HUANCABAMBA",
@@ -16844,7 +16938,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1680,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "PIURA",
       "Provincia": "HUANCABAMBA",
       "Distrito": "HUANCABAMBA",
@@ -16854,7 +16948,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1681,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "PUNO",
       "Provincia": "PUNO",
       "Distrito": "PUNO",
@@ -16864,7 +16958,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1682,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "PUNO",
       "Provincia": "PUNO",
       "Distrito": "PUNO",
@@ -16874,7 +16968,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1683,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "PUNO",
       "Provincia": "AZANGARO",
       "Distrito": "ASILLO",
@@ -16884,7 +16978,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1684,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "PUNO",
       "Provincia": "AZANGARO",
       "Distrito": "SAMAN",
@@ -16894,7 +16988,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1685,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "PUNO",
       "Provincia": "CARABAYA",
       "Distrito": "OLLACHEA",
@@ -16904,7 +16998,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1686,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "PUNO",
       "Provincia": "CARABAYA",
       "Distrito": "USICAYOS",
@@ -16914,7 +17008,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1687,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "PUNO",
       "Provincia": "CHUCUITO",
       "Distrito": "POMATA",
@@ -16924,7 +17018,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1688,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "PUNO",
       "Provincia": "EL COLLAO",
       "Distrito": "ILAVE",
@@ -16934,7 +17028,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1689,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "PUNO",
       "Provincia": "EL COLLAO",
       "Distrito": "ILAVE",
@@ -16944,7 +17038,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1690,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "PUNO",
       "Provincia": "EL COLLAO",
       "Distrito": "ILAVE",
@@ -16954,7 +17048,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1691,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "PUNO",
       "Provincia": "EL COLLAO",
       "Distrito": "ILAVE",
@@ -16964,7 +17058,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1692,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "PUNO",
       "Provincia": "EL COLLAO",
       "Distrito": "ILAVE",
@@ -16974,7 +17068,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1693,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "PUNO",
       "Provincia": "EL COLLAO",
       "Distrito": "PILCUYO",
@@ -16984,7 +17078,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1694,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "PUNO",
       "Provincia": "LAMPA",
       "Distrito": "PALCA",
@@ -16994,7 +17088,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1695,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "PUNO",
       "Provincia": "SAN ROMAN",
       "Distrito": "JULIACA",
@@ -17004,7 +17098,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1696,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "PUNO",
       "Provincia": "SAN ROMAN",
       "Distrito": "JULIACA",
@@ -17014,7 +17108,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1697,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "PUNO",
       "Provincia": "SAN ROMAN",
       "Distrito": "CABANILLAS",
@@ -17024,7 +17118,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1698,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "PUNO",
       "Provincia": "SAN ROMAN",
       "Distrito": "CARACOTO",
@@ -17034,7 +17128,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1699,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "PUNO",
       "Provincia": "SANDIA",
       "Distrito": "ALTO INAMBARI",
@@ -17044,8 +17138,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1700,
-      "Mes": 8,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Agosto",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "MOYOBAMBA",
       "Distrito": "MOYOBAMBA",
       "Inicio": 30,
@@ -17054,8 +17148,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1701,
-      "Mes": 8,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Agosto",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "MOYOBAMBA",
       "Distrito": "CALZADA",
       "Inicio": 18,
@@ -17064,8 +17158,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1702,
-      "Mes": 8,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Agosto",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "MOYOBAMBA",
       "Distrito": "CALZADA",
       "Inicio": 30,
@@ -17074,8 +17168,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1703,
-      "Mes": 8,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Agosto",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "MOYOBAMBA",
       "Distrito": "JEPELACIO",
       "Inicio": 18,
@@ -17084,8 +17178,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1704,
-      "Mes": 8,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Agosto",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "MOYOBAMBA",
       "Distrito": "JEPELACIO",
       "Inicio": 30,
@@ -17094,8 +17188,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1705,
-      "Mes": 8,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Agosto",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "MOYOBAMBA",
       "Distrito": "JEPELACIO",
       "Inicio": 30,
@@ -17104,8 +17198,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1706,
-      "Mes": 8,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Agosto",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "BELLAVISTA",
       "Distrito": "BELLAVISTA",
       "Inicio": 18,
@@ -17114,8 +17208,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1707,
-      "Mes": 8,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Agosto",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "LAMAS",
       "Distrito": "CAYNARACHI",
       "Inicio": 12,
@@ -17124,8 +17218,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1708,
-      "Mes": 8,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Agosto",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "RIOJA",
       "Distrito": "NUEVA CAJAMARCA",
       "Inicio": 18,
@@ -17134,9 +17228,9 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1709,
-      "Mes": 8,
-      "Departamento": "SAN MARTIN",
-      "Provincia": "SAN MARTIN",
+      "Mes": "Agosto",
+      "Departamento": "SAN MARTÍN",
+      "Provincia": "SAN MARTÍN",
       "Distrito": "SAUCE",
       "Inicio": 12,
       "Fin": 17,
@@ -17144,8 +17238,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1710,
-      "Mes": 8,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Agosto",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "TOCACHE",
       "Distrito": "NUEVO PROGRESO",
       "Inicio": 30,
@@ -17154,8 +17248,8 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1711,
-      "Mes": 8,
-      "Departamento": "SAN MARTIN",
+      "Mes": "Agosto",
+      "Departamento": "SAN MARTÍN",
       "Provincia": "TOCACHE",
       "Distrito": "POLVORA",
       "Inicio": 12,
@@ -17164,7 +17258,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1712,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "TACNA",
@@ -17174,7 +17268,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1713,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "TACNA",
@@ -17184,7 +17278,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1714,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "TACNA",
@@ -17194,7 +17288,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1715,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "ALTO DE LA ALIANZA",
@@ -17204,7 +17298,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1716,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "ALTO DE LA ALIANZA",
@@ -17214,7 +17308,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1717,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "ALTO DE LA ALIANZA",
@@ -17224,7 +17318,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1718,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "INCLAN",
@@ -17234,7 +17328,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1719,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "PACHIA",
@@ -17244,7 +17338,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1720,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "PACHIA",
@@ -17254,7 +17348,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1721,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "PALCA",
@@ -17264,7 +17358,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1722,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "CORONEL GREGORIO ALBARRACIN LANCHIPA",
@@ -17274,7 +17368,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1723,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "TACNA",
       "Provincia": "TACNA",
       "Distrito": "CORONEL GREGORIO ALBARRACIN LANCHIPA",
@@ -17284,7 +17378,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1724,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "TACNA",
       "Provincia": "CANDARAVE",
       "Distrito": "CANDARAVE",
@@ -17294,7 +17388,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1725,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "TACNA",
       "Provincia": "CANDARAVE",
       "Distrito": "CANDARAVE",
@@ -17304,7 +17398,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1726,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "TACNA",
       "Provincia": "JORGE BASADRE",
       "Distrito": "ILABAYA",
@@ -17314,7 +17408,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1727,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "TACNA",
       "Provincia": "JORGE BASADRE",
       "Distrito": "ITE",
@@ -17324,7 +17418,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1728,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "TACNA",
       "Provincia": "TARATA",
       "Distrito": "TARATA",
@@ -17334,7 +17428,7 @@ export class InformacionComponent implements OnInit {
     },
     {
       "Id": 1729,
-      "Mes": 8,
+      "Mes": "Agosto",
       "Departamento": "TACNA",
       "Provincia": "TARATA",
       "Distrito": "ESTIQUE-PAMPA",
@@ -17343,21 +17437,4 @@ export class InformacionComponent implements OnInit {
       "Metodo": "PROGESTAGENO"
     }
   ];
-
-  /* PLACES */
-  /* public selectedRegion: RegionI = {id: 0, name: ""};
-  public selectedProvincia: ProvinciaI = {id: 0, regionId: 0, name: ""};
-  public selectedDistrito: DistritoI = {id: 0, provinciaId: 0, name: ""};
-  public regiones: RegionI[] = [];
-  public provincias: ProvinciaI[] = [];
-  public distritos: DistritoI[] = [];
-
-  onSelectRegion(event:any) :void {
-    this.provincias = this.service.getProvincias().filter(item => item.regionId == event.target.value);
-  }
-
-  onSelectProvincia(event: any): void {
-    this.distritos = this.service.getDistritos().filter(item => item.provinciaId == event.target.value);
-  } */
-
 }

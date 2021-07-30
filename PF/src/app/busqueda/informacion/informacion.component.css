@@ -12,32 +12,28 @@ table {
     height: 2.5rem;
 }
 
-th:nth-child(1) {
+th:nth-child(1), th:nth-child(8) {
     width: 55px;
 }
 
-th:nth-child(2) {
-    width: 60px;
+th:nth-child(2), th:nth-child(9) {
+    width: 100px;
 }
 
-th:nth-child(3) {
+th:nth-child(3), th:nth-child(10) {
     width: 200px;
 }
 
-th:nth-child(4) {
+th:nth-child(4), th:nth-child(11) {
     width: 250px;
 }
 
-th:nth-child(5) {
+th:nth-child(5), th:nth-child(12) {
     width: 320px;
 }
 
-th:nth-child(6) {
-    width: 50px;
-}
-
-th:nth-child(7) {
-    width: 50px;
+th:nth-child(6), th:nth-child(13) {
+    width: 100px;
 }
 
 .my-container {
@@ -60,61 +56,24 @@ i {
     margin-top: 2rem;
 }
 
-/* formulario */
-.searching {
-    background-color: #fff;
-    margin-top: 0;
-    padding: 2.5rem;
-    color: #232323;
-    max-width: 1244px;
-    margin: 1.25rem auto 2.5rem;
-}
-
-.title {
-    text-align: center;
-}
-
-.form {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: 2rem;
-}
-
-.field {
+.more-filters {
     display: flex;
-    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    margin-top: .5rem;
+}
+
+.more-text {
+    margin-left: .5rem;
+}
+
+.filtros-tabla {
+    margin-top: 1rem;
+    margin-bottom: -1rem;
 }
 
 input, select {
     height: 2rem;
     padding: 0 .5rem;
-}
-
-.buttons {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-}
-
-button {
-    border: none;
-    height: 2.5rem;
-    width: 40%;
-    border-radius: .5rem;
-    cursor: pointer;
-    color: #fff;
-    font-weight: 500;
-    font-size: 1rem;
-}
-
-.buscar {
-    background-color: #28a745;
-}
-
-.limpiar {
-    background-color: #185ADB;
-}
-
-i {
-    margin-right: .5rem;
+    margin-right: .2rem;
 }
