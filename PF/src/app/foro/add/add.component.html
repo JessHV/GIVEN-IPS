@@ -1,0 +1,42 @@
+
+<div class="bg-contact2">
+    <div class="container-contact2">
+        <div class="wrap-contact2">
+            <div class="wrap-contact2-form-btn">
+                <div class="contact2-form-bgbtn"></div>
+                <a class="contact2-form-btn"*ngIf="submitted && createComent.invalid">
+                    <span >Todos los campos son obligatorios</span>
+                </a>
+            </div> 
+            <span class="contact2-form-title">
+                {{ titulo }}
+            </span>
+            <form class="contact2-form validate-form" [formGroup]="createComent" (ngSubmit)="agregarEditar()">
+
+                <div class="wrap-input2 validate-input">
+                    <label>Titulo</label>
+                    <input class="input2" type="text" formControlName="titulo">
+                </div>
+
+                <div class="wrap-input2 validate-input">
+                    <label>Post</label>
+                    <textarea class="input2" formControlName="comentario"></textarea>
+                </div>
+
+                <div class="container-contact2-form-btn">
+                    <div class="wrap-contact2-form-btn">
+                        <div class="contact2-form-bgbtn"></div>
+                        <button class="contact2-form-btn" routerLink='{{ dir }}'>
+                            Volver </button>
+                    </div>
+                    <div class="wrap-contact2-form-btn">
+                        <div class="contact2-form-bgbtn"></div>
+                        <button class="contact2-form-btn">
+                            {{ vista }}
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

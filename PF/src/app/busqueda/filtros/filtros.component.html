@@ -1,15 +1,36 @@
 <div class="container mt-5">
     <div class="navbar-start filter">
-        <p class="control has-icons-left">
-            <input [(ngModel)]="MethodNameFilter" (keyup)="filterMethods()" placeholder="Buscar método" class="input filter-input">
+        <p class="control has-icons-left search">
+            <input [(ngModel)]="MethodNameFilter" 
+            (keyup)="filterMethods()"
+            placeholder="Buscar método" 
+            class="input filter-input">
             <span class="icon is-left">
                 <i class="fas fa-search" aria-hidden="true"></i>
             </span>
         </p>
+        <div>
+            <select [(ngModel)]="TypeMethodFilter" (change)="filterType()" name="" id="" class="option tipo">
+                <option value="" [selected]="(MethodNameFilter != '')">Tipo de Método</option>
+                <option value="MAP">Abstinencia periódica</option>
+                <option value="MELA">MELA</option>
+                <option value="MB">Métodos de barrera</option>
+                <option value="AH">Anticonceptivos hormonales</option>
+                <option value="DIU">Dispositivos intrauterinos</option>
+                <option value="AQV">Anticoncepción quirúrgica voluntaria</option>
+                <option value="AE">Anticoncepción de emergencia</option>
+            </select>
+            <select [(ngModel)]="GenderMethodFilter" (change)="filterGender()" name="" id="" class="option">
+                <option value="" [selected]="(MethodNameFilter != '')">Género</option>
+                <option value="Masculino">Hombre</option>
+                <option value="Femenino">Mujer</option>
+            </select>
+        </div>
+        
     </div>
  
-    <!-- START -->
     <div class="my-container">
+        <p *ngIf="MethodList.length == 0" class="sin-resultados">No se encontraron resultados</p>
         <div class="my-card" *ngFor="let dataItem of MethodList">
             <div class="my-info">
                 <h1>{{dataItem.MetodoNombre}}</h1>
@@ -17,35 +38,13 @@
                 <p>{{dataItem.MetodoDescripcion}}</p>
                 <h2>Mecanismo de Acción</h2>
                 <p>{{dataItem.MetodoMecanismo}}</p>
+                <h2>Tasa de Falla</h2>
+                <p>• {{dataItem.MetodoTasa.split("|")[0]}}</p>
+                <p>• {{dataItem.MetodoTasa.split("|")[1]}}</p>
             </div>
             <div class="my-image">
                 <img src="assets/imagenes/{{dataItem.MetodoImagen}}" alt="">
             </div>
         </div> 
     </div>
-    
-    <!-- END -->
-
-    <!-- <table class="table is-bordered is-hoverable">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Método</th>
-                <th>Descripción</th>
-                <th>Mecanismo de Acción</th>
-                <th>Imagen</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let dataItem of MethodList">
-                <td>{{dataItem.MetodoId}}</td>
-                <td>{{dataItem.MetodoNombre}}</td>
-                <td>{{dataItem.MetodoDescripcion}}</td>
-                <td>{{dataItem.MetodoMecanismo}}</td> -->
-                <!-- <td><img src="http://127.0.0.1:8000/media/{{dataItem.MethodImageName}}" alt=""></td> -->
-                <!-- Desde los assets de Angular -->
-                <!-- <td><img src="assets/imagenes/{{dataItem.MetodoImagen}}" alt=""></td>
-            </tr>
-        </tbody>
-    </table> -->
 </div>

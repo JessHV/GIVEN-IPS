@@ -16,7 +16,12 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from  '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireStorageModule} from '@angular/fire/storage';
+
 //Imports y export necesarios para utilizar la internacionalizacion
+
+
+//Modulo para base de datos foro
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 
 @NgModule({
@@ -36,8 +41,13 @@ import { AngularFireStorageModule} from '@angular/fire/storage';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireStorageModule,
+
     //importaciones internacionalizacion
     
+
+    //importaciones base de datos firebase
+    AngularFirestoreModule
+
   ],
   providers: [
     {provide:SharedService },

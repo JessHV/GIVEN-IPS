@@ -1,19 +1,10 @@
 <div class="container mt-5">
-    <!-- <div class="navbar-start filter">
-        <p class="control has-icons-left">
-            <input [(ngModel)]="AntiNameFilter" (keyup)="filterAnticoncepcion()" placeholder="Departamento" class="input filter-input">
-            <span class="icon is-left">
-                <i class="fas fa-search" aria-hidden="true"></i>
-            </span>
-        </p>
-    </div> -->
-
     <div class="my-container">
         <div class="navbar-start filter">
             <p class="control has-icons-left">
                 <input 
-                    #txtSearch
-                    (keyup)="onSearchAnticoncepcion(txtSearch.value)" 
+                    [(ngModel)]="busqueda"
+                    (keyup)="onSearchAnticoncepcion(busqueda)" 
                     placeholder="Buscar" 
                     class="input filter-input">
                 <span class="icon is-left">
@@ -21,13 +12,84 @@
                 </span>
             </p>
         </div>
-        <button class="button is-link is-light" (click)="prevPage()"><span class="icon"><i class="fas fa-chevron-left"></i></span></button>
+        <button class="button is-link is-light" (click)="prevPage()"
+        [disabled]="page == 0">
+            <span class="icon"><i class="fas fa-chevron-left"></i></span>
+        </button>
         <button class="button is-link is-light" (click)="nextPage()" 
-        [disabled]="(AnticoncepcionList | filtro:page:search).length === 0"><span class="icon"><i class="fas fa-chevron-right"></i></span></button>
-    
+        [disabled]="(AnticoncepcionList | filtro:page:search).length < 15">
+            <span class="icon"><i class="fas fa-chevron-right"></i></span>
+        </button>
     </div>
 
-    <table class="table is-bordered is-hoverable">
+    <!-- START -->
+    <div class="more-filters">
+        <input [(ngModel)]="more" (click)="changeMore()" type="checkbox" name="advance" id="advance"><label for="advance" class="more-text">Mostrar filtros</label>
+    </div>
+
+    <table *ngIf="more == true" class="filtros-tabla">
+        <thead>
+            <tr>
+                <th> </th>
+                <th>
+                    <select name="mes" id="mes" [(ngModel)]="mes" (change)="onSearchMes(mes)">
+                        <option value="" [selected]="(departamento != '' || provincia != '' || distrito != '' || edad != '' || metodo != '')">Mes</option>
+                        <option value="Enero">Enero</option>
+                        <option value="Febrero">Febrero</option>
+                        <option value="Marzo">Marzo</option>
+                        <option value="Abril">Abril</option>
+                        <option value="Mayo">Mayo</option>
+                        <option value="Junio">Junio</option>
+                        <option value="Julio">Julio</option>
+                        <option value="Agosto">Agosto</option>
+                        <option value="Septiembre">Septiembre</option>
+                        <option value="Octubre">Octubre</option>
+                        <option value="Noviembre">Noviembre</option>
+                        <option value="Diciembre">Diciembre</option>
+                    </select>
+                </th>
+                <th>
+                    <input 
+                    [(ngModel)]="departamento"
+                    (keyup)="onSearchDepartamento(departamento)" 
+                    placeholder="Departamento" 
+                    class="input">
+                </th>
+                <th>
+                    <input 
+                    [(ngModel)]="provincia"
+                    (keyup)="onSearchProvincia(provincia)" 
+                    placeholder="Provincia" 
+                    class="input">
+                </th>
+                <th>
+                    <input 
+                    [(ngModel)]="distrito"
+                    (keyup)="onSearchDistrito(distrito)" 
+                    placeholder="Distrito" 
+                    class="input">
+                </th>
+                <th>
+                    <select name="edad" id="edad" [(ngModel)]="edad" (change)="onSearchEdad(edad)">
+                        <option value="" [selected]="(departamento != '' || provincia != '' || distrito != '' || mes != '' || metodo != '')">Edad</option>
+                        <option value="12-17">12 - 17</option>
+                        <option value="18-29">18 - 29</option>
+                        <option value="30-59">30 - 59</option>
+                    </select>
+                </th>
+                <th>
+                    <select name="metodo" id="metodo" [(ngModel)]="metodo" (change)="onSearchMetodo(metodo)">
+                        <option value="" [selected]="(departamento != '' || provincia != '' || distrito != '' || edad != '' || mes != '')">Método</option>
+                        <option value="YUZPE">Yuzpe</option>
+                        <option value="PROGESTAGENO">Progestageno</option>
+                    </select>
+                </th>
+            </tr>
+        </thead>
+    </table>
+
+    <!-- END -->
+    <table class="table is-bordered is-hoverable" *ngIf="(AnticoncepcionList | filtro:page:search:option).length > 0">
         <thead>
             <tr>
                 <th>#</th>
@@ -35,73 +97,23 @@
                 <th>Departamento</th>
                 <th>Provincia</th>
                 <th>Distrito</th>
-                <th>Inicio</th>
-                <th>Fin</th>
+                <th>Edad</th>
                 <th>Método</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let dataItem of AnticoncepcionList | filtro:page:search">
+            <tr *ngFor="let dataItem of AnticoncepcionList | filtro:page:search:option">
                 <td>{{dataItem.Id}}</td>
                 <td>{{dataItem.Mes}}</td>
                 <td class="text">{{dataItem.Departamento.toLowerCase()}}</td>
                 <td class="text">{{dataItem.Provincia.toLowerCase()}}</td>
                 <td class="text">{{dataItem.Distrito.toLowerCase()}}</td>
-                <td>{{dataItem.Inicio}}</td>
-                <td>{{dataItem.Fin}}</td>
+                <td>{{dataItem.Inicio}} - {{dataItem.Fin}}</td>
                 <td class="text">{{dataItem.Metodo.toLowerCase()}}</td>
             </tr>
         </tbody>
     </table>
+
+    <p *ngIf="(AnticoncepcionList | filtro:page:search:option).length == 0" class="sin-resultados">No se encontraron resultados</p>
     
 </div>
-
-<!-- FORMULARIO -->
-
-<!-- <div class="searching">
-    <h2 class="title">Bienvenido al módulo de consulta</h2>
-    <form action="#" class="form">
-        <div class="field">
-            <label for="metodo">Búsqueda por método anticonceptivo:</label>
-            <input type="text" name="metodo" id="metodo">
-        </div>
-        <div class="field">
-            <label for="departamento">Departamento:</label>
-
-            <select [(ngModel)]="selectedRegion.id" (change)="onSelectRegion($event)" name="regione">
-                <option *ngFor="let region of regiones" value={{region.id}}>
-                    {{region.name}}
-                </option>
-            </select>
-        </div>
-        <div class="field">
-            <label for="provincia">Provincia:</label>
-            <select [(ngModel)]="selectedProvincia.id" (change)="onSelectProvincia($event)" name="provincia">
-                <option *ngFor="let provincia of provincias" value="{{provincia.id}}">
-                    {{provincia.name}}
-                </option>
-            </select>
-        </div>
-        
-        <div class="field">
-            <label for="distrito">Distrito:</label>
-            <select [(ngModel)]="selectedDistrito.id" name="distrito">
-                <option *ngFor="let distrito of distritos" value="{{distrito.id}}">
-                    {{distrito.name}}
-                </option>
-            </select>
-        </div>
-        <div class="field">
-            <label for="sexo">Sexo:</label>
-            <select name="sexo" id="sexo">
-                <option value="">--Seleccione--</option>
-                <option value="hombre">Hombre</option>
-                <option value="mujer">Mujer</option>
-            </select>
-        </div>
-        <div class="buttons">
-            <button class="buscar" type="submit"><i class="fas fa-search"></i>Buscar</button>
-            <button class="limpiar" type="reset"><i class="fas fa-trash-restore-alt"></i>Limpiar</button>
-        </div>
-    </form>
-</div> -->
