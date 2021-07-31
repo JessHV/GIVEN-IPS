@@ -1,3 +1,14 @@
 {
-    "Inicio": "Start"
+    "layout": {
+        "inicio": "Start",
+        "graficos": "Graphics"
+    },
+    "banner": {
+        "f1": "THE WORD FORBIDDEN NOT ALWAYS ",
+        "f2": "MEANS YOU CAN'T DO IT",
+        "f3": "JUST THAT YOU MUST DO IT WITH ",
+        "f4": "WATCH OUT",
+        
+        "c1":"Female contraceptives "
+    }   
 }

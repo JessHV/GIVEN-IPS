@@ -2,6 +2,8 @@ import { Component, ViewEncapsulation, OnInit, AfterViewInit } from '@angular/co
 import Swiper from 'swiper';
 import { SwiperComponent } from "swiper/angular";
 import SwiperCore, { EffectFade, Pagination } from 'swiper/core';
+//Internacionalizacion
+import { TranslateConfigService } from '../../services/translate-config.service';
 
 SwiperCore.use([EffectFade, Pagination]);
 
@@ -20,7 +22,7 @@ export class BannerComponent implements OnInit, AfterViewInit {
     'assets/imagenes/Fondo1-embarazada.jpg',
     'assets/imagenes/Fondo2-Pareja.jpg'
   ];
-  constructor() { }
+  constructor(private translateConfigService: TranslateConfigService) { }
 
   ngOnInit(): void {
   }

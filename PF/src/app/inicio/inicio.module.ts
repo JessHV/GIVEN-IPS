@@ -7,6 +7,7 @@ import { SuscripcionComponent } from './suscripcion/suscripcion.component';
 import { SharedModule } from "../shared/shared.module";
 import { SwiperModule } from "swiper/angular";
 import { BannerComponent } from './banner/banner.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { BannerComponent } from './banner/banner.component';
     SharedModule,
     InicioRoutingModule,
     SharedModule,
-    SwiperModule
+    SwiperModule,
+    TranslateModule
   ]
 })
 export class InicioModule { }

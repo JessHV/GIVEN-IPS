@@ -3,6 +3,9 @@ import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 //La interface de usuario
 import { UserInterface } from '../models/user';
+//Internacionalizacion
+import { TranslateConfigService } from '../services/translate-config.service';
+
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
@@ -10,7 +13,7 @@ import { UserInterface } from '../models/user';
 })
 export class LayoutComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router:Router) { }
+  constructor(private authService: AuthService, private router:Router, private translateConfigService: TranslateConfigService) { }
 
   public isLogged: boolean = false;
   user: UserInterface = {
@@ -56,6 +59,10 @@ export class LayoutComponent implements OnInit {
   }
   onLoginRedirect():void {
     this.router.navigate(['inicio']);
+  }
+
+  changeLang(type: string){
+    this.translateConfigService.changeLanguage(type);
   }
 
 }

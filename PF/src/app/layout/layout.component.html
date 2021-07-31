@@ -21,12 +21,12 @@
         		Inicio
       		</a> -->
 
-            <a class="navbar-item" href="#">
-        		Inicio
+            <a class="navbar-item" href="#" translate>
+        		layout.inicio
       		</a>
 
-            <a routerLink="/graficos" class="navbar-item">
-        		Graficos
+            <a routerLink="/graficos" class="navbar-item" translate>
+        		layout.graficos
       		</a>
 
       		<a routerLink="/ubicalos" class="navbar-item">
@@ -66,10 +66,10 @@
 			    </a>
 				<nav class="navbar-dropdown">
 					<a class="navbar-item" >
-						<option value="en">Ingles</option>
+						<option (click)="changeLang('en')">Ingles</option>
 					</a>
 					<a class="navbar-item" >
-						<option value="es">Español</option>
+						<option (click)="changeLang('es')">Español</option>
 					</a>
 				</nav>
 			</div>
