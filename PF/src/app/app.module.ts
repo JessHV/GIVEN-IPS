@@ -8,7 +8,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { SharedModule } from "./shared/shared.module";
 
 import { SharedService } from './shared.service';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClient, HttpClientModule } from '@angular/common/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //Modulos para inicio de sesion con Firebase
 import { environment } from 'src/environments/environment';
@@ -16,10 +16,12 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from  '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireStorageModule} from '@angular/fire/storage';
-
 //Imports y export necesarios para utilizar la internacionalizacion
-
-
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+export function rootLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
+}
 //Modulo para base de datos foro
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
@@ -43,7 +45,13 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     AngularFireStorageModule,
 
     //importaciones internacionalizacion
-    
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: rootLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
 
     //importaciones base de datos firebase
     AngularFirestoreModule

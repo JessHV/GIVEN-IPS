@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 //La interface de usuario
 import { UserInterface } from '../models/user';
 @Component({
@@ -10,7 +10,7 @@ import { UserInterface } from '../models/user';
 })
 export class LayoutComponent implements OnInit {
 
-  constructor(private authService: AuthService, private afsAuth: AngularFireAuth) { }
+  constructor(private authService: AuthService, private router:Router) { }
 
   public isLogged: boolean = false;
   user: UserInterface = {
@@ -27,7 +27,6 @@ export class LayoutComponent implements OnInit {
         this.user.email = user.email;
         this.user.photoUrl = user.photoURL;
         this.providerId = user.providerData[0].providerId;
-        // this.providerId = user.providerData[0].providerId;
       }
     })
   }
@@ -48,8 +47,15 @@ export class LayoutComponent implements OnInit {
     this.authService.logoutUser();
   }
 
-  changeLang(lang){
-    console.log(lang);
+  onLoginGoogle():void{
+    this.authService.loginGoogleUser()
+    .then((res)=>{
+      console.log('resUser',res);
+      this.onLoginRedirect();
+    }).catch(err => console.log('err',err));
+  }
+  onLoginRedirect():void {
+    this.router.navigate(['inicio']);
   }
 
 }
