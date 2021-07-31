@@ -18,11 +18,14 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireStorageModule} from '@angular/fire/storage';
 //Modulo para base de datos foro
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LayoutComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     AngularFireDatabaseModule,
     AngularFireStorageModule,
     //importaciones base de datos firebase
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     {provide:SharedService },

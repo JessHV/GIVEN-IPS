@@ -7,6 +7,8 @@ import { SuscripcionComponent } from './suscripcion/suscripcion.component';
 import { SharedModule } from "../shared/shared.module";
 import { SwiperModule } from "swiper/angular";
 import { BannerComponent } from './banner/banner.component';
+//Angular material
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { BannerComponent } from './banner/banner.component';
     SharedModule,
     InicioRoutingModule,
     SharedModule,
-    SwiperModule
+    SwiperModule,
+    MatCardModule
   ]
 })
 export class InicioModule { }

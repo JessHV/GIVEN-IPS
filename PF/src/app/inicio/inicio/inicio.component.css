@@ -1,19 +1,25 @@
-.texto-colum{
-    text-align: center;
-}
 /*
-.panel{
-    text-align: center;
-    align-items: center;
-    justify-content: center;
+EMPIEZA LAS TARJETITAS
+*/
+.columnas{
+    position: absolute;
+    top: 670px;
+    z-index: 2;
 }
-*/
-/*
-    -moz-border-radius: 5%;
-    -webkit-border-radius: 50%;
-*/
-/* POR SI SE DECIDE PASAR LAS TARJETAS AQUI XD
+.row{
+    position: relative;
+}
+
+.circulo1{
+    position: absolute;
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    background: white;
+    top: -8px;
+}
 .circulo {
+    position: absolute;
     width: 70px;
     height: 70px;
     border-radius: 50%;
@@ -26,23 +32,168 @@
     vertical-align: middle;
     margin-top: 15px;
 }
-
 .contenido{
+    margin-top: 35px;
     font-family: 'Raleway', sans-serif;
     font-size: 15px;
     color: black;
-    background-color: wheat;
+    background-color: white;
 }
 .a{
+    margin-top: 40px;
     font-size: 20px;
     line-height: 40px;
 }
 .b{
     margin: 25px;
+    margin-top: 10px;
     text-align: justify;
-    margin-bottom: 10px;
-}
-.c{
     margin-bottom: 15px;
 }
+.c{
+    margin-bottom: 30px;
+    color: black;
+}
+
+/*
+EMPIEZA LA INFO
 */
+
+.info{
+    margin-top: 150px;
+    margin-left: 130px;
+}
+
+.texto-colum{
+    text-align: center;
+}
+
+.img-femeninos img{
+    height: 500px;
+    width: 600px;
+}
+.texto{
+    justify-content: center;
+    display: table;
+}
+.femeninos{
+    vertical-align: middle;
+    display: table-cell;
+    align-items: center;
+    text-align: center;
+}
+
+.femeninos p{
+    font-family: 'Gowun Batang', serif;
+    font-size: 15px;
+    color: black;
+    margin-left: 50px;
+    text-align: justify;
+    margin-top: 20px;
+}
+.femeninos h1{
+    font-family: 'Gowun Batang', serif;
+    font-size: 30px;
+    color: black;
+    margin-left: 50px;
+}
+
+.boton{
+    background-color: #f05696;
+    color: white;
+    width: 200px;
+    height: 30px;
+    font-family: 'Gowun Batang', serif;
+    border-radius: 50%;
+    margin:40px auto;
+}
+/*
+.panel{
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+*/
+/*
+    -moz-border-radius: 5%;
+    -webkit-border-radius: 50%;
+*/
+
+/*
+EMPIEZA PAGINAS RELACIONADAS
+*/
+.tituloPR{
+    position:relative;
+}
+.pr{
+    font-family: 'Gowun Batang', serif;
+    font-size: 25px;
+    color: black;
+    margin-top: 100px;
+    position: absolute;
+}
+.rayita{
+    background-color: #f05696;
+    height: 2px;
+    width: 50px;
+    margin-top: 160px;
+}
+.paginas{
+    margin-top: 80px;
+    margin-bottom: 120px;
+}
+
+.infotarj{
+    font-family: 'Gowun Batang', serif;
+    color: black;
+}
+/*imagenes*/
+.gob{
+    height: 70px;
+    width: 100px;
+}
+.pp{
+    height: 70px;
+    width: 60px; 
+}
+.tde{
+    height: 70px;
+    width: 80px; 
+}
+.oms{
+    height: 70px;
+    width: 80px; 
+}
+
+/*
+RELLENO 
+*/
+.polco{
+    position: relative;
+    background-color: #f056968e;
+    z-index: 3;
+    height: 250px;
+    width: auto;
+    margin-bottom: 80px;
+}
+.fraseFinal{
+    font-family: 'Gowun Batang', serif;
+    font-size: 40px;
+    margin-top: 30px;
+    position: absolute;
+    z-index: 4;
+    color: white;
+}
+.bb{
+    position: absolute;
+    height: 250px;
+    width: 100%;
+    z-index: 2;
+}
+.raya{
+    position: absolute;
+    background-color: yellow;
+    z-index: 40;
+    height: 500px;
+    width: auto;
+}
