@@ -10,5 +10,9 @@
         "f4": "CUIDADO",
 
         "c1":"Anticonceptivos femeninos"
-    }   
+    }, 
+    "foro": {
+        "title": "Foro",
+        "subtitle": "Todos estan invitados a preguntar :)"
+    }
 }

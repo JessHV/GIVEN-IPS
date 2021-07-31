@@ -3,6 +3,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AuthService } from 'src/app/services/auth.service';
 import { ForoService } from 'src/app/services/foro.service';
+//Internacionalizacion
+import { TranslateConfigService } from '../../services/translate-config.service';
 
 @Component({
   selector: 'app-foro',
@@ -12,7 +14,7 @@ import { ForoService } from 'src/app/services/foro.service';
 export class ForoComponent implements OnInit {
   posts: any[] = [];
   constructor(private authService: AuthService, private afsAuth: AngularFireAuth,
-    firestore: AngularFirestore, private postService: ForoService) {
+    firestore: AngularFirestore, private postService: ForoService, private translateConfigService: TranslateConfigService) {
 
   }
   ngOnInit(): void {

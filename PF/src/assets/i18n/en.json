@@ -10,5 +10,9 @@
         "f4": "WATCH OUT",
         
         "c1":"Female contraceptives "
-    }   
+    }, 
+    "foro": {
+        "title": "Forum",
+        "subtitle": "Everyone is invited to ask :)"
+    } 
 }

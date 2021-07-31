@@ -7,6 +7,7 @@ import { AddComponent } from './add/add.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MyPostsComponent } from './my-posts/my-posts.component';
 import { ComentarioComponent } from './comentario/comentario.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ComentarioComponent } from './comentario/comentario.component';
     CommonModule,
     ForoRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule
   ]
 })
 export class ForoModule { }

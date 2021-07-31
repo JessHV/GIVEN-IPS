@@ -5,6 +5,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from 'src/app/services/auth.service';
 import { ForoService } from 'src/app/services/foro.service';
 import { ActivatedRoute, Router } from '@angular/router';
+
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
