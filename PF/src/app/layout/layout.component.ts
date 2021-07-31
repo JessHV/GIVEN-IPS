@@ -48,5 +48,8 @@ export class LayoutComponent implements OnInit {
     this.authService.logoutUser();
   }
 
+  changeLang(lang){
+    console.log(lang);
+  }
 
 }

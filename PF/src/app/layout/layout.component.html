@@ -41,6 +41,38 @@
 			<!-- <a class="navbar-item">
         		Preguntas Frecuentes
       		</a> -->
+			<!--<div class="navbar-item has-dropdown is-hoverable">
+				<a class="navbar-link">
+					Idioma
+			    </a>
+
+				<nav class="navbar-dropdown" (change)="changeLang($event.target.value)">
+					<a class="navbar-item">
+						<span class="icon-text has-text-info">
+							<span value="en">Ingles</span>
+						</span>
+					</a>
+					<a class="navbar-item">
+						<span class="icon-text has-text-info">
+							<span value="es">Español</span>
+						</span>
+					</a>
+				</nav>
+			</div>-->
+
+			<div class="navbar-item has-dropdown is-hoverable">
+				<a class="navbar-link">
+					Idioma
+			    </a>
+				<nav class="navbar-dropdown">
+					<a class="navbar-item" >
+						<option value="en">Ingles</option>
+					</a>
+					<a class="navbar-item" >
+						<option value="es">Español</option>
+					</a>
+				</nav>
+			</div>
 
       		<div class="navbar-item has-dropdown is-hoverable">
         		<a class="navbar-link">
