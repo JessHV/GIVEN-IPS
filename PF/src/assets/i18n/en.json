@@ -1,14 +1,16 @@
 {
     "layout": {
         "inicio": "Start",
-        "graficos": "Graphics"
+        "graficos": "Graphics",
+        "ubicar": "Locate them",
+        "idi": "Language",
+        "con": "Contact",
+        "cor": "Mail",
+        "tel": "Phone",
+        "log": "Login",
+        "ex": "Exit"
     },
     "banner": {
-        "f1": "THE WORD FORBIDDEN NOT ALWAYS ",
-        "f2": "MEANS YOU CAN'T DO IT",
-        "f3": "JUST THAT YOU MUST DO IT WITH ",
-        "f4": "WATCH OUT",
-        
         "c1":"Female contraceptives "
     }, 
     "foro": {

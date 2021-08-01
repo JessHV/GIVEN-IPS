@@ -1,14 +1,16 @@
 {
     "layout": {
         "inicio": "Inicio",
-        "graficos": "Graficos"
+        "graficos": "Graficos",
+        "ubicar": "Ubicalos",
+        "idi": "Idioma",
+        "con": "Contactenos",
+        "cor": "Correo",
+        "tel": "Telefono",
+        "log": "Iniciar Sesion",
+        "ex": "Salir"
     },
     "banner": {
-        "f1": "LA PALABRA PROHIBIDO NO SIEMPRE",
-        "f2": "SIGNIFICA QUE NO PUEDAS HACERLO ",
-        "f3": "SOLO QUE DEBES HACERLO CON ",
-        "f4": "CUIDADO",
-
         "c1":"Anticonceptivos femeninos"
     }, 
     "foro": {
