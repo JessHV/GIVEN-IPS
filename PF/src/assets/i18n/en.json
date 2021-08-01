@@ -4,17 +4,31 @@
         "graficos": "Graphics",
         "ubicar": "Locate them",
         "idi": "Language",
-        "con": "Contact",
-        "cor": "Mail",
-        "tel": "Phone",
         "log": "Login",
         "ex": "Exit"
     },
     "banner": {
-        "c1":"Female contraceptives "
+        "c1":"Female contraceptives ",
+        "c2":"Young women are at higher risk of delivering a premature or low-birth-weight baby. In addition, the children of adolescent women have a higher neonatal mortality rate.",
+        "c3":"Read more",
+        "c4":"Male contraceptives",
+        "c5":"Contraceptive methods such as the condom offer double protection, preventing pregnancy and the risk of transmission of sexual diseases such as HIV. ",
+        "c6":"Nearest hospitals ",
+        "c7":"According to the definition given by the World Health Organization (WHO), family planning includes all procedures aimed at controlling reproduction. "
     }, 
     "foro": {
         "title": "Forum",
-        "subtitle": "Everyone is invited to ask :)"
+        "subtitle": "Everyone is invited to ask :)",
+        "comment": "Comment",
+        "addP": "Add Post ",
+        "myP": "My posts ",
+        "camOb": "All fields are required ",
+        "tit": "Title ",
+        "po": "Publication",
+        "vol": "Return ",
+        "comMin": "Comments are minimum 10 characters",
+        "ed": "Edit ",
+        "de": "Remove",
+        "noP": "I do not post anything "
     } 
 }

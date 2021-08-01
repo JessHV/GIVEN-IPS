@@ -22,8 +22,7 @@
                             <p>{{user.comentario }}</p>
                         </div>
                         <div class="post-footer">
-                            <span *ngIf="submitted && createComent.invalid"><b>Los comentarios son de minimo 10
-                                caracteres</b></span>
+                            <span *ngIf="submitted && createComent.invalid"><b translate>foro.comMin</b></span>
                             <form [formGroup]="createComent" (ngSubmit)="agregarComentario()">
                                 <div class="input-group">
                                     <textarea cols="118" rows="6" formControlName="comentario"
@@ -31,8 +30,8 @@
                                 </div>
                                 <div class="input-group">
                                     <div id="buttons">
-                                        <button class="btn blue">Comentar</button>
-                                        <button class="btn yellow" routerLink='/foro'>Volver</button>
+                                        <button class="btn blue" translate>foro.comment</button>
+                                        <button class="btn yellow" routerLink='/foro' translate>foro.vol</button>
                                     </div>
                                 </div>
                             </form>

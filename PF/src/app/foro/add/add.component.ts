@@ -5,6 +5,9 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from 'src/app/services/auth.service';
 import { ForoService } from 'src/app/services/foro.service';
 import { ActivatedRoute, Router } from '@angular/router';
+//Internacionalizacion
+import { TranslateConfigService } from '../../services/translate-config.service';
+
 
 @Component({
   selector: 'app-add',
@@ -21,7 +24,7 @@ export class AddComponent implements OnInit {
   dir = '/foro';
   constructor(private fb: FormBuilder, private authService: AuthService,
     private afsAuth: AngularFireAuth, private foroService: ForoService,
-    private router: Router, private aRoute: ActivatedRoute) {
+    private router: Router, private aRoute: ActivatedRoute, private translateConfigService: TranslateConfigService) {
     this.createComent = this.fb.group({
       titulo: ['', Validators.required],
       comentario: ['', Validators.required],

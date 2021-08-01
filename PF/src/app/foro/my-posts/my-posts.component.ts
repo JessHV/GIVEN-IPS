@@ -4,6 +4,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AuthService } from 'src/app/services/auth.service';
 import { ForoService } from 'src/app/services/foro.service';
 import { UserInterface } from '../../models/user';
+//Internacionalizacion
+import { TranslateConfigService } from '../../services/translate-config.service';
 
 @Component({
   selector: 'app-my-posts',
@@ -14,7 +16,7 @@ export class MyPostsComponent implements OnInit {
   user: UserInterface = {};
   posts: any[] = [];
   constructor(private authService: AuthService, private afsAuth: AngularFireAuth,
-    firestore: AngularFirestore, private postService: ForoService) {
+    firestore: AngularFirestore, private postService: ForoService,  private translateConfigService: TranslateConfigService) {
     this.afsAuth.authState.subscribe((user: any) => {
       if (user) {
         this.user.id = user.uid;

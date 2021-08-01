@@ -1,15 +1,15 @@
 <section class="hero is-primary">
     <div class="hero-body">
         <div class="container hero-forum has-text-centered">
-            <h1 class="title">
-                Foro
+            <h1 class="title" translate>
+                foro.title
             </h1>
-            <h2 class="subtitle">
-                Todos estan invitados a preguntar :)
+            <h2 class="subtitle" translate>
+                foro.subtitle
             </h2>
     
             <div id="buttons">
-                <a class="btn blue" routerLink='/foro'>Volver</a>
+                <a class="btn blue" routerLink='/foro' translate>foro.vol</a>
 
             </div>
 
@@ -43,11 +43,11 @@
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <a href="javascript:void(0);" [routerLink]="['./edit/',post.id]"
-                                            style="margin: 20px"><i class="fa fa-edit fa-2x">Editar</i></a>
+                                            style="margin: 20px"><i class="fa fa-edit fa-2x" translate>foro.ed</i></a>
                                     </span>
                                     <span class="input-group-addon">
                                         <a href="javascript:void(0);" (click)="eliminarComentario(post.id)"><i
-                                                class="fas fa-times fa-2x"> Eliminar</i></a>
+                                                class="fas fa-times fa-2x" translate>foro.de</i></a>
                                     </span>
                                 </div>
                             </div>
@@ -62,7 +62,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-8 col-sm-offset-2">
-                <h2><b>No posteo nada</b></h2>
+                <h2><b translate>foro.noP</b></h2>
             </div>
         </div>
     </div>

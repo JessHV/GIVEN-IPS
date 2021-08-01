@@ -4,17 +4,31 @@
         "graficos": "Graficos",
         "ubicar": "Ubicalos",
         "idi": "Idioma",
-        "con": "Contactenos",
-        "cor": "Correo",
-        "tel": "Telefono",
         "log": "Iniciar Sesion",
         "ex": "Salir"
     },
     "banner": {
-        "c1":"Anticonceptivos femeninos"
+        "c1":"Anticonceptivos femeninos",
+        "c2":"Las mujeres jóvenes corren un mayor riesgo de dar a luz a un bebé prematuro o con bajo peso al nacer. Además, los hijos de las mujeres adolescentes presentan una tasa mayor de mortalidad neonatal.",
+        "c3":"Lee mas",
+        "c4":"Anticonceptivos masculinos",
+        "c5":"Los métodos anticonceptivos como el preservativo ofrecen una doble protección, ya que evitan el embarazo y el riesgo de transmisión de enfermedades sexuales como el VIH.",
+        "c6":"Hospitales mas cercanos",
+        "c7":"Según la definición dada por la Organización Mundial de la Salud (OMS), la planificación familiar incluye todos los procedimientos destinados a controlar la reproducción."
     }, 
     "foro": {
         "title": "Foro",
-        "subtitle": "Todos estan invitados a preguntar :)"
+        "subtitle": "Todos estan invitados a preguntar :)",
+        "comment": "Comentar",
+        "addP": "Agregar publicación",
+        "myP": "Mis publicaciones ",
+        "camOb": "Todos los campos son obligatorios",
+        "tit": "Titulo",
+        "po": "Publicacion",
+        "vol": "Volver",
+        "comMin": "Los comentarios son de minimo 10 caracteres",
+        "ed": "Editar",
+        "de": "Eliminar",
+        "noP": "No posteo nada"
     }
 }

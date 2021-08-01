@@ -6,6 +6,9 @@ import { ForoService } from 'src/app/services/foro.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostInterface } from 'src/app/models/post';
 import { ThrowStmt } from '@angular/compiler';
+//Internacionalizacion
+import { TranslateConfigService } from '../../services/translate-config.service';
+
 @Component({
   selector: 'app-comentario',
   templateUrl: './comentario.component.html',
@@ -21,7 +24,7 @@ export class ComentarioComponent implements OnInit {
   value: string = '';
   constructor(private fb: FormBuilder, private authService: AuthService,
     private afsAuth: AngularFireAuth, private postService: ForoService,
-    private router: Router, private aRoute: ActivatedRoute) {
+    private router: Router, private aRoute: ActivatedRoute, private translateConfigService: TranslateConfigService) {
     this.createComent = this.fb.group({
       comentario: ['', Validators.minLength(10)],
     })
