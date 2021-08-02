@@ -15,8 +15,10 @@
 
 .imagen img{
     width:max-content;
+    width: 1520px;
     height: 800px;
     position: relative;
+    z-index: 0;
 }
 /*absolute: el punto de referencia para medir el desplazamiento está en la ventana del navegador*/
 /*top y left: los márgenes superior e izquierda*/
@@ -27,59 +29,6 @@
     font-family: 'Brygada 1918', serif;
     font-size: 30px;
     color: white;
+    z-index: 2;
 }
 
-/*
-EMPIEZA LAS TARJETITAS
-*/
-.columnas{
-    position: absolute;
-    top: 518px;
-}
-.row{
-    position: relative;
-}
-
-.circulo1{
-    position: absolute;
-    width: 85px;
-    height: 85px;
-    border-radius: 50%;
-    background: white;
-    top: -8px;
-}
-.circulo {
-    position: absolute;
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    background: #F05697;
-    align-items: center;
-}
-
-.circulo img{
-    width: 40px;
-    vertical-align: middle;
-    margin-top: 15px;
-}
-.contenido{
-    margin-top: 35px;
-    font-family: 'Raleway', sans-serif;
-    font-size: 15px;
-    color: black;
-    background-color: white;
-}
-.a{
-    margin-top: 40px;
-    font-size: 20px;
-    line-height: 40px;
-}
-.b{
-    margin: 25px;
-    margin-top: 10px;
-    text-align: justify;
-    margin-bottom: 15px;
-}
-.c{
-    margin-bottom: 30px;
-}

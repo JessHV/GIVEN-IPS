@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MapaComponent } from './mapa.component';
+import { MapaComponent } from './mapa/mapa.component';
 
 const routes: Routes = [{
   path: '',

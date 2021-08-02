@@ -19,11 +19,13 @@ import { AngularFireStorageModule} from '@angular/fire/storage';
 //Imports y export necesarios para utilizar la internacionalizacion
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
 export function rootLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
 //Modulo para base de datos foro
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -54,7 +56,9 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     }),
 
     //importaciones base de datos firebase
-    AngularFirestoreModule
+    AngularFirestoreModule,
+
+    BrowserAnimationsModule
 
   ],
   providers: [

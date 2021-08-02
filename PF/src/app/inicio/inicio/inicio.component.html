@@ -1,66 +1,152 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Raleway:ital@1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
 
 <!-- <p>inicio works!</p> -->
 
-<app-suscripcion></app-suscripcion>
 <div>
 <app-banner></app-banner>
 </div>
-<!-- POR SI SE DECIDE PASAR LAS TARJETAS AQUI
-<div class="columns is-mobile is-multiline is-centered">
-    <div class="column is-3">
-        <div class="row center-xs middle-xs-">
-            <div class="circulo col-xs- ">
-                <img src='../../../assets/iconos/pastillaw.png'>
-            </div>
-            <div class="contenido">
-                <p class="a">
-                    Anticonceptivos femeninos
-                </p>
-                <p class="b">
-                    Las mujeres jóvenes corren un mayor riesgo de dar a luz a un bebé prematuro o con bajo peso al nacer. Además, los hijos de las mujeres adolescentes presentan una tasa mayor de mortalidad neonatal.
-                </p>
-                <p class="c"> <b>Lee mas</b> </p>
-            </div>
-        </div>
-    </div>
-    <div class="column is-0">
-    </div>
-    <div class="column is-3">
-        <div class="row center-xs middle-xs-">
-            <div class="circulo col-xs- ">
-                <img src='../../../assets/iconos/pastillaw.png'>
-            </div>
-            <div class="contenido">
-                <p class="a">
-                    Anticonceptivos femeninos
-                </p>
-                <p class="b">
-                    Las mujeres jóvenes corren un mayor riesgo de dar a luz a un bebé prematuro o con bajo peso al nacer. Además, los hijos de las mujeres adolescentes presentan una tasa mayor de mortalidad neonatal.
-                </p>
-                <p class="c"> <b>Lee mas</b> </p>
+<div class="columnas">
+    <div class="columns is-mobile is-multiline is-centered">
+        <div class="column is-3">
+            <div class="row center-xs middle-xs-">
+                <div class="circulo1 col-xs- "></div>
+                <div class="circulo col-xs- ">
+                    <img src='../../../assets/iconos/pastillaw.png'>
+                </div>
+                <div class="contenido">
+                    <p class="a">
+                        Anticonceptivos femeninos
+                    </p>
+                    <p class="b">
+                        Las mujeres jóvenes corren un mayor riesgo de dar a luz a un bebé prematuro o con bajo peso al nacer. Además, los hijos de las mujeres adolescentes presentan una tasa mayor de mortalidad neonatal.
+                    </p>
+                    <a (click)="onClick('Info1')" class="c"> <b>Lee mas</b> </a>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="column is-0">
-    </div>
-    <div class="column is-3">
-        <div class="row center-xs middle-xs-">
-            <div class="circulo col-xs- ">
-                <img src='../../../assets/iconos/pastillaw.png'>
+        <div class="column is-0">
+        </div>
+        <div class="column is-3">
+            <div class="row center-xs middle-xs-">
+                <div class="circulo1 col-xs- "></div>
+                <div class="circulo col-xs- ">
+                    <img src='../../../assets/iconos/condonw.png'>
+                </div>
+                <div class="contenido">
+                    <p class="a">
+                        Anticonceptivos masculinos
+                    </p>
+                    <p class="b">
+                        Los métodos anticonceptivos como el preservativo ofrecen una doble protección, ya que evitan el embarazo y el riesgo de transmisión de enfermedades sexuales como el VIH
+                    </p>
+                    <a (click)="onClick('Info1')" class="c"> <b>Lee mas</b> </a>
+                </div>
             </div>
-            <div class="contenido">
-                <p class="a">
-                    Anticonceptivos femeninos
-                </p>
-                <p class="b">
-                    Las mujeres jóvenes corren un mayor riesgo de dar a luz a un bebé prematuro o con bajo peso al nacer. Además, los hijos de las mujeres adolescentes presentan una tasa mayor de mortalidad neonatal.
-                </p>
-                <p class="c"> <b>Lee mas</b> </p>
+        </div>
+        <div class="column is-0">
+        </div>
+        <div class="column is-3">
+            <div class="row center-xs middle-xs-">
+                <div class="circulo1 col-xs- "></div>
+                <div class="circulo col-xs- ">
+                    <img src='../../../assets/iconos/ubicacionw.png'>
+                </div>
+                <div class="contenido">
+                    <p class="a">
+                        Hospitales mas cercanos
+                    </p>
+                    <p class="b">
+                        Según la definición dada por la Organización Mundial de la Salud (OMS), la planificación familiar incluye todos los procedimientos destinados a controlar la reproducción y a reducir el riesgo en un embarazo.
+                    </p>
+                    <a routerLink="/ubicalos" class="c"> <b>Lee mas</b> </a>
+                </div>
             </div>
         </div>
     </div>
 </div>
--->
+
+<div  id="Info1"></div>
+
+<div class='info'>
+    <div class="columns is-mobile is-3">
+        <div class="column is-two-fifths row center-xs middle-xs-">
+            <div class="img-femeninos col-xs- ">
+                <img src='../../../assets/imagenes/mama1.jpg'>
+            </div>
+        </div>
+        <div class="texto column is-half">
+            <div class="femeninos row center-xs middle-xs-">
+                <h1>Anticoncepcion como usuario y como pareja</h1>
+                <p>
+                    Durante la cuarentena, miles de peruanas se han quedado sin su suministro de anticonceptivos. Una de las razones es que el 77% utiliza métodos de corta duración, como las pastillas e inyectables, que dependen de una cadena global de fabricación o el funcionamiento ininterrumpido de los programas de salud. En un año con tantas limitaciones como este, algunos expertos en salud consideran necesario revisar la diversidad de métodos anticonceptivos que existen y asegurar que cada mujer esté utilizando el mejor para ella.
+                <br>
+                En cuanto al inicio de la vida sexual, los hombres son más precoces pues, en promedio, inician su vida sexual a los 16,8 años. Actualmente el uso de un método anticonceptivo por parte de los varones es de 54,2%; el 39,5% opta por los métodos modernos, mientras que el 14,5% por los métodos tradicionales. En el Perú están disponibles los métodos de barrera (entre ellos el más usado es el condón); los métodos químicos o espermicidas y los métodos quirúrgicos (la vasectomía). Entre los métodos tradicionales tenemos el del “ritmo”, basado en abstenerse durante la fase fértil del ciclo menstrual , y el coito interrumpido.
+                </p>
+                <div class="boton col-xs-"> 
+                    <a class="c col-xs-" routerLink="/busqueda">Ver mas</a> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="tituloPR  row center-xs middle-xs-">
+    <h1 class="pr col-xs-"> PAGINAS RELACIONADAS </h1>
+    <div class="rayita  col-xs-"></div>
+</div>
+
+<div class='paginas'>
+    <div class="columns is-mobile is-3 row center-xs middle-xs-">
+        <a class="pag column is-one-fifth col-xs-">
+            <mat-card>
+                <img class="gob" mat-card-image src='../../../assets/iconos/gobpe.png'>
+                <mat-card-title class="infotarj">Gobierno peruano</mat-card-title>
+                <mat-card-content class="infotarj">Entre los multiples servicios que ofrece su pagina web se encuentra la informacion tanto de metodos anticonceptivos como de salud sexual</mat-card-content>
+                <mat-card-actions>
+                    <a class="infotarj" mat-button href="https://www.gob.pe/institucion/minsa/campa%C3%B1as/510-planificacion-familiar" target="_blank"><b>Leer Mas</b></a>
+                </mat-card-actions>
+            </mat-card>
+        </a>
+
+        <a class="pag column is-one-fifth col-xs-">
+            <mat-card>
+                <img class="pp" mat-card-image src='../../../assets/iconos/pp.png'>
+                <mat-card-title class="infotarj">Planned Parenthood</mat-card-title>
+                <mat-card-content class="infotarj">Ofrece servicios vitales de salud reproductiva, educación sexual e información sobre sexualidad a millones de personas en todo el mundo.</mat-card-content>
+                <mat-card-actions>
+                    <a class="infotarj" mat-button href="https://www.plannedparenthood.org/es" target="_blank"><b>Leer Mas</b></a>
+                </mat-card-actions>
+            </mat-card>
+        </a>
+        <a class="pag column is-one-fifth col-xs-">
+            <mat-card>
+                <img class="tde" mat-card-image src='../../../assets/iconos/tde.png'>
+                <mat-card-title class="infotarj">Top Doctors</mat-card-title>
+                <mat-card-content class="infotarj">Es el cuadro médico de referencia de la medicina privada a nivel internacional. Cuenta con los especialistas de mayor reconocimiento en cada especialidad.</mat-card-content>
+                <mat-card-actions>
+                    <a class="infotarj" mat-button href="https://www.topdoctors.es/diccionario-medico/planificacion-familiar#" target="_blank"><b>Leer Mas</b></a>
+                </mat-card-actions>
+            </mat-card>
+        </a>
+        <a class="pag column is-one-fifth col-xs-">
+            <mat-card>
+                <img class="oms" mat-card-image src='../../../assets/iconos/oms.png'>
+                <mat-card-title class="infotarj">OMS</mat-card-title>
+                <mat-card-content class="infotarj">Garantiza que las personas tengan acceso a sus métodos anticonceptivos y refuerza los derechos humanos, incluidos el derecho a la vida y a la libertad</mat-card-content>
+                <mat-card-actions>
+                    <a class="infotarj" mat-button href="https://www.who.int/es/news-room/fact-sheets/detail/family-planning-contraception" target="_blank"><b>Leer Mas</b></a>
+                </mat-card-actions>
+            </mat-card>
+        </a>
+    </div>
+</div>
+
+<img class="bb" src="../../../assets/imagenes/final.jpg">
+<div class="polco row center-xs middle-xs-">
+    <p class="fraseFinal ">Planfica tu vida no la dejes a </p><br>
+    <p class="fraseFinal2">manos del azar</p>
+    <div class="raya"></div>
+</div>

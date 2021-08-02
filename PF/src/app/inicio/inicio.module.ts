@@ -8,6 +8,8 @@ import { SharedModule } from "../shared/shared.module";
 import { SwiperModule } from "swiper/angular";
 import { BannerComponent } from './banner/banner.component';
 import { TranslateModule } from '@ngx-translate/core';
+//Angular material
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { TranslateModule } from '@ngx-translate/core';
     InicioRoutingModule,
     SharedModule,
     SwiperModule,
+    MatCardModule,
     TranslateModule
   ]
 })
