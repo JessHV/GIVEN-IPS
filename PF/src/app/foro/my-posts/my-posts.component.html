@@ -31,14 +31,14 @@
                             </div>
                             <div class="pull-left meta">
                                 <div class="title h5">
-                                    <a><b>{{post.name}}</b></a>
+                                    <h3><b>{{post.name}}</b></h3>
                                 </div>
-                                <h6 class="text-muted time">{{post.start_time.toDate() | date :'EEEE, MMMM d, y, h:mm:ss a' }}</h6>
+                                <h4 class="text-muted time">{{post.start_time.toDate() | date :'EEEE, MMMM d, y, h:mm:ss a' }}</h4>
                             </div>
                         </div>
                         <div class="post-description">
                             <h2><b>{{post.titulo}}</b></h2>
-                            <p>{{post.comentario}}</p>
+                            <pre>{{post.comentario}}</pre>
                             <div class="stats">
                                 <div class="input-group">
                                     <span class="input-group-addon">

@@ -11,15 +11,15 @@
                             </div>
                             <div class="pull-left meta">
                                 <div class="title h5">
-                                    <a><b>{{user.name}}</b></a>
+                                    <h3><b>{{user.name}}</b></h3>
                                 </div>
-                                <h6 class="text-muted time">{{user.start_time | date :'EEEE, MMMM d, y, h:mm:ss a' }}
-                                </h6>
+                                <h4 class="text-muted time">{{user.start_time | date :'EEEE, MMMM d, y, h:mm:ss a' }}
+                                </h4>
                             </div>
                         </div>
                         <div class="post-description">
                             <h2><b>{{user.titulo}}</b></h2>
-                            <p>{{user.comentario }}</p>
+                            <pre>{{user.comentario }}</pre>
                         </div>
                         <div class="post-footer">
                             <span *ngIf="submitted && createComent.invalid"><b translate>foro.comMin</b></span>
