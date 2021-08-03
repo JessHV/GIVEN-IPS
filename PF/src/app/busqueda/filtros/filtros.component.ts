@@ -231,6 +231,7 @@ export class FiltrosComponent implements OnInit {
     this.MethodList=this.localMethods;
     this.MethodListWithoutFilter=this.localMethods;
 
+    // Con Django Rest API  
     /* this.service.getMethodList().subscribe(data=>{
       this.MethodList=data;
       this.MethodListWithoutFilter=data;

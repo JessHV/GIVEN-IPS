@@ -42,6 +42,11 @@ export class InformacionComponent implements OnInit {
   // Función para actualizar los registros
   refreshAntiList() {
     this.AnticoncepcionList=this.localAnticoncepcion;
+
+    // Con Django Rest API  
+    /* this.service.getAnticoncepcionList().subscribe(data=>{
+          this.AnticoncepcionList=data;
+    }); */
   }
 
   // Función para filtrar registros

@@ -14,8 +14,12 @@ export class SharedService {
     return this.http.get<any[]>(this.ApiUrl + '/metodo/');
   }
 
-  getAllMethods():Observable<any[]> {
-    return this.http.get<any[]>(this.ApiUrl + '/metodo/');
+  getAnticoncepcionList():Observable<any[]> {
+    return this.http.get<any[]>(this.ApiUrl + '/anticoncepcion/');
   }
+
+  // getAllMethods():Observable<any[]> {
+  //   return this.http.get<any[]>(this.ApiUrl + '/metodo/');
+  // }
 
 }
