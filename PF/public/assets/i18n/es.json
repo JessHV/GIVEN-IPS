@@ -18,7 +18,7 @@
     "inicio": {
         "c1":"Anticonceptivos femeninos",
         "c2":"Las mujeres jóvenes corren un mayor riesgo de dar a luz a un bebé prematuro o con bajo peso al nacer. Además, los hijos de las mujeres adolescentes presentan una tasa mayor de mortalidad neonatal.",
-        "c3":"Leer mas",
+        "c3":"Leer más",
         "c4":"Anticonceptivos masculinos",
         "c5":"Los métodos anticonceptivos como el preservativo ofrecen una doble protección, ya que evitan el embarazo y el riesgo de transmisión de enfermedades sexuales como el VIH.",
         "c6":"Hospitales mas cercanos",
@@ -26,7 +26,7 @@
         "c8":"Anticoncepcion como usuario y como pareja",
         "c9":"Durante la cuarentena, miles de peruanas se han quedado sin su suministro de anticonceptivos. Una de las razones es que el 77% utiliza métodos de corta duración, como las pastillas e inyectables, que dependen de una cadena global de fabricación o el funcionamiento ininterrumpido de los programas de salud. En un año con tantas limitaciones como este, algunos expertos en salud consideran necesario revisar la diversidad de métodos anticonceptivos que existen y asegurar que cada mujer esté utilizando el mejor para ella.",
         "c10":"En cuanto al inicio de la vida sexual, los hombres son más precoces pues, en promedio, inician su vida sexual a los 16,8 años. Actualmente el uso de un método anticonceptivo por parte de los varones es de 54,2%; el 39,5% opta por los métodos modernos, mientras que el 14,5% por los métodos tradicionales. En el Perú están disponibles los métodos de barrera (entre ellos el más usado es el condón); los métodos químicos o espermicidas y los métodos quirúrgicos (la vasectomía). Entre los métodos tradicionales tenemos el del “ritmo”, basado en abstenerse durante la fase fértil del ciclo menstrual , y el coito interrumpido.",
-        "c11":"Ver mas",
+        "c11":"Ver más",
         "c12":"PAGINAS RELACIONADAS",
         "c13":"Gobierno peruano",
         "c14":"Entre los multiples servicios que ofrece su pagina web se encuentra la informacion tanto de metodos anticonceptivos como de salud sexual.",
@@ -34,7 +34,8 @@
         "c16":"Es el cuadro médico de referencia de la medicina privada a nivel internacional. Cuenta con los especialistas de mayor reconocimiento en cada especialidad.",
         "c17":"Garantiza que las personas tengan acceso a sus métodos anticonceptivos y refuerza los derechos humanos, incluidos el derecho a la vida y a la libertad.",
         "c18":"Planifica tu vida no la dejes a",
-        "c19":"manos del azar"
+        "c19":"manos del azar",
+        "c20": "Ver dataset"
     }, 
     "banner": {
         "f1":"LA PALABRA PROHIBIDO NO SIEMPRE",

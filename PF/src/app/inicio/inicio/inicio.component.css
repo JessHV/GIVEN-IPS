@@ -95,13 +95,24 @@ EMPIEZA LA INFO
 }
 
 .boton{
-    background-color: #f05696;
+    background-color: #f57daf;
     color: white;
-    width: 200px;
+    width: 150px;
     height: 30px;
     font-family: 'Gowun Batang', serif;
     border-radius: 50%;
     margin:40px auto;
+    padding-top: .2rem;
+    margin-right: 1rem;
+}
+
+.boton:hover {
+    background-color:rgba(245, 125, 175, .9);
+}
+
+.c {
+    color: white;
+    font-weight: bold;
 }
 /*
 .panel{
