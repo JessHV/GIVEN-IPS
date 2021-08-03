@@ -7,7 +7,7 @@ import { LayoutComponent } from "./layout/layout.component";
 const routes: Routes = [
   {
     path: '',
-    component: LayoutComponent,
+    component: LayoutComponent, 
     children:[
       {
         path: '',
@@ -34,7 +34,7 @@ const routes: Routes = [
         path: 'graficos',
         loadChildren: () => import('./graficos/graficos.module').then(m => m.GraficosModule)
       },
-      /* Crear ruta para preguntas frecuentes */
+    
     ]
   },
   {

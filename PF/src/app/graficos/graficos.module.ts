@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { GraficosRoutingModule } from './graficos-routing.module';
 import { GraficosComponent } from './graficos/graficos.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { GraficosComponent } from './graficos/graficos.component';
   ],
   imports: [
     CommonModule,
-    GraficosRoutingModule
+    GraficosRoutingModule,
+    TranslateModule
   ]
 })
 export class GraficosModule { }

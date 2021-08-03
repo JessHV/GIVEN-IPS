@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewportScroller } from '@angular/common';
+//Internacionalizacion
+import { TranslateConfigService } from '../../services/translate-config.service';
 
 @Component({
   selector: 'app-inicio',
@@ -8,7 +10,7 @@ import { ViewportScroller } from '@angular/common';
 })
 export class InicioComponent implements OnInit {
 
-  constructor(private viewportScroller: ViewportScroller) { }
+  constructor(private viewportScroller: ViewportScroller, private translateConfigService: TranslateConfigService) { }
 
   ngOnInit(): void {
   }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from 'src/app/shared.service';
+//Internacionalizacion
+import { TranslateConfigService } from '../../services/translate-config.service';
 
 @Component({
   selector: 'app-filtros',
@@ -8,7 +10,7 @@ import { SharedService } from 'src/app/shared.service';
 })
 export class FiltrosComponent implements OnInit {
 
-  constructor(private service:SharedService) { }
+  constructor(private service:SharedService, private translateConfigService: TranslateConfigService) { }
 
   // Variables
   MethodList:any=[];

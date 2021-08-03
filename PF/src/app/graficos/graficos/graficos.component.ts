@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+//Internacionalizacion
+import { TranslateConfigService } from '../../services/translate-config.service';
 
 @Component({
   selector: 'app-graficos',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GraficosComponent implements OnInit {
 
-  constructor() { }
+  constructor(private translateConfigService: TranslateConfigService) { }
 
   ngOnInit(): void {
   }

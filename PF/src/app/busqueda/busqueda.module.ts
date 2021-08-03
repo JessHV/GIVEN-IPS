@@ -6,6 +6,7 @@ import { FiltrosComponent } from './filtros/filtros.component';
 import { InformacionComponent } from './informacion/informacion.component';
 import { FormsModule } from '@angular/forms';
 import { FiltroPipe } from '../pipes/filtro.pipe';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FiltroPipe } from '../pipes/filtro.pipe';
   imports: [
     CommonModule,
     BusquedaRoutingModule,
-    FormsModule
+    FormsModule,
+    TranslateModule
   ]
 })
 export class BusquedaModule { }

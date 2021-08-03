@@ -13,81 +13,64 @@
   	</div>
 
   	<div id="navbarBasicExample" class="navbar-menu">
-    	
+    	<!--LOGGED: {{isLogged}}--><!--PRUEBA PARA CONECCION-->
     	<div class="navbar-end">
 
-  			<a class="navbar-item">
-				  Inicio
-			</a>
-        	
-      		<a class="navbar-item">
-        		Graficos
+            <a class="navbar-item" href="#" translate>
+        		header.inicio
       		</a>
 
-      		<a class="navbar-item">
-        		Ubicalos
+            <a routerLink="/graficos" class="navbar-item" translate>
+        		header.graficos
       		</a>
 
-      		<a class="navbar-item">
-        		Foros
+      		<a routerLink="/ubicalos" class="navbar-item" translate>
+        		header.ubicar
       		</a>
+
+      		<li class="navbar-item" *ngIf="isLogged">
+				<a routerLink="/foro" class="navbar-item" translate>foro.title</a>
+			</li>
 
 			<div class="navbar-item has-dropdown is-hoverable">
-				<a class="navbar-link">
-					Idioma
+				<a class="navbar-link" translate>
+					header.idi
 			    </a>
-
 				<nav class="navbar-dropdown">
-					<div class="navbar-item">
-						<option value="en">Ingles</option>
-					</div>
+					<a class="navbar-item" >
+						<option (click)="changeLang('en')">Ingles</option>
+					</a>
+					<a class="navbar-item" >
+						<option (click)="changeLang('es')">Español</option>
+					</a>
 				</nav>
 			</div>
 
-      		<div class="navbar-item has-dropdown is-hoverable">
-        		<a class="navbar-link">
-          			Contactenos
-        		</a>
+      		<div class="navbar-item " *ngIf="!isLogged">
+				<div class="buttons">
+					<a routerLink='/inicio' class="button is-primary "(click)="onLoginGoogle()" > <!---->
+						<strong translate>header.log</strong>
+					</a>
+				</div>
+			</div>
 
-        		<div class="navbar-dropdown">
-          			<a class="navbar-item">
-            			<span class="icon-text has-text-info">
-            				<span class="icon">
-        						<i class="fas fa-at"></i>
-      						</span>
-      						<span>Correo</span>
-            			</span>
-          			</a>
-          			<a class="navbar-item">
-            			<span class="icon-text has-text-info">
-            				<span class="icon">
-        						<i class="fas fa-phone"></i>
-      						</span>
-      						<span>Telefono</span>
-            			</span>
-          			</a>
-          			<a class="navbar-item">
-            			<span class="icon-text has-text-info">
-            				<span class="icon">
-        						<i class="fab fa-facebook"></i>
-      						</span>
-      						<span>Facebook</span>
-            			</span>
-          			</a>
-          			<hr class="navbar-divider">
-          			<a class="navbar-item">
-            			Reportar Error
-          			</a>
-        		</div>
-      		</div>
-
-      		<div class="navbar-item">
-        		<div class="buttons">
-          			<a class="button is-primary">
-            			<strong>Registrarse</strong>
-         			</a>
-        		</div>
-      		</div>
+			<li class="navbar-item" *ngIf="isLogged">
+				<figure class="image is-32x32">
+					<img class="is-rounded" src="{{user.photoUrl}}" alt="profile">
+				</figure>
+				<!--<img src="{{user.photoUrl}}" class="image is-32x32"  alt="profile" >-->
+				<div class=" m-1">
+					<div class="TextUser" *ngIf="providerId != 'password'">{{user.name}}</div>
+					<div class="Textemail" >{{user.email}}</div>
+				</div>
+			</li>
+			<div class="navbar-item " *ngIf="isLogged">
+				<div class="buttons">
+					<a href="" (click)="onLogout()" class="button is-primary">
+						<strong translate>header.ex</strong>
+					</a>
+				</div>
+			</div>
     	</div>
   	</div>
 </nav>

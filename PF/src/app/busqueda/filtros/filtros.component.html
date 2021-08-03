@@ -11,34 +11,34 @@
         </p>
         <div>
             <select [(ngModel)]="TypeMethodFilter" (change)="filterType()" name="" id="" class="option tipo">
-                <option value="" [selected]="(MethodNameFilter != '')">Tipo de Método</option>
-                <option value="MAP">Abstinencia periódica</option>
-                <option value="MELA">MELA</option>
-                <option value="MB">Métodos de barrera</option>
-                <option value="AH">Anticonceptivos hormonales</option>
-                <option value="DIU">Dispositivos intrauterinos</option>
-                <option value="AQV">Anticoncepción quirúrgica voluntaria</option>
-                <option value="AE">Anticoncepción de emergencia</option>
+                <option value="" [selected]="(MethodNameFilter != '')" translate>busqueda.tipM</option>
+                <option value="MAP" translate>busqueda.map</option>
+                <option value="MELA" translate>busqueda.mela</option>
+                <option value="MB" translate>busqueda.mb</option>
+                <option value="AH" translate>busqueda.ah</option>
+                <option value="DIU" translate>busqueda.diu</option>
+                <option value="AQV" translate>busqueda.aqv</option>
+                <option value="AE" translate>busqueda.ae</option>
             </select>
             <select [(ngModel)]="GenderMethodFilter" (change)="filterGender()" name="" id="" class="option">
-                <option value="" [selected]="(MethodNameFilter != '')">Género</option>
-                <option value="Masculino">Hombre</option>
-                <option value="Femenino">Mujer</option>
+                <option value="" [selected]="(MethodNameFilter != '')" translate>busqueda.ge</option>
+                <option value="Masculino" translate>busqueda.ma</option>
+                <option value="Femenino" translate>busqueda.fe</option>
             </select>
         </div>
         
     </div>
  
     <div class="my-container">
-        <p *ngIf="MethodList.length == 0" class="sin-resultados">No se encontraron resultados</p>
+        <p *ngIf="MethodList.length == 0" class="sin-resultados" translate>busqueda.noR</p>
         <div class="my-card" *ngFor="let dataItem of MethodList">
             <div class="my-info">
                 <h1>{{dataItem.MetodoNombre}}</h1>
-                <h2>Descripción</h2>
+                <h2 translate>busqueda.des</h2>
                 <p>{{dataItem.MetodoDescripcion}}</p>
-                <h2>Mecanismo de Acción</h2>
+                <h2 translate>busqueda.tas</h2>
                 <p>{{dataItem.MetodoMecanismo}}</p>
-                <h2>Tasa de Falla</h2>
+                <h2 translate>busqueda.mec</h2>
                 <p>• {{dataItem.MetodoTasa.split("|")[0]}}</p>
                 <p>• {{dataItem.MetodoTasa.split("|")[1]}}</p>
             </div>

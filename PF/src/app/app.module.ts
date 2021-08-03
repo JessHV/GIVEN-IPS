@@ -26,12 +26,13 @@ export function rootLoaderFactory(http: HttpClient) {
 //Modulo para base de datos foro
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HeaderComponent } from './shared/header/header.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LayoutComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +58,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
     //importaciones base de datos firebase
     AngularFirestoreModule,
-
+    
     BrowserAnimationsModule
 
   ],

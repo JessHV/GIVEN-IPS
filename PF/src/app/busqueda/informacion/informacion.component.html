@@ -24,7 +24,7 @@
 
     <!-- START -->
     <div class="more-filters">
-        <input [(ngModel)]="more" (click)="changeMore()" type="checkbox" name="advance" id="advance"><label for="advance" class="more-text">Mostrar filtros</label>
+        <input [(ngModel)]="more" (click)="changeMore()" type="checkbox" name="advance" id="advance"><label for="advance" class="more-text" translate>busqueda.mf</label>
     </div>
 
     <table *ngIf="more == true" class="filtros-tabla">
@@ -33,19 +33,19 @@
                 <th> </th>
                 <th>
                     <select name="mes" id="mes" [(ngModel)]="mes" (change)="onSearchMes(mes)">
-                        <option value="" [selected]="(departamento != '' || provincia != '' || distrito != '' || edad != '' || metodo != '')">Mes</option>
-                        <option value="Enero">Enero</option>
-                        <option value="Febrero">Febrero</option>
-                        <option value="Marzo">Marzo</option>
-                        <option value="Abril">Abril</option>
-                        <option value="Mayo">Mayo</option>
-                        <option value="Junio">Junio</option>
-                        <option value="Julio">Julio</option>
-                        <option value="Agosto">Agosto</option>
-                        <option value="Septiembre">Septiembre</option>
-                        <option value="Octubre">Octubre</option>
-                        <option value="Noviembre">Noviembre</option>
-                        <option value="Diciembre">Diciembre</option>
+                        <option value="" [selected]="(departamento != '' || provincia != '' || distrito != '' || edad != '' || metodo != '')" translate>busqueda.me</option>
+                        <option value="Enero" translate>busqueda.ene</option>
+                        <option value="Febrero" translate>busqueda.feb</option>
+                        <option value="Marzo" translate>busqueda.mar</option>
+                        <option value="Abril" translate>busqueda.abr</option>
+                        <option value="Mayo" translate>busqueda.may</option>
+                        <option value="Junio" translate>busqueda.jun</option>
+                        <option value="Julio" translate>busqueda.jul</option>
+                        <option value="Agosto" translate>busqueda.ago</option>
+                        <option value="Septiembre" translate>busqueda.sep</option>
+                        <option value="Octubre" translate>busqueda.oct</option>
+                        <option value="Noviembre" translate>busqueda.nov</option>
+                        <option value="Diciembre" translate>busqueda.dic</option>
                     </select>
                 </th>
                 <th>
@@ -71,7 +71,7 @@
                 </th>
                 <th>
                     <select name="edad" id="edad" [(ngModel)]="edad" (change)="onSearchEdad(edad)">
-                        <option value="" [selected]="(departamento != '' || provincia != '' || distrito != '' || mes != '' || metodo != '')">Edad</option>
+                        <option value="" [selected]="(departamento != '' || provincia != '' || distrito != '' || mes != '' || metodo != '')" translate>busqueda.ed</option>
                         <option value="12-17">12 - 17</option>
                         <option value="18-29">18 - 29</option>
                         <option value="30-59">30 - 59</option>
@@ -79,9 +79,9 @@
                 </th>
                 <th>
                     <select name="metodo" id="metodo" [(ngModel)]="metodo" (change)="onSearchMetodo(metodo)">
-                        <option value="" [selected]="(departamento != '' || provincia != '' || distrito != '' || edad != '' || mes != '')">Método</option>
-                        <option value="YUZPE">Yuzpe</option>
-                        <option value="PROGESTAGENO">Progestageno</option>
+                        <option value="" [selected]="(departamento != '' || provincia != '' || distrito != '' || edad != '' || mes != '')" translate>busqueda.met</option>
+                        <option value="YUZPE" translate>busqueda.yuz</option>
+                        <option value="PROGESTAGENO" translate>busqueda.pro</option>
                     </select>
                 </th>
             </tr>
@@ -93,12 +93,12 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Mes</th>
-                <th>Departamento</th>
-                <th>Provincia</th>
-                <th>Distrito</th>
-                <th>Edad</th>
-                <th>Método</th>
+                <th translate>busqueda.me</th>
+                <th translate>busqueda.dep</th>
+                <th translate>busqueda.prov</th>
+                <th translate>busqueda.dis</th>
+                <th translate>busqueda.ed</th>
+                <th translate>busqueda.met</th>
             </tr>
         </thead>
         <tbody>
@@ -114,6 +114,6 @@
         </tbody>
     </table>
 
-    <p *ngIf="(AnticoncepcionList | filtro:page:search:option).length == 0" class="sin-resultados">No se encontraron resultados</p>
+    <p *ngIf="(AnticoncepcionList | filtro:page:search:option).length == 0" class="sin-resultados" translate>busqueda.noR</p>
     
 </div>
