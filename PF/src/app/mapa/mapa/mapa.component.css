@@ -1,6 +1,7 @@
 .marco {
   position: absolute;
   z-index: 5;
+  top: 52px;
 }
 
 .centrado {
@@ -9,8 +10,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed;
-  top: 0;
+  /* position: fixed;
+  top: 0; */
 }
 
 .lds-roller {

@@ -1,19 +1,19 @@
 {
     "header": {
         "inicio": "Inicio",
-        "graficos": "Graficos",
-        "ubicar": "Ubicalos",
+        "graficos": "Gráficos",
+        "ubicar": "Ubícalos",
         "idi": "Idioma",
-        "bus": "Busqueda",
-        "log": "Iniciar Sesion",
+        "bus": "Búsqueda",
+        "log": "Iniciar Sesión",
         "ex": "Salir"
     },
     "footer": {
         "sg": "Sobre Given",
         "giv": "Given es una organizacion sin fines de lucro que aporta a la sociedad proyectos de software con fines de brindar informacion de temas de salud.",
-        "mep": "Menu Principal",
+        "mep": "Menú Principal",
         "ap": "Apoyo",
-        "cop": "Copyright 2021 Planificacion familiar | Reservados todos los derechos"
+        "cop": "Copyright 2021 Planificación familiar | Reservados todos los derechos"
     },
     "inicio": {
         "c1":"Anticonceptivos femeninos",
